@@ -2,6 +2,7 @@ package com.lucien.mall.global;
 
 import cn.hutool.core.util.StrUtil;
 import com.lucien.mall.constant.HttpStatus;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 
@@ -48,7 +49,7 @@ public class GlobalResult extends HashMap<String, Object> {
     public GlobalResult(int code, String msg, Object data) {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
-        if (StrUtil.isNotEmpty((CharSequence) data)) {
+        if (StringUtils.isEmpty(data)) {
             super.put(DATA_TAG, data);
         }
     }
