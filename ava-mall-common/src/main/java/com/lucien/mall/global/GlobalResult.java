@@ -2,6 +2,7 @@ package com.lucien.mall.global;
 
 import cn.hutool.core.util.StrUtil;
 import com.lucien.mall.constant.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class GlobalResult extends HashMap<String, Object> {
     public GlobalResult(int code, String msg, Object data) {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
-        if (StringUtils.isEmpty(data)) {
+        if (!StringUtils.isEmpty(data)) {
             super.put(DATA_TAG, data);
         }
     }
@@ -98,8 +99,7 @@ public class GlobalResult extends HashMap<String, Object> {
      *
      * @return
      */
-    public static GlobalResult error()
-    {
+    public static GlobalResult error() {
         return GlobalResult.error("操作失败");
     }
 
@@ -109,20 +109,18 @@ public class GlobalResult extends HashMap<String, Object> {
      * @param msg 返回内容
      * @return 警告消息
      */
-    public static GlobalResult error(String msg)
-    {
+    public static GlobalResult error(String msg) {
         return GlobalResult.error(msg, null);
     }
 
     /**
      * 返回错误消息
      *
-     * @param msg 返回内容
+     * @param msg  返回内容
      * @param data 数据对象
      * @return 警告消息
      */
-    public static GlobalResult error(String msg, Object data)
-    {
+    public static GlobalResult error(String msg, Object data) {
         return new GlobalResult(HttpStatus.ERROR, msg, data);
     }
 
@@ -130,11 +128,10 @@ public class GlobalResult extends HashMap<String, Object> {
      * 返回错误消息
      *
      * @param code 状态码
-     * @param msg 返回内容
+     * @param msg  返回内容
      * @return 警告消息
      */
-    public static GlobalResult error(int code, String msg)
-    {
+    public static GlobalResult error(int code, String msg) {
         return new GlobalResult(code, msg, null);
     }
 }

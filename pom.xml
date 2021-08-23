@@ -46,6 +46,7 @@
         <commons-pool2.version>2.7.0</commons-pool2.version>
         <mall-db.version>1.0-SNAPSHOT</mall-db.version>
         <mall-common.version>1.0-SNAPSHOT</mall-common.version>
+        <useragentutils.version>1.21</useragentutils.version>
     </properties>
 
     <dependencies>
@@ -180,6 +181,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${useragentutils.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

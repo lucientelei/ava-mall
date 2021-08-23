@@ -90,19 +90,16 @@ public class ShiroConfig {
         //给工厂bean设置web安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/authorized");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
-
         // 添加 jwt 专用过滤器
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("jwtFilter", new JwtFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
-        log.info("添加jwtfilter");
         //配置系统受限资源以及公共资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 可匿名访问
         filterChainDefinitionMap.put("/admin/login", "anon");
+        filterChainDefinitionMap.put("/admin/register", "anon");
+        filterChainDefinitionMap.put("/admin/test", "anon");
 
 
         // 退出登录
@@ -120,6 +117,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/ws/**","anon");
+        //druid
+        filterChainDefinitionMap.put("/druid/**","anon");
+
 
         // 需登录才能访问
         filterChainDefinitionMap.put("/**", "jwtFilter,authc");

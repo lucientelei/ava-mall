@@ -1,8 +1,11 @@
 package com.lucien.mall.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.lucien.mall.config.properties.DruidProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -22,10 +25,21 @@ import java.util.Map;
 @Configuration
 public class DruidConfig {
 
-    @ConfigurationProperties(prefix = "spring.datasource")
     @Bean
-    public DataSource druid(){
-        return new DruidDataSource();
+    @ConfigurationProperties("spring.datasource.druid.master")
+    public DataSource masterDataSource(DruidProperties druidProperties)
+    {
+        DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
+        return druidProperties.dataSource(dataSource);
+    }
+
+    @Bean
+    @ConfigurationProperties("spring.datasource.druid.slave")
+    @ConditionalOnProperty(prefix = "spring.datasource.druid.slave", name = "enabled", havingValue = "true")
+    public DataSource slaveDataSource(DruidProperties druidProperties)
+    {
+        DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
+        return druidProperties.dataSource(dataSource);
     }
 
     //配置Druid数据源监控
@@ -48,17 +62,12 @@ public class DruidConfig {
     //配置一个web监控的filter
     @Bean
     public FilterRegistrationBean webStatFilter(){
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new WebStatFilter());
-
-        Map<String,String> initParams = new HashMap<>();
-        initParams.put("exclusions","*.js,*.css,/druid/*");
-
-        bean.setInitParameters(initParams);
-
-        bean.setUrlPatterns(Arrays.asList("/*"));
-
-        return  bean;
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
+        // 添加过滤规则
+        filterRegistrationBean.addUrlPatterns("/*");
+        // 忽略过滤格式
+        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,");
+        return filterRegistrationBean;
     }
 
 

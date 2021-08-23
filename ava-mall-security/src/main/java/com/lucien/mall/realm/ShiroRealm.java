@@ -12,6 +12,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.Set;
 @SuppressWarnings("serial")
 public class ShiroRealm extends AuthorizingRealm {
 
+    @Lazy
     @Autowired
     private UmsAdminService umsAdminService;
 
@@ -47,6 +49,7 @@ public class ShiroRealm extends AuthorizingRealm {
         Set<String> roleSet = new HashSet<>();
         List<UmsRole> roleList = umsAdminService.getRoleList(umsAdmin.getId());
         for (UmsRole umsRole : roleList) {
+            System.out.println("查询用户角色"+umsRole.getName());
             roleSet.add(umsRole.getName());
         }
 
@@ -54,6 +57,7 @@ public class ShiroRealm extends AuthorizingRealm {
         Set<String> stringPermissions = new HashSet<>();
         List<UmsResource> resourceList = umsAdminService.getResourceList(umsAdmin.getId());
         for (UmsResource umsResource : resourceList) {
+            System.out.println("查询用户权限信息"+umsResource.getName());
             stringPermissions.add(umsResource.getName());
         }
 
@@ -67,9 +71,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("执行登录");
         String username = (String) token.getPrincipal();
-        System.out.println("shirorealm===" + username);
         UmsAdmin umsAdmin = umsAdminService.getAdminByUsername(username);
 
         if (umsAdmin.getStatus() == 0) {

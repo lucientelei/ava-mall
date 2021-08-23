@@ -89,6 +89,17 @@ public interface UmsAdminService {
      */
     int updateStatus(Long id, Integer status);
 
+    /**
+     * 退出登录
+     * @param token
+     * @return
+     */
+    int logout(String token);
 
-
+    /**
+     * 更新用户登录时间
+     * @param adminId
+     * @return
+     */
+    int updateLoginTime(Long adminId);
 }

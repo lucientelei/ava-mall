@@ -45,12 +45,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
         String token = httpServletRequest.getHeader("Authorization");
-//        if (token != null){
-//            if (JWTUtils.isTokenExpired(token)){
-//
-//            }
-//        }
-        //跨域时会首先发送一个option请求，给option请求直接返回正常状态 200
         if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
             httpServletResponse.setStatus(HttpStatus.SUCCESS);
             return false;
@@ -169,6 +163,12 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+        //servlet请求响应转换
+        HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
+        String token = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(token)){
+            return true;
+        }
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
 
         httpServletResponse.setCharacterEncoding("UTF-8");

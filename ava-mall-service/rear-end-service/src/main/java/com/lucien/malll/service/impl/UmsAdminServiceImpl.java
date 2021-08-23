@@ -3,7 +3,6 @@ package com.lucien.malll.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
-import com.lucien.mall.dao.UmsAdminRoleRelationDao;
 import com.lucien.mall.dto.UmsAdminDto;
 import com.lucien.mall.dto.UpdateAdminPasswordDto;
 import com.lucien.mall.mapper.UmsAdminLoginLogMapper;
@@ -15,6 +14,7 @@ import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
 import com.lucien.mall.utils.JWTUtils;
 import com.lucien.mall.utils.RedisUtils;
+import com.lucien.malll.service.UmsAdminRoleRelationService;
 import com.lucien.malll.service.UmsAdminService;
 import io.lettuce.core.RedisException;
 import org.apache.shiro.SecurityUtils;
@@ -44,10 +44,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private UmsAdminRoleRelationMapper roleRelationMapper;
 
     @Autowired
-    private UmsAdminLoginLogMapper adminLoginLogMapper;
-
-    @Autowired
-    private UmsAdminRoleRelationDao roleRelationDao;
+    private UmsAdminRoleRelationService roleRelationService;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -62,7 +59,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(username);
         List<UmsAdmin> umsAdmins = adminMapper.selectByExample(example);
-        if (umsAdmins.size() > 0 && StringUtils.isEmpty(umsAdmins)) {
+        if (umsAdmins.size() > 0 && !StringUtils.isEmpty(umsAdmins)) {
             return umsAdmins.get(0);
         }
 
@@ -75,28 +72,36 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * @param username 用户名
      * @param password 密码
      * @return 生成的jwt token
+     * -1用户名错误
      */
     @Override
     public String login(String username, String password) {
         UmsAdmin umsAdmin = getAdminByUsername(username);
-//        Subject subject = ;
+        if (StringUtils.isEmpty(umsAdmin)){
+            return "-1";
+        }
+        Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, DigestUtils.md5DigestAsHex(password.getBytes()));
 
         boolean loginSuccess = false;
 
         try {
-            SecurityUtils.getSubject().login(usernamePasswordToken);
+            subject.login(usernamePasswordToken);
             loginSuccess = true;
 
         } catch (UnknownAccountException | IncorrectCredentialsException uae) { // 账号不存在 // 账号与密码不匹配
-            throw new UnknownAccountException("用户名与密码不匹配，请检查后重新输入！");
+            return "-2";
+//            throw new UnknownAccountException("用户名与密码不匹配，请检查后重新输入！");
         } catch (LockedAccountException lae) { // 账号已被锁定
-            throw new LockedAccountException("该账户已被锁定，如需解锁请联系管理员！");
+            return "-3";
+//            throw new LockedAccountException("该账户已被锁定，如需解锁请联系管理员！");
         } catch (AuthenticationException ae) { // 其他身份验证异常
-            throw new AuthenticationException("登录异常，请联系管理员！");
+            return "-4";
+//            throw new AuthenticationException("登录异常，请联系管理员！");
         } catch (Exception e) {
-            e.printStackTrace();
+            return "-5";
+//            e.printStackTrace();
         }
 
         if (loginSuccess) {
@@ -110,7 +115,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             return token;
         }
 
-        return null;
+        return "登录失败！";
     }
 
     /**
@@ -138,6 +143,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         String md5Password = DigestUtils.md5DigestAsHex(umsAdminDto.getPassword().getBytes());
         umsAdmin.setPassword(md5Password);
         adminMapper.insert(umsAdmin);
+
+        List<UmsAdmin> umsAdmins = adminMapper.selectByExample(umsAdminExample);
+        UmsAdmin registerAdmin = umsAdmins.get(0);
+        System.out.println(registerAdmin.getId());
+        roleRelationService.insert(registerAdmin.getId(), Long.valueOf(5));
 
         return umsAdmin;
     }
@@ -195,7 +205,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      */
     @Override
     public List<UmsRole> getRoleList(Long adminId) {
-        return roleRelationDao.getRoleList(adminId);
+        return roleRelationMapper.getRoleList(adminId);
     }
 
     /**
@@ -205,7 +215,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      */
     @Override
     public List<UmsResource> getResourceList(Long adminId) {
-        List<UmsResource> resourceList = roleRelationDao.getResourceList(adminId);
+        List<UmsResource> resourceList = roleRelationMapper.getResourceList(adminId);
         return resourceList;
     }
 
@@ -234,7 +244,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
 
         UmsAdmin umsAdmin = umsAdmins.get(0);
-        if (StrUtil.equals(DigestUtils.md5DigestAsHex(dto.getOldPassword().getBytes()),umsAdmin.getPassword())){
+        if (!StrUtil.equals(DigestUtils.md5DigestAsHex(dto.getOldPassword().getBytes()), umsAdmin.getPassword())){
             return -3;
         }
         if(StrUtil.equals(dto.getOldPassword(), dto.getNewPassword())){
@@ -261,5 +271,38 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         int result = adminMapper.updateByPrimaryKey(umsAdmin);
 
         return result;
+    }
+
+    /**
+     * 退出登录
+     * @param token
+     * @return
+     */
+    @Override
+    public int logout(String token) {
+        try {
+            if (StringUtils.isEmpty(redisUtils.getCacheObject("TOKEN:" + token))){
+                return 1;
+            }
+            redisUtils.deleteObject("TOKEN:" + token);
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
+    /**
+     * 更新用户登录时间
+     * @param adminId
+     * @return
+     */
+    @Override
+    public int updateLoginTime(Long adminId) {
+        UmsAdmin umsAdmin = adminMapper.selectByPrimaryKey(adminId);
+        umsAdmin.setLoginTime(new Date());
+
+        return adminMapper.updateByPrimaryKey(umsAdmin);
     }
 }
