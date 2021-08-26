@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @Author Lucien
  * @Date 2021/8/21
  */
-public class GlobalResult extends HashMap<String, Object> {
+public class GlobalResult<T> extends HashMap<String, Object> {
 
     private static final Long serialVersionUID = 1L;
 

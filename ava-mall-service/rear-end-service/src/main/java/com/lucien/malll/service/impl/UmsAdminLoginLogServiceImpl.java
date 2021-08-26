@@ -6,6 +6,8 @@ import com.lucien.malll.service.UmsAdminLoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author Lucien
  * @Date 2021/8/23
@@ -20,5 +22,15 @@ public class UmsAdminLoginLogServiceImpl implements UmsAdminLoginLogService {
     @Override
     public int insertLog(UmsAdminLoginLog umsAdminLoginLog) {
         return loginLogMapper.insert(umsAdminLoginLog);
+    }
+
+    @Override
+    public List<UmsAdminLoginLog> list() {
+        return null;
+    }
+
+    @Override
+    public List<UmsAdminLoginLog> listByName(String username) {
+        return null;
     }
 }

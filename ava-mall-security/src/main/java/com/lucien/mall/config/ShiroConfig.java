@@ -97,9 +97,9 @@ public class ShiroConfig {
         //配置系统受限资源以及公共资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 可匿名访问
-        filterChainDefinitionMap.put("/admin/login", "anon");
-        filterChainDefinitionMap.put("/admin/register", "anon");
-        filterChainDefinitionMap.put("/admin/test", "anon");
+        filterChainDefinitionMap.put("/*/login", "anon");
+        filterChainDefinitionMap.put("/*/register", "anon");
+        filterChainDefinitionMap.put("/*/test", "anon");
 
 
         // 退出登录

@@ -38,24 +38,6 @@ public class UmsAdminLoginInfoAop {
     @Autowired
     private UmsAdminService adminService;
 
-    @Before(value = "@annotation(com.lucien.mall.annotation.LoginInfoAnnotation)")
-    public void before(JoinPoint joinPoint) {
-//        //获取到请求的属性
-//        ServletRequestAttributes attributes =
-//                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        //获取到请求对象
-//        HttpServletRequest request = attributes.getRequest();
-//        String agent = request.getHeader("User-Agent");
-//        //解析agent字符串
-//        UserAgent userAgent = UserAgent.parseUserAgentString(agent);
-//        //获取浏览器对象
-//        Browser browser = userAgent.getBrowser();
-//        //获取操作系统对象
-//        OperatingSystem operatingSystem = userAgent.getOperatingSystem();
-//
-//        System.out.println("浏览器名:" + browser.getName());
-    }
-
     @After(value = "@annotation(com.lucien.mall.annotation.LoginInfoAnnotation)")
     public void after() {
         //获取到请求的属性
@@ -67,18 +49,20 @@ public class UmsAdminLoginInfoAop {
         UserAgent userAgent = UserAgent.parseUserAgentString(agent);
         //获取浏览器对象
         Browser browser = userAgent.getBrowser();
-        //获取操作系统对象
-        OperatingSystem operatingSystem = userAgent.getOperatingSystem();
 
-        UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
-        UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
-        loginLog.setAdminId(umsAdmin.getId());
-        loginLog.setIp("127.0.0.1");
-        loginLog.setUserAgent(browser.getName());
-        loginLog.setCreateTime(new Date());
+        try {
+            UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
+            UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
+            loginLog.setAdminId(umsAdmin.getId());
+            loginLog.setIp("127.0.0.1");
+            loginLog.setUserAgent(browser.getName());
+            loginLog.setCreateTime(new Date());
 
-        adminService.updateLoginTime(umsAdmin.getId());
-        loginLogService.insertLog(loginLog);
+            adminService.updateLoginTime(umsAdmin.getId());
+            loginLogService.insertLog(loginLog);
+        }catch (NullPointerException e){
+
+        }
 
     }
 

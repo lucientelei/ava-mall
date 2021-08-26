@@ -4,6 +4,7 @@ import com.lucien.mall.annotation.LoginInfoAnnotation;
 import com.lucien.mall.dto.UmsAdminDto;
 import com.lucien.mall.dto.UpdateAdminPasswordDto;
 import com.lucien.mall.global.GlobalResult;
+import com.lucien.mall.global.error.MyException;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
@@ -20,7 +21,6 @@ import java.util.List;
 /**
  * @Author Lucien
  * @Date 2021/8/22
- * 后台用户管理
  */
 @RestController
 @Api(tags = "UmsAdminController", description = "后台用户管理")
@@ -30,10 +30,12 @@ public class UmsAdminController {
     @Autowired
     private UmsAdminService umsAdminService;
 
-    @LoginInfoAnnotation
     @GetMapping("/test")
     @ApiOperation(value = "测试")
-    public GlobalResult test(){
+    public GlobalResult test(String username){
+        if (username == null){
+            throw new MyException("username不能为空");
+        }
         return GlobalResult.success("测试",1000);
     }
 

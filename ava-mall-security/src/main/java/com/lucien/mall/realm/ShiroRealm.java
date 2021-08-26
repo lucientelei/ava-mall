@@ -42,6 +42,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("执行授权===");
         //获取当前用户
         UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
 
