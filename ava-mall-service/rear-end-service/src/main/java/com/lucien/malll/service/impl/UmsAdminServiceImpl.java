@@ -97,6 +97,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             return "-3";
 //            throw new LockedAccountException("该账户已被锁定，如需解锁请联系管理员！");
         } catch (AuthenticationException ae) { // 其他身份验证异常
+            ae.printStackTrace();
             return "-4";
 //            throw new AuthenticationException("登录异常，请联系管理员！");
         } catch (Exception e) {

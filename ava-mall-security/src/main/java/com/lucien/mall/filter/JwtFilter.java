@@ -1,9 +1,16 @@
 package com.lucien.mall.filter;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import cn.hutool.core.util.StrUtil;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.lucien.mall.constant.HttpStatus;
 import com.lucien.mall.domain.JwtToken;
+import com.lucien.mall.global.GlobalExceptionHandler;
+import com.lucien.mall.global.error.MyException;
 import com.lucien.mall.utils.JWTUtils;
 import com.lucien.mall.utils.RedisUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -41,10 +48,26 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+        System.out.println("前置拦截");
         //servlet请求响应转换
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-        String token = httpServletRequest.getHeader("Authorization");
+//        try {
+//            String token = httpServletRequest.getHeader("Authorization");
+//            System.out.println(token);
+//            String name = JWTUtils.getName(token);
+//            boolean verifyFlag = JWTUtils.verify(token, name);
+//            if (!verifyFlag){
+//                throw new MyException("token校验错误");
+//            }
+//        }catch (JWTDecodeException e){
+//            throw new MyException(e.getMessage());
+//        }catch (NullPointerException e){
+//            throw new MyException(e.getMessage());
+//        }catch (IllegalArgumentException e){
+//            throw new MyException(e.getMessage());
+//        }
+
         if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
             httpServletResponse.setStatus(HttpStatus.SUCCESS);
             return false;
@@ -90,7 +113,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             System.out.println("未找到token");
         } catch (TokenExpiredException e) {
             e.printStackTrace();
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
             System.out.println("token检验出错");
         }
@@ -147,10 +170,14 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String authorization = httpServletRequest.getHeader(JWTUtils.AUTH_HEADER);
-        JwtToken token = new JwtToken(authorization);
-        return token;
+        try {
+            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+            String authorization = httpServletRequest.getHeader(JWTUtils.AUTH_HEADER);
+            JwtToken token = new JwtToken(authorization);
+            return token;
+        }catch (JWTDecodeException e){
+            throw new MyException("用户Token不正确");
+        }
     }
 
     /**

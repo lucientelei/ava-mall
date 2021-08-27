@@ -1,5 +1,6 @@
 package com.lucien.mall.realm;
 
+import com.lucien.mall.domain.JwtToken;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
@@ -10,7 +11,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
@@ -23,26 +23,26 @@ import java.util.Set;
  * @Date 2021/8/22
  */
 @SuppressWarnings("serial")
-public class ShiroRealm extends AuthorizingRealm {
+public class JwtRealm extends AuthorizingRealm {
 
     @Lazy
     @Autowired
     private UmsAdminService umsAdminService;
 
     /**
-     * 限定Realm 只处理 UsernamePasswordToken
+     * 限定Realm 只处理 JwtToken
      *
      * @param token
      * @return
      */
     @Override
     public boolean supports(AuthenticationToken token) {
-        return token instanceof UsernamePasswordToken;
+        return token instanceof JwtToken;
     }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("shiroreaml执行授权===");
+        System.out.println("jwtrealm执行授权===");
         //获取当前用户
         UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
 
@@ -71,7 +71,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("shiroreaml执行登录操作");
+        System.out.println("jwtreaml执行登录操作");
         String username = (String) token.getPrincipal();
         UmsAdmin umsAdmin = umsAdminService.getAdminByUsername(username);
 

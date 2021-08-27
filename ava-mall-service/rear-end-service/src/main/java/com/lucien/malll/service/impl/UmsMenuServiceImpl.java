@@ -1,16 +1,19 @@
 package com.lucien.malll.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.lucien.mall.dto.UmsMenuNode;
 import com.lucien.mall.mapper.UmsMenuMapper;
 import com.lucien.mall.pojo.UmsMenu;
 import com.lucien.mall.pojo.UmsMenuExample;
 import com.lucien.malll.service.UmsMenuService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author Lucien
@@ -117,5 +120,34 @@ public class UmsMenuServiceImpl implements UmsMenuService {
         umsMenu.setHidden(hidden);
         //updateByPrimaryKeySelective：只更新赋值的字段
         return menuMapper.updateByPrimaryKeySelective(umsMenu);
+    }
+
+    /**
+     * 树形结构返回所有菜单列表
+     * @return
+     */
+    @Override
+    public List<UmsMenuNode> treeList() {
+        List<UmsMenu> menuList = menuMapper.selectByExample(new UmsMenuExample());
+        List<UmsMenuNode> result = menuList.stream()
+                .filter(menu -> menu.getParentId().equals(0L))
+                .map(menu -> covertMenuNode(menu, menuList)).collect(Collectors.toList());
+        return result;
+    }
+
+    /**
+     * 将UmsMenu转化为UmsMenuNode并设置children属性
+     * @param umsMenu
+     * @param list
+     * @return
+     */
+    private UmsMenuNode covertMenuNode(UmsMenu umsMenu, List<UmsMenu> list){
+        UmsMenuNode node = new UmsMenuNode();
+        BeanUtils.copyProperties(umsMenu, node);
+        List<UmsMenuNode> children = list.stream()
+                .filter(subMenu -> subMenu.getParentId().equals(umsMenu.getId()))
+                .map(subMenu -> covertMenuNode(subMenu, list)).collect(Collectors.toList());
+        node.setChildren(children);
+        return node;
     }
 }

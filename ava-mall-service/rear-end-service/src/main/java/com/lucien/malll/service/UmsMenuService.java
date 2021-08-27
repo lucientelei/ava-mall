@@ -1,5 +1,6 @@
 package com.lucien.malll.service;
 
+import com.lucien.mall.dto.UmsMenuNode;
 import com.lucien.mall.pojo.UmsMenu;
 
 import java.util.List;
@@ -56,4 +57,11 @@ public interface UmsMenuService {
      * @return
      */
     int updateHidden(Long id, Integer hidden);
+
+    /**
+     * 树形结构返回所有菜单列表
+     * @return
+     */
+    List<UmsMenuNode> treeList();
+
 }

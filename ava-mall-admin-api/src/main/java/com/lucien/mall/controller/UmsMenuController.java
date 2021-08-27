@@ -1,5 +1,6 @@
 package com.lucien.mall.controller;
 
+import com.lucien.mall.dto.UmsMenuNode;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsMenu;
@@ -87,5 +88,12 @@ public class UmsMenuController {
         }else {
             return GlobalResult.error();
         }
+    }
+
+    @GetMapping("/treelist")
+    @ApiOperation(value = "树形结构返回所有菜单列表")
+    public GlobalResult treeList(){
+        List<UmsMenuNode> result = menuService.treeList();
+        return GlobalResult.success(result);
     }
 }

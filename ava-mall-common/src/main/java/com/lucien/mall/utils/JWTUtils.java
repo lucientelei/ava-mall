@@ -50,12 +50,11 @@ public class JWTUtils {
      *
      * @param token
      * @param username
-     * @param secret
      * @return
      */
-    public static boolean verify(String token, String username, String secret) {
+    public static boolean verify(String token, String username) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
+            Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier jwtVerifier = JWT.require(algorithm).withClaim("username", username).build();
             jwtVerifier.verify(token);
             return true;
@@ -183,6 +182,11 @@ public class JWTUtils {
             log.debug("validate is token error ", e);
             return null;
         }
+    }
+
+    public static String getName(String token){
+        DecodedJWT jwt = JWT.require(Algorithm.HMAC256(SECRET)).build().verify(token);
+        return jwt.getClaim("username").asString();
     }
 }
 

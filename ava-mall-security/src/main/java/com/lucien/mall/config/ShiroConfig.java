@@ -1,6 +1,7 @@
 package com.lucien.mall.config;
 
 import com.lucien.mall.filter.JwtFilter;
+import com.lucien.mall.realm.JwtRealm;
 import com.lucien.mall.realm.ShiroRealm;
 import com.lucien.mall.util.JwtCredentialsMatcher;
 import com.lucien.mall.util.MultiRealmAuthenticator;
@@ -27,10 +28,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author Lucien
@@ -102,9 +100,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/*/test", "anon");
 
 
-        // 退出登录
-//        filterChainDefinitionMap.put("/logout", "logout");
-
         //放行Swagger2
         filterChainDefinitionMap.put("/swagger-ui.html","anon");
         filterChainDefinitionMap.put("/swagger/**","anon");
@@ -159,15 +154,13 @@ public class ShiroConfig {
     @Bean
     ShiroRealm shiroRealm(){
         ShiroRealm shiroRealm = new ShiroRealm();
-
-//        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
-//        //加密方式
-//        matcher.setHashAlgorithmName("md5");
-//        //加密次数
-//        matcher.setHashIterations(2);
-//
-//        shiroRealm.setCredentialsMatcher(matcher);
         return shiroRealm;
+    }
+
+    @Bean
+    JwtRealm jwtRealm(){
+        JwtRealm jwtRealm = new JwtRealm();
+        return jwtRealm;
     }
 
     /**
@@ -183,14 +176,15 @@ public class ShiroConfig {
         // 2.Realm
         List<Realm> realms = new ArrayList<Realm>(16);
         realms.add(shiroRealm());
-        // 配置多个realm
-        securityManager.setRealms(realms);
+        realms.add(jwtRealm());
 
         // 3.关闭shiro自带的session
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         subjectDAO.setSessionStorageEvaluator(sessionStorageEvaluator());
         securityManager.setSubjectDAO(subjectDAO);
 
+        // 配置多个realm
+        securityManager.setRealms(realms);
         return securityManager;
     }
 
