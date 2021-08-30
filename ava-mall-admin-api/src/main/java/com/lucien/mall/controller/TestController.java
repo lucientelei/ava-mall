@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/test")
+@RequiresRoles("超级管理员")
 @Api(tags = "TestController", description = "测试接口")
 public class TestController {
 

@@ -52,6 +52,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         //servlet请求响应转换
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
+        //跨域时会首先发送一个option请求，给option请求直接返回正常状态 200
         if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
             httpServletResponse.setStatus(HttpStatus.SUCCESS);
             return false;
@@ -68,7 +69,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected void postHandle(ServletRequest request, ServletResponse response) throws Exception {
-        System.out.println("后置拦截");
         //添加跨域支持
         this.fillCorsHeader(WebUtils.toHttp(request), WebUtils.toHttp(response));
     }
@@ -88,9 +88,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             //返回false后进入onAccessDenied()方法，返回错误信息
             return false;
         }
-
         boolean allowed = false;
-
         try {
             allowed = this.executeLogin(request, response);
         } catch (IllegalStateException e) { //未找到token
@@ -98,7 +96,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             System.out.println("未找到token");
         } catch (TokenExpiredException e) {
             e.printStackTrace();
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("token检验出错");
         }
@@ -155,14 +153,10 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
-        try {
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            String authorization = httpServletRequest.getHeader(JWTUtils.AUTH_HEADER);
-            JwtToken token = new JwtToken(authorization);
-            return token;
-        }catch (JWTDecodeException e){
-            throw new MyException("用户Token不正确");
-        }
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        String authorization = httpServletRequest.getHeader(JWTUtils.AUTH_HEADER);
+        JwtToken token = new JwtToken(authorization);
+        return token;
     }
 
     /**
@@ -175,12 +169,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        //servlet请求响应转换
-        HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
-        String token = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(token)){
-            return true;
-        }
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
 
         httpServletResponse.setCharacterEncoding("UTF-8");
@@ -248,4 +236,5 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         response.setHeader("Access-Control-Allow-Headers",
                 request.getHeader("Access-Control-Request-Headers"));
     }
+
 }

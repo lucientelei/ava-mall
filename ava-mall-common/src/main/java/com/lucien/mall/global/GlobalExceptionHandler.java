@@ -1,5 +1,6 @@
 package com.lucien.mall.global;
 
+import com.lucien.mall.constant.HttpStatus;
 import com.lucien.mall.global.error.MyException;
 import com.lucien.mall.myEnum.ExceptionEnum;
 import org.slf4j.Logger;
@@ -7,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.apache.shiro.authz.UnauthorizedException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -38,6 +39,20 @@ public class GlobalExceptionHandler {
     public GlobalResult exceptionHandler(HttpServletRequest req, NullPointerException e){
         logger.error("发生空指针异常！原因是:",e);
         return GlobalResult.error(400, String.valueOf(ExceptionEnum.BODY_NOT_MATCH));
+    }
+
+    /**
+     * 权限异常处理
+     * @param req
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = UnauthorizedException.class)
+    @ResponseBody
+    public GlobalResult exceptionHandler(HttpServletRequest req, UnauthorizedException e){
+        String message = e.getMessage();
+        String[] split = message.split(" ");
+        return GlobalResult.error(HttpStatus.UNAUTHORIZED,"您没有" + split[split.length - 1] + "角色");
     }
 
     @ExceptionHandler(value =Exception.class)

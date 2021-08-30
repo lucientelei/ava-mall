@@ -74,7 +74,7 @@ public class UmsMenuController {
     @ApiOperation(value = "分页获取菜单")
     public GlobalResult<GlobalPage<UmsMenu>> list(@PathVariable Long parentId,
                                          @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                         @RequestParam(value = "pageNum", defaultValue = "5")Integer pageNum){
+                                         @RequestParam(value = "pageNum", defaultValue = "1")Integer pageNum){
         List<UmsMenu> result = menuService.list(parentId, pageSize, pageNum);
         return GlobalResult.success(GlobalPage.restPage(result));
     }

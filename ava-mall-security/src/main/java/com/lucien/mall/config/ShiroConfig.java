@@ -3,6 +3,7 @@ package com.lucien.mall.config;
 import com.lucien.mall.filter.JwtFilter;
 import com.lucien.mall.realm.JwtRealm;
 import com.lucien.mall.realm.ShiroRealm;
+import com.lucien.mall.util.JwtCredentialsMatcher;
 import com.lucien.mall.util.MultiRealmAuthenticator;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.FirstSuccessfulStrategy;
@@ -86,18 +87,18 @@ public class ShiroConfig {
         //给工厂bean设置web安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
+        shiroFilterFactoryBean.setLoginUrl("/login");
+
         // 添加 jwt 专用过滤器
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("jwtFilter", new JwtFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
-
 
         //配置系统受限资源以及公共资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 可匿名访问
         filterChainDefinitionMap.put("/*/login", "anon");
         filterChainDefinitionMap.put("/*/register", "anon");
-
 
         //放行Swagger2
         filterChainDefinitionMap.put("/swagger-ui.html","anon");
@@ -113,6 +114,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/ws/**","anon");
         //druid
         filterChainDefinitionMap.put("/druid/**","anon");
+
 
         // 需登录才能访问
         filterChainDefinitionMap.put("/**", "jwtFilter,authc");
@@ -158,6 +160,10 @@ public class ShiroConfig {
     @Bean
     JwtRealm jwtRealm(){
         JwtRealm jwtRealm = new JwtRealm();
+        //设置加密算法
+        JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
+        //设置加密次数
+        jwtRealm.setCredentialsMatcher(matcher);
         return jwtRealm;
     }
 
@@ -175,14 +181,14 @@ public class ShiroConfig {
         List<Realm> realms = new ArrayList<Realm>(16);
         realms.add(shiroRealm());
         realms.add(jwtRealm());
+        // 配置多个realm
+        securityManager.setRealms(realms);
 
         // 3.关闭shiro自带的session
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         subjectDAO.setSessionStorageEvaluator(sessionStorageEvaluator());
         securityManager.setSubjectDAO(subjectDAO);
 
-        // 配置多个realm
-        securityManager.setRealms(realms);
         return securityManager;
     }
 
