@@ -52,22 +52,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         //servlet请求响应转换
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-//        try {
-//            String token = httpServletRequest.getHeader("Authorization");
-//            System.out.println(token);
-//            String name = JWTUtils.getName(token);
-//            boolean verifyFlag = JWTUtils.verify(token, name);
-//            if (!verifyFlag){
-//                throw new MyException("token校验错误");
-//            }
-//        }catch (JWTDecodeException e){
-//            throw new MyException(e.getMessage());
-//        }catch (NullPointerException e){
-//            throw new MyException(e.getMessage());
-//        }catch (IllegalArgumentException e){
-//            throw new MyException(e.getMessage());
-//        }
-
         if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
             httpServletResponse.setStatus(HttpStatus.SUCCESS);
             return false;
@@ -84,6 +68,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected void postHandle(ServletRequest request, ServletResponse response) throws Exception {
+        System.out.println("后置拦截");
         //添加跨域支持
         this.fillCorsHeader(WebUtils.toHttp(request), WebUtils.toHttp(response));
     }

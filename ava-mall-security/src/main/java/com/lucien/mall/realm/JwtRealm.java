@@ -43,9 +43,8 @@ public class JwtRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("jwtrealm执行授权===");
-        //获取当前用户
-        UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
-
+        UmsAdmin umsAdmin = (UmsAdmin) principalCollection.getPrimaryPrincipal();
+        System.out.println("jwtrealm==="+umsAdmin.getUsername());
         //查询数据库，获取用户的角色信息
         Set<String> roleSet = new HashSet<>();
         List<UmsRole> roleList = umsAdminService.getRoleList(umsAdmin.getId());
@@ -58,8 +57,8 @@ public class JwtRealm extends AuthorizingRealm {
         Set<String> stringPermissions = new HashSet<>();
         List<UmsResource> resourceList = umsAdminService.getResourceList(umsAdmin.getId());
         for (UmsResource umsResource : resourceList) {
-            System.out.println("查询用户权限信息"+umsResource.getName());
-            stringPermissions.add(umsResource.getName());
+            System.out.println("查询用户权限信息"+umsResource.getUrl());
+            stringPermissions.add(umsResource.getUrl());
         }
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

@@ -25,7 +25,6 @@ import java.util.Set;
 @SuppressWarnings("serial")
 public class ShiroRealm extends AuthorizingRealm {
 
-    @Lazy
     @Autowired
     private UmsAdminService umsAdminService;
 
@@ -44,7 +43,8 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("shiroreaml执行授权===");
         //获取当前用户
-        UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
+        UmsAdmin umsAdmin = (UmsAdmin) principalCollection.getPrimaryPrincipal();
+        System.out.println("shirorealm"+umsAdmin.getUsername());
 
         //查询数据库，获取用户的角色信息
         Set<String> roleSet = new HashSet<>();

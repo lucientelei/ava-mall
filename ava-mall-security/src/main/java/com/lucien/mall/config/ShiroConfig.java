@@ -3,7 +3,6 @@ package com.lucien.mall.config;
 import com.lucien.mall.filter.JwtFilter;
 import com.lucien.mall.realm.JwtRealm;
 import com.lucien.mall.realm.ShiroRealm;
-import com.lucien.mall.util.JwtCredentialsMatcher;
 import com.lucien.mall.util.MultiRealmAuthenticator;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.FirstSuccessfulStrategy;
@@ -22,7 +21,6 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -92,12 +90,13 @@ public class ShiroConfig {
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("jwtFilter", new JwtFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
+
+
         //配置系统受限资源以及公共资源
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 可匿名访问
         filterChainDefinitionMap.put("/*/login", "anon");
         filterChainDefinitionMap.put("/*/register", "anon");
-        filterChainDefinitionMap.put("/*/test", "anon");
 
 
         //放行Swagger2
@@ -114,7 +113,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/ws/**","anon");
         //druid
         filterChainDefinitionMap.put("/druid/**","anon");
-
 
         // 需登录才能访问
         filterChainDefinitionMap.put("/**", "jwtFilter,authc");
