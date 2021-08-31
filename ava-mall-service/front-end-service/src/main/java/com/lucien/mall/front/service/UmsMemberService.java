@@ -1,4 +1,4 @@
-package com.lucien.mall.service;
+package com.lucien.mall.front.service;
 
 import com.lucien.mall.pojo.UmsMember;
 
@@ -38,5 +38,20 @@ public interface UmsMemberService {
      * @return
      */
     UmsMember getById(Long id);
+
+    /**
+     * 会员退出登录
+     * @param token
+     * @return
+     */
+    int logout(String token);
+
+    /**
+     * 更新会员信息
+     * @param id
+     * @param umsMember
+     * @return
+     */
+    int update(Long id, UmsMember umsMember);
 
 }

@@ -92,24 +92,20 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
         } catch (UnknownAccountException | IncorrectCredentialsException uae) { // 账号不存在 // 账号与密码不匹配
             return "-2";
-//            throw new UnknownAccountException("用户名与密码不匹配，请检查后重新输入！");
         } catch (LockedAccountException lae) { // 账号已被锁定
             return "-3";
-//            throw new LockedAccountException("该账户已被锁定，如需解锁请联系管理员！");
         } catch (AuthenticationException ae) { // 其他身份验证异常
             ae.printStackTrace();
             return "-4";
-//            throw new AuthenticationException("登录异常，请联系管理员！");
         } catch (Exception e) {
             return "-5";
-//            e.printStackTrace();
         }
 
         if (loginSuccess) {
             String token = JWTUtils.sign(username, JWTUtils.SECRET);
             try {
-                redisUtils.setCacheObject("TOKEN:" + token, JSON.toJSON(umsAdmin));
-                redisUtils.expire("TOKEN:" + token, JWTUtils.EXPIRE_TIME);
+                redisUtils.setCacheObject("TOKENADMIN:" + token, JSON.toJSON(umsAdmin));
+                redisUtils.expire("TOKENADMIN:" + token, JWTUtils.EXPIRE_TIME);
             } catch (RedisException e) {
                 e.printStackTrace();
             }
@@ -282,10 +278,10 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public int logout(String token) {
         try {
-            if (StringUtils.isEmpty(redisUtils.getCacheObject("TOKEN:" + token))){
+            if (StringUtils.isEmpty(redisUtils.getCacheObject("TOKENADMIN:" + token))){
                 return 1;
             }
-            redisUtils.deleteObject("TOKEN:" + token);
+            redisUtils.deleteObject("TOKENADMIN:" + token);
             Subject subject = SecurityUtils.getSubject();
             subject.logout();
         }catch (Exception e){
