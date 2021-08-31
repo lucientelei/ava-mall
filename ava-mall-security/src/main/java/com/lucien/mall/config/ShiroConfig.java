@@ -40,6 +40,7 @@ public class ShiroConfig {
 
     /**
      * 交由 Spring 来自动地管理 Shiro-Bean 的生命周期
+     *
      * @return
      */
     @Bean
@@ -66,6 +67,7 @@ public class ShiroConfig {
 
     /**
      * 不向 Spring容器中注册 JwtFilter Bean，防止 Spring 将 JwtFilter 注册为全局过滤器
+     *
      * @param filter
      * @return
      */
@@ -78,16 +80,15 @@ public class ShiroConfig {
 
     /**
      * 配置访问资源需要的权限
+     *
      * @param securityManager
      * @return
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         //给工厂bean设置web安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-
-        shiroFilterFactoryBean.setLoginUrl("/login");
 
         // 添加 jwt 专用过滤器
         Map<String, Filter> filterMap = new LinkedHashMap<>();
@@ -101,19 +102,19 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/*/register", "anon");
 
         //放行Swagger2
-        filterChainDefinitionMap.put("/swagger-ui.html","anon");
-        filterChainDefinitionMap.put("/swagger/**","anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/swagger/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
-        filterChainDefinitionMap.put("/swagger-resources/**","anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         //静态资源
-        filterChainDefinitionMap.put("/v2/**","anon");
+        filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/images/**","anon");
-        filterChainDefinitionMap.put("/css/**","anon");
-        filterChainDefinitionMap.put("/js/**","anon");
-        filterChainDefinitionMap.put("/ws/**","anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/ws/**", "anon");
         //druid
-        filterChainDefinitionMap.put("/druid/**","anon");
+        filterChainDefinitionMap.put("/druid/**", "anon");
 
 
         // 需登录才能访问
@@ -149,16 +150,17 @@ public class ShiroConfig {
 
     /**
      * ShiroRealm 配置，需实现 Realm 接口
+     *
      * @return
      */
     @Bean
-    ShiroRealm shiroRealm(){
+    ShiroRealm shiroRealm() {
         ShiroRealm shiroRealm = new ShiroRealm();
         return shiroRealm;
     }
 
     @Bean
-    JwtRealm jwtRealm(){
+    JwtRealm jwtRealm() {
         JwtRealm jwtRealm = new JwtRealm();
         //设置加密算法
         JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
@@ -181,19 +183,19 @@ public class ShiroConfig {
         List<Realm> realms = new ArrayList<Realm>(16);
         realms.add(shiroRealm());
         realms.add(jwtRealm());
-        // 配置多个realm
-        securityManager.setRealms(realms);
+
 
         // 3.关闭shiro自带的session
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         subjectDAO.setSessionStorageEvaluator(sessionStorageEvaluator());
         securityManager.setSubjectDAO(subjectDAO);
-
+        // 配置多个realm
+        securityManager.setRealms(realms);
         return securityManager;
     }
 
     @Bean
-    public Authorizer authorizer(){
+    public Authorizer authorizer() {
         return new ModularRealmAuthorizer();
     }
 

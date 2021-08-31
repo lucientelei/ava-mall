@@ -1,5 +1,6 @@
 package com.lucien.mall.controller;
 
+import com.lucien.mall.annotation.LoginInfoAnnotation;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.front.service.UmsMemberService;

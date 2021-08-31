@@ -31,6 +31,11 @@
             <artifactId>rear-end-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.lucien.mall</groupId>
+            <artifactId>front-end-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <!--shiro-->
         <dependency>

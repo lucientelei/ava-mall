@@ -176,7 +176,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED);
 
         PrintWriter printWriter = httpServletResponse.getWriter();
-        printWriter.write("{\"code\":401,\"msg\":\"UNAUTHORIZED\"}");
+        printWriter.write("{\"code\":401,\"msg\":\"请先登录\"}");
 
         fillCorsHeader(WebUtils.toHttp(request), httpServletResponse);
 

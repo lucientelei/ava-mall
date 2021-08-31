@@ -1,18 +1,20 @@
 package com.lucien.mall.realm;
 
 import com.lucien.mall.domain.JwtToken;
+import com.lucien.mall.front.service.UmsMemberService;
 import com.lucien.mall.pojo.UmsAdmin;
+import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
+import com.lucien.mall.utils.RedisUtils;
 import com.lucien.malll.service.UmsAdminService;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,9 +27,14 @@ import java.util.Set;
 @SuppressWarnings("serial")
 public class JwtRealm extends AuthorizingRealm {
 
-    @Lazy
     @Autowired
     private UmsAdminService umsAdminService;
+
+    @Autowired
+    private UmsMemberService umsMemberService;
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * 限定Realm 只处理 JwtToken
@@ -72,21 +79,38 @@ public class JwtRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("jwtreaml执行登录操作");
         String username = (String) token.getPrincipal();
-        UmsAdmin umsAdmin = umsAdminService.getAdminByUsername(username);
 
-        if (umsAdmin.getStatus() == 0) {
-            throw new LockedAccountException("该用户已被锁定,暂时无法登录！");
+        //获取携带token
+        Object credentials = token.getCredentials();
+
+        Object cacheObject = redisUtils.getCacheObject("TOKEN:" + credentials);
+        //判断前台还是后台用户授权
+        if (!StringUtils.isEmpty(cacheObject)){
+            System.out.println("umsmember用户获取");
+            UmsMember umsMember = umsMemberService.getByUsername(username);
+            if (umsMember.getStatus() == 0){
+                throw new LockedAccountException("该用户已被锁定,暂时无法登录！");
+            }
+            SimpleAuthenticationInfo info =
+                    new SimpleAuthenticationInfo(umsMember, umsMember.getPassword(), getName());
+            return info;
+        }else{
+            System.out.println("umsadmin管理员获取");
+            UmsAdmin umsAdmin = umsAdminService.getAdminByUsername(username);
+            if (umsAdmin.getStatus() == 0) {
+                throw new LockedAccountException("该用户已被锁定,暂时无法登录！");
+            }
+            /**
+             * 将获取到的用户数据封装成 AuthenticationInfo 对象返回，此处封装为 SimpleAuthenticationInfo 对象。
+             *  参数1. 认证的实体信息，可以是从数据库中获取到的用户实体类对象或者用户名
+             *  参数2. 查询获取到的登录密码
+             *  参数3. 盐值
+             *  参数4. 当前 Realm 对象的名称，直接调用父类的 getName() 方法即可
+             */
+            SimpleAuthenticationInfo info =
+                    new SimpleAuthenticationInfo(umsAdmin, umsAdmin.getPassword(), getName());
+            return info;
         }
-        /**
-         * 将获取到的用户数据封装成 AuthenticationInfo 对象返回，此处封装为 SimpleAuthenticationInfo 对象。
-         *  参数1. 认证的实体信息，可以是从数据库中获取到的用户实体类对象或者用户名
-         *  参数2. 查询获取到的登录密码
-         *  参数3. 盐值
-         *  参数4. 当前 Realm 对象的名称，直接调用父类的 getName() 方法即可
-         */
-        SimpleAuthenticationInfo info =
-                new SimpleAuthenticationInfo(umsAdmin, umsAdmin.getPassword(), getName());
-        return info;
     }
 }
 

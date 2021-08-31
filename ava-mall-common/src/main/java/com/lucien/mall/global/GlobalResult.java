@@ -134,4 +134,8 @@ public class GlobalResult<T> extends HashMap<String, Object> {
     public static GlobalResult error(int code, String msg) {
         return new GlobalResult(code, msg, null);
     }
+
+    public static GlobalResult error(Object data){
+        return new GlobalResult(HttpStatus.ERROR, "操作失败", data);
+    }
 }
