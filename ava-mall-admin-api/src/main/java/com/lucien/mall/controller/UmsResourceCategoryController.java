@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * 后台资源分类管理Controller
  */
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/resource/category")
 @Api(tags = "UmsResourceCategoryController", description = "后台资源分类管理")
 public class UmsResourceCategoryController {
 

@@ -350,7 +350,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         criteria.andDeleteStatusEqualTo(0);
         if (!StringUtils.isEmpty(keyWord)){
             criteria.andNameLike('%' + keyWord + '%');
-//            example.or().andDeleteStatusEqualTo(0).andProductSnLike('%' + keyWord + '%' );
+            example.or().andDeleteStatusEqualTo(0).andProductSnLike('%' + keyWord + '%' );
         }
         return productMapper.selectByExample(example);
     }

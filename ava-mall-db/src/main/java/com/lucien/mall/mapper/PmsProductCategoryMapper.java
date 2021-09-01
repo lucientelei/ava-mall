@@ -1,9 +1,11 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.dto.PmsProductCategoryWithChildrenItem;
 import com.lucien.mall.pojo.PmsProductCategory;
 import com.lucien.mall.pojo.PmsProductCategoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductCategoryMapper {
     long countByExample(PmsProductCategoryExample example);
@@ -33,4 +35,9 @@ public interface PmsProductCategoryMapper {
     int updateByPrimaryKeyWithBLOBs(PmsProductCategory record);
 
     int updateByPrimaryKey(PmsProductCategory record);
+
+    /**
+     * 获取商品分类及其子分类
+     */
+    List<PmsProductCategoryWithChildrenItem> listWithChildren();
 }

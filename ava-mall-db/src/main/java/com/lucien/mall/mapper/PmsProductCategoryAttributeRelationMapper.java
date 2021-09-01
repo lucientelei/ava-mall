@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsProductCategoryAttributeRelation;
 import com.lucien.mall.pojo.PmsProductCategoryAttributeRelationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductCategoryAttributeRelationMapper {
     long countByExample(PmsProductCategoryAttributeRelationExample example);
@@ -27,4 +28,9 @@ public interface PmsProductCategoryAttributeRelationMapper {
     int updateByPrimaryKeySelective(PmsProductCategoryAttributeRelation record);
 
     int updateByPrimaryKey(PmsProductCategoryAttributeRelation record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<PmsProductCategoryAttributeRelation> productCategoryAttributeRelationList);
 }
