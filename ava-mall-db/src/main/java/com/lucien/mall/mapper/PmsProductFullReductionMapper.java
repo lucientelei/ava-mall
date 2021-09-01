@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsProductFullReduction;
 import com.lucien.mall.pojo.PmsProductFullReductionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductFullReductionMapper {
     long countByExample(PmsProductFullReductionExample example);
@@ -27,4 +28,9 @@ public interface PmsProductFullReductionMapper {
     int updateByPrimaryKeySelective(PmsProductFullReduction record);
 
     int updateByPrimaryKey(PmsProductFullReduction record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<PmsProductFullReduction> productFullReductionList);
 }

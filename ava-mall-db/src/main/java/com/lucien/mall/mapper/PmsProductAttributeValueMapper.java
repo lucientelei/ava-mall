@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsProductAttributeValue;
 import com.lucien.mall.pojo.PmsProductAttributeValueExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductAttributeValueMapper {
     long countByExample(PmsProductAttributeValueExample example);
@@ -27,4 +28,9 @@ public interface PmsProductAttributeValueMapper {
     int updateByPrimaryKeySelective(PmsProductAttributeValue record);
 
     int updateByPrimaryKey(PmsProductAttributeValue record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list")List<PmsProductAttributeValue> productAttributeValueList);
 }

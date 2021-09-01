@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsSkuStock;
 import com.lucien.mall.pojo.PmsSkuStockExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsSkuStockMapper {
     long countByExample(PmsSkuStockExample example);
@@ -27,4 +28,14 @@ public interface PmsSkuStockMapper {
     int updateByPrimaryKeySelective(PmsSkuStock record);
 
     int updateByPrimaryKey(PmsSkuStock record);
+
+    /**
+     * 批量插入操作
+     */
+    int insertList(@Param("list")List<PmsSkuStock> skuStockList);
+
+    /**
+     * 批量插入或替换操作
+     */
+    int replaceList(@Param("list")List<PmsSkuStock> skuStockList);
 }

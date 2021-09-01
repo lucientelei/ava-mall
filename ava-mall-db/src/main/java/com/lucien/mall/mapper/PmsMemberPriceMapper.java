@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsMemberPrice;
 import com.lucien.mall.pojo.PmsMemberPriceExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsMemberPriceMapper {
     long countByExample(PmsMemberPriceExample example);
@@ -27,4 +28,9 @@ public interface PmsMemberPriceMapper {
     int updateByPrimaryKeySelective(PmsMemberPrice record);
 
     int updateByPrimaryKey(PmsMemberPrice record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<PmsMemberPrice> memberPriceList);
 }

@@ -1,9 +1,11 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.dto.PmsProductResult;
 import com.lucien.mall.pojo.PmsProduct;
 import com.lucien.mall.pojo.PmsProductExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductMapper {
     long countByExample(PmsProductExample example);
@@ -33,4 +35,9 @@ public interface PmsProductMapper {
     int updateByPrimaryKeyWithBLOBs(PmsProduct record);
 
     int updateByPrimaryKey(PmsProduct record);
+
+    /**
+     * 获取商品编辑信息
+     */
+    PmsProductResult getUpdateInfo(@Param("id") Long id);
 }

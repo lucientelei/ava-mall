@@ -126,7 +126,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lucien.mall.pojo.CmsPrefrenceAreaProductRelationExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.lucien.mall.pojo.CmsPrefrenceAreaProductRelationExample" resultType="java.lang.Long">
     select count(*) from cms_prefrence_area_product_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -176,4 +176,11 @@
       product_id = #{productId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <insert id="insertList">
+    insert into cms_prefrence_area_product_relation (prefrence_area_id, product_id) values
+    <foreach collection="list" item="item" separator="," index="index">
+      (#{item.prefrenceAreaId,jdbcType=BIGINT},
+      #{item.productId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
 </mapper>

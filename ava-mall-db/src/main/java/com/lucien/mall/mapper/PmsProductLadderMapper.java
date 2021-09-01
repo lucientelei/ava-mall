@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsProductLadder;
 import com.lucien.mall.pojo.PmsProductLadderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductLadderMapper {
     long countByExample(PmsProductLadderExample example);
@@ -27,4 +28,9 @@ public interface PmsProductLadderMapper {
     int updateByPrimaryKeySelective(PmsProductLadder record);
 
     int updateByPrimaryKey(PmsProductLadder record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<PmsProductLadder> productLadderList);
 }

@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.PmsProductVertifyRecord;
 import com.lucien.mall.pojo.PmsProductVertifyRecordExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductVertifyRecordMapper {
     long countByExample(PmsProductVertifyRecordExample example);
@@ -27,4 +28,9 @@ public interface PmsProductVertifyRecordMapper {
     int updateByPrimaryKeySelective(PmsProductVertifyRecord record);
 
     int updateByPrimaryKey(PmsProductVertifyRecord record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<PmsProductVertifyRecord> list);
 }

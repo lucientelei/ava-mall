@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.CmsSubjectProductRelation;
 import com.lucien.mall.pojo.CmsSubjectProductRelationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CmsSubjectProductRelationMapper {
     long countByExample(CmsSubjectProductRelationExample example);
@@ -27,4 +28,9 @@ public interface CmsSubjectProductRelationMapper {
     int updateByPrimaryKeySelective(CmsSubjectProductRelation record);
 
     int updateByPrimaryKey(CmsSubjectProductRelation record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<CmsSubjectProductRelation> subjectProductRelationList);
 }
