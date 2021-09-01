@@ -1,9 +1,11 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.dto.PmsProductAttributeCategoryItem;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 import com.lucien.mall.pojo.PmsProductAttributeCategoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductAttributeCategoryMapper {
     long countByExample(PmsProductAttributeCategoryExample example);
@@ -27,4 +29,9 @@ public interface PmsProductAttributeCategoryMapper {
     int updateByPrimaryKeySelective(PmsProductAttributeCategory record);
 
     int updateByPrimaryKey(PmsProductAttributeCategory record);
+
+    /**
+     * 获取包含属性的商品属性分类
+     */
+    List<PmsProductAttributeCategoryItem> getListWithAttr();
 }

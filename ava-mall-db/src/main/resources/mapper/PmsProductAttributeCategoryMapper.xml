@@ -7,6 +7,10 @@
     <result column="attribute_count" jdbcType="INTEGER" property="attributeCount" />
     <result column="param_count" jdbcType="INTEGER" property="paramCount" />
   </resultMap>
+  <resultMap id="getListWithAttrMap" type="com.lucien.mall.dto.PmsProductAttributeCategoryItem" extends="com.lucien.mall.mapper.PmsProductAttributeCategoryMapper.BaseResultMap">
+    <collection property="productAttributeList" columnPrefix="attr_" resultMap="com.lucien.mall.mapper.PmsProductAttributeMapper.BaseResultMap">
+    </collection>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -193,4 +197,15 @@
       param_count = #{paramCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="getListWithAttr" resultMap="getListWithAttrMap">
+        SELECT
+            pac.id,
+            pac.name,
+            pa.id attr_id,
+            pa.name attr_name
+        FROM
+            pms_product_attribute_category pac
+            LEFT JOIN pms_product_attribute pa ON pac.id = pa.product_attribute_category_id
+        AND pa.type=1;
+    </select>
 </mapper>

@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.lucien.mall.dto.UmsAdminDto;
 import com.lucien.mall.dto.UpdateAdminPasswordDto;
-import com.lucien.mall.mapper.UmsAdminLoginLogMapper;
 import com.lucien.mall.mapper.UmsAdminMapper;
 import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
 import com.lucien.mall.pojo.UmsAdmin;
@@ -301,5 +300,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         umsAdmin.setLoginTime(new Date());
 
         return adminMapper.updateByPrimaryKey(umsAdmin);
+    }
+
+    /**
+     * 获取当前登录的用户信息
+     * @return
+     */
+    @Override
+    public UmsAdmin getUser() {
+        UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
+        return umsAdmin;
     }
 }

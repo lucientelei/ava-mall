@@ -11,7 +11,6 @@ import com.lucien.mall.pojo.UmsRole;
 import com.lucien.malll.service.UmsAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -160,5 +159,12 @@ public class UmsAdminController {
     public GlobalResult logout(String token){
         int result = umsAdminService.logout(token);
         return GlobalResult.success("登出成功！", result);
+    }
+
+    @GetMapping("/getuser")
+    @ApiOperation(value = "获取登录用户信息")
+    public GlobalResult getUser(){
+        UmsAdmin result = umsAdminService.getUser();
+        return GlobalResult.success(result);
     }
 }

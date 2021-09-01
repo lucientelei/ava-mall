@@ -102,4 +102,10 @@ public interface UmsAdminService {
      * @return
      */
     int updateLoginTime(Long adminId);
+
+    /**
+     * 获取当前登录的用户信息
+     * @return
+     */
+    UmsAdmin getUser();
 }

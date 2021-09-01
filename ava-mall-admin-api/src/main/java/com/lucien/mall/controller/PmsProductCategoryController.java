@@ -42,7 +42,7 @@ public class PmsProductCategoryController {
     public GlobalResult<GlobalPage<PmsProductCategory>> listPage(@PathVariable("parentId") Long parentId,
                                                                  @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                  @RequestParam(value = "pageNum", defaultValue = "1")Integer pageNum){
-        List<PmsProductCategory> result = categoryService.listPage(parentId, pageNum, pageSize);
+        List<PmsProductCategory> result = categoryService.listPage(parentId, pageSize, pageNum);
         System.out.println(result.size());
         if (CollectionUtils.isEmpty(result)){
             return GlobalResult.error("未查询到数据");
