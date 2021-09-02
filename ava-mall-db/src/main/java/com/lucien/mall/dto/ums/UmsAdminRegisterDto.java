@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
  * @Date 2021/8/21
  * 后台用户注册dto
  */
-public class UmsAdminDto {
+public class UmsAdminRegisterDto {
 
     @NotEmpty
     @ApiModelProperty(value = "用户名", required = true)

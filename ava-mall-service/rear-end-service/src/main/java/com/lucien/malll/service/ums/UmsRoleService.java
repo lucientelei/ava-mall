@@ -51,11 +51,18 @@ public interface UmsRoleService {
     int del(Long id);
 
     /**
-     * 获取角色菜单
+     * 根据角色Id获取角色菜单
      * @param roleId
      * @return
      */
     List<UmsMenu> listMenu(Long roleId);
+
+    /**
+     * 根据管理员Id获取对应菜单
+     * @param adminId
+     * @return
+     */
+    List<UmsMenu> getMenuList(Long adminId);
 
     /**
      * 获取角色资源
@@ -63,4 +70,20 @@ public interface UmsRoleService {
      * @return
      */
     List<UmsResource> listResource(Long roleId);
+
+    /**
+     * 给角色分配菜单
+     * @param roleId
+     * @param menuIds
+     * @return
+     */
+    int allocMenu(Long roleId, List<Long> menuIds);
+
+    /**
+     * 给角色分配资源
+     * @param roleId
+     * @param resourceIds
+     * @return
+     */
+    int allocResource(Long roleId, List<Long> resourceIds);
 }

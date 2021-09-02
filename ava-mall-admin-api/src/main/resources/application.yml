@@ -61,8 +61,6 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
-
   redis:
     # 地址
     host: localhost

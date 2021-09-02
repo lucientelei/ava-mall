@@ -3,8 +3,9 @@ package com.lucien.malll.service.ums.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
-import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminFront;
 import com.lucien.mall.dto.ums.UmsAdminLoginDto;
+import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.mapper.UmsAdminMapper;
 import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
@@ -28,6 +29,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author Lucien
@@ -115,26 +117,26 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 用户注册
      *
-     * @param umsAdminDto
+     * @param umsAdminRegisterDto
      * @return
      */
     @Override
-    public UmsAdmin register(UmsAdminDto umsAdminDto) {
+    public UmsAdmin register(UmsAdminRegisterDto umsAdminRegisterDto) {
         UmsAdmin umsAdmin = new UmsAdmin();
-        BeanUtils.copyProperties(umsAdminDto, umsAdmin);
+        BeanUtils.copyProperties(umsAdminRegisterDto, umsAdmin);
         umsAdmin.setCreateTime(new Date());
         umsAdmin.setStatus(1);
 
         //检查重复名
         UmsAdminExample umsAdminExample = new UmsAdminExample();
-        umsAdminExample.createCriteria().andUsernameEqualTo(umsAdminDto.getUsername());
+        umsAdminExample.createCriteria().andUsernameEqualTo(umsAdminRegisterDto.getUsername());
         List<UmsAdmin> adminList = adminMapper.selectByExample(umsAdminExample);
 
         if (adminList.size() > 0) {
             return null;
         }
         //使用springboot自带md5加密方式加密用户密码
-        String md5Password = DigestUtils.md5DigestAsHex(umsAdminDto.getPassword().getBytes());
+        String md5Password = DigestUtils.md5DigestAsHex(umsAdminRegisterDto.getPassword().getBytes());
         umsAdmin.setPassword(md5Password);
         adminMapper.insert(umsAdmin);
 
@@ -305,8 +307,13 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * @return
      */
     @Override
-    public UmsAdmin getUser() {
+    public UmsAdminFront getInfo() {
+        UmsAdminFront adminFront = new UmsAdminFront();
         UmsAdmin umsAdmin = (UmsAdmin) SecurityUtils.getSubject().getPrincipal();
-        return umsAdmin;
+        BeanUtils.copyProperties(umsAdmin, adminFront);
+        List<UmsRole> roleList = getRoleList(umsAdmin.getId());
+        List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
+        adminFront.setRoles(roles);
+        return adminFront;
     }
 }

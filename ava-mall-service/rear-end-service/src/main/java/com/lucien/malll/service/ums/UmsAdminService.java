@@ -1,7 +1,8 @@
 package com.lucien.malll.service.ums;
 
 
-import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminFront;
+import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
 import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.pojo.UmsAdmin;
@@ -32,10 +33,10 @@ public interface UmsAdminService {
 
     /**
      * 用户注册
-     * @param umsAdminDto
+     * @param umsAdminRegisterDto
      * @return
      */
-    UmsAdmin register(UmsAdminDto umsAdminDto);
+    UmsAdmin register(UmsAdminRegisterDto umsAdminRegisterDto);
 
     /**
      * 根据用户id获取用户
@@ -106,5 +107,5 @@ public interface UmsAdminService {
      * 获取当前登录的用户信息
      * @return
      */
-    UmsAdmin getUser();
+    UmsAdminFront getInfo();
 }

@@ -7,7 +7,6 @@ import com.lucien.malll.service.ums.UmsRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +28,8 @@ public class UmsRoleServiceImpl implements UmsRoleService {
     private UmsRoleMenuRelationMapper menuRelationMapper;
 
     @Autowired
-    private UmsResourceMapper resourceMapper;
+    private UmsRoleResourceRelationMapper roleResourceRelationMapper;
 
-    @Autowired
-    private UmsRoleResourceRelationMapper resourceRelationMapper;
 
     /**
      * 获取所有角色列表
@@ -99,18 +96,17 @@ public class UmsRoleServiceImpl implements UmsRoleService {
      */
     @Override
     public List<UmsMenu> listMenu(Long roleId) {
-        List<UmsMenu> menuList = new ArrayList<>();
+        return roleMapper.getMenuListByRoleId(roleId);
+    }
 
-        UmsRoleMenuRelationExample example = new UmsRoleMenuRelationExample();
-        example.createCriteria().andRoleIdEqualTo(roleId);
-        List<UmsRoleMenuRelation> menuRelations = menuRelationMapper.selectByExample(example);
-
-        for (UmsRoleMenuRelation menuRelation : menuRelations) {
-            UmsMenu umsMenu = menuMapper.selectByPrimaryKey(menuRelation.getMenuId());
-            menuList.add(umsMenu);
-        }
-
-        return menuList;
+    /**
+     * 根据管理员Id获取对应菜单
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<UmsMenu> getMenuList(Long adminId) {
+        return roleMapper.getMenuList(adminId);
     }
 
     /**
@@ -120,15 +116,50 @@ public class UmsRoleServiceImpl implements UmsRoleService {
      */
     @Override
     public List<UmsResource> listResource(Long roleId) {
-        List<UmsResource> resourceList = new ArrayList<>();
+       return roleMapper.getResourceListByRoleId(roleId);
+    }
 
-        UmsRoleResourceRelationExample example = new UmsRoleResourceRelationExample();
+    /**
+     * 给角色分配菜单
+     * @param roleId
+     * @param menuIds
+     * @return
+     */
+    @Override
+    public int allocMenu(Long roleId, List<Long> menuIds) {
+        //先删除原有关系
+        UmsRoleMenuRelationExample example=new UmsRoleMenuRelationExample();
         example.createCriteria().andRoleIdEqualTo(roleId);
-        List<UmsRoleResourceRelation> umsRoleResourceRelations = resourceRelationMapper.selectByExample(example);
-        for (UmsRoleResourceRelation resourceRelation : umsRoleResourceRelations) {
-            UmsResource umsResource = resourceMapper.selectByPrimaryKey(resourceRelation.getResourceId());
-            resourceList.add(umsResource);
+        menuRelationMapper.deleteByExample(example);
+        //批量插入新关系
+        for (Long menuId : menuIds) {
+            UmsRoleMenuRelation relation = new UmsRoleMenuRelation();
+            relation.setRoleId(roleId);
+            relation.setMenuId(menuId);
+            menuRelationMapper.insert(relation);
         }
-        return resourceList;
+        return menuIds.size();
+    }
+
+    /**
+     * 给角色分配资源
+     * @param roleId
+     * @param resourceIds
+     * @return
+     */
+    @Override
+    public int allocResource(Long roleId, List<Long> resourceIds) {
+        //先删除原有关系
+        UmsRoleResourceRelationExample example=new UmsRoleResourceRelationExample();
+        example.createCriteria().andRoleIdEqualTo(roleId);
+        roleResourceRelationMapper.deleteByExample(example);
+        //批量插入新关系
+        for (Long resourceId : resourceIds) {
+            UmsRoleResourceRelation relation = new UmsRoleResourceRelation();
+            relation.setRoleId(roleId);
+            relation.setResourceId(resourceId);
+            roleResourceRelationMapper.insert(relation);
+        }
+        return resourceIds.size();
     }
 }

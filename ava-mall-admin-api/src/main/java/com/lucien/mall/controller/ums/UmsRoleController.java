@@ -73,15 +73,37 @@ public class UmsRoleController {
         }
     }
 
-    @GetMapping("/listmenu/{roleId}")
-    @ApiOperation(value = "获取角色菜单")
+    @GetMapping("/listmenu/role/{roleId}")
+    @ApiOperation(value = "根据角色Id获取角色菜单")
     public GlobalResult listMenu(@PathVariable("roleId") Long roleId){
         return GlobalResult.success(roleService.listMenu(roleId));
+    }
+
+    @GetMapping("/listmenu/admin/{adminId}")
+    @ApiOperation(value = "根据管理员Id获取对应菜单")
+    public GlobalResult getMenuList(@PathVariable("adminId") Long adminId){
+        return GlobalResult.success(roleService.getMenuList(adminId));
     }
 
     @GetMapping("/listresource/{roleId}")
     @ApiOperation(value = "获取角色资源")
     public GlobalResult listResource(@PathVariable("roleId") Long roleId){
         return GlobalResult.success(roleService.listResource(roleId));
+    }
+
+    @PostMapping("/alloc/menu/{roleId}")
+    @ApiOperation(value = "给角色分配菜单")
+    public GlobalResult allocMenu(@PathVariable("roleId") Long roleId,
+                                  @RequestParam("menuIds") List<Long> menuIds) {
+        int result = roleService.allocMenu(roleId, menuIds);
+        return GlobalResult.success(result);
+    }
+
+    @PostMapping("/alloc/resource/{roleId}")
+    @ApiOperation(value = "给角色分配资源")
+    public GlobalResult allocResource(@PathVariable("roleId") Long roleId,
+                                  @RequestParam("resourceIds") List<Long> resourceIds) {
+        int result = roleService.allocResource(roleId, resourceIds);
+        return GlobalResult.success(result);
     }
 }

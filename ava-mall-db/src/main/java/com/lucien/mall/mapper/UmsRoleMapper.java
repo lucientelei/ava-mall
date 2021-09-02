@@ -1,9 +1,12 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.pojo.UmsMenu;
+import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
 import com.lucien.mall.pojo.UmsRoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsRoleMapper {
     long countByExample(UmsRoleExample example);
@@ -27,4 +30,17 @@ public interface UmsRoleMapper {
     int updateByPrimaryKeySelective(UmsRole record);
 
     int updateByPrimaryKey(UmsRole record);
+
+    /**
+     * 根据后台用户ID获取菜单
+     */
+    List<UmsMenu> getMenuList(@Param("adminId") Long adminId);
+    /**
+     * 根据角色ID获取菜单
+     */
+    List<UmsMenu> getMenuListByRoleId(@Param("roleId") Long roleId);
+    /**
+     * 根据角色ID获取资源
+     */
+    List<UmsResource> getResourceListByRoleId(@Param("roleId") Long roleId);
 }

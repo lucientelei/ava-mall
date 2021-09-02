@@ -1,14 +1,17 @@
 package com.lucien.mall.controller.ums;
 
 import com.lucien.mall.annotation.LoginInfoAnnotation;
-import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminFront;
+import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
 import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsAdmin;
+import com.lucien.mall.pojo.UmsMenu;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
 import com.lucien.malll.service.ums.UmsAdminService;
+import com.lucien.malll.service.ums.UmsRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ public class UmsAdminController {
 
     @Autowired
     private UmsAdminService umsAdminService;
+
+    @Autowired
+    private UmsRoleService roleService;
 
     @GetMapping("/byname/{username}")
     @ApiOperation(value = "根据用户名获取后台管理员")
@@ -62,8 +68,8 @@ public class UmsAdminController {
 
     @PostMapping("/register")
     @ApiOperation(value = "用户注册")
-    public GlobalResult register(@Validated @RequestBody UmsAdminDto umsAdminDto) {
-        UmsAdmin result = umsAdminService.register(umsAdminDto);
+    public GlobalResult register(@Validated @RequestBody UmsAdminRegisterDto umsAdminRegisterDto) {
+        UmsAdmin result = umsAdminService.register(umsAdminRegisterDto);
         if (StringUtils.isEmpty(result)) {
             return GlobalResult.error("注册失败", -1);
         }
@@ -156,7 +162,9 @@ public class UmsAdminController {
     @GetMapping("/getInfo")
     @ApiOperation(value = "获取登录用户信息")
     public GlobalResult getUser(){
-        UmsAdmin result = umsAdminService.getUser();
+        UmsAdminFront result = umsAdminService.getInfo();
+        List<UmsMenu> menuList = roleService.getMenuList(result.getId());
+        result.setMenuList(menuList);
         return GlobalResult.success(result);
     }
 }
