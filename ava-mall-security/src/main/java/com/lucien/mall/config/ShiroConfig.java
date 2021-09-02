@@ -100,6 +100,7 @@ public class ShiroConfig {
         // 可匿名访问
         filterChainDefinitionMap.put("/*/login", "anon");
         filterChainDefinitionMap.put("/*/register", "anon");
+        filterChainDefinitionMap.put("/test/*", "anon");
 
         //放行Swagger2
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");

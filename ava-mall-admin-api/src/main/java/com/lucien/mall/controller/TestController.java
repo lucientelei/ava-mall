@@ -2,7 +2,6 @@ package com.lucien.mall.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/test")
-@RequiresRoles("超级管理员")
+//@RequiresRoles("超级管理员")
 @Api(tags = "TestController", description = "测试接口")
 public class TestController {
 

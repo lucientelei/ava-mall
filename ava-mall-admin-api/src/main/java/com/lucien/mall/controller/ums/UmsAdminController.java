@@ -2,9 +2,9 @@ package com.lucien.mall.controller.ums;
 
 import com.lucien.mall.annotation.LoginInfoAnnotation;
 import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.global.GlobalResult;
-import com.lucien.mall.global.error.MyException;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
@@ -30,15 +30,6 @@ public class UmsAdminController {
     @Autowired
     private UmsAdminService umsAdminService;
 
-    @GetMapping("/test")
-    @ApiOperation(value = "测试")
-    public GlobalResult test(String username){
-        if (username == null){
-            throw new MyException("username不能为空");
-        }
-        return GlobalResult.success("测试",1000);
-    }
-
     @GetMapping("/byname/{username}")
     @ApiOperation(value = "根据用户名获取后台管理员")
     public GlobalResult getAdminByUsername(@PathVariable("username") String username) {
@@ -52,8 +43,9 @@ public class UmsAdminController {
     @LoginInfoAnnotation
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
-    public GlobalResult login(String username, String password) {
-        String result = umsAdminService.login(username, password);
+    public GlobalResult login(@RequestBody UmsAdminLoginDto dto) {
+        System.out.println(dto.getPassword()+"--"+dto.getUsername());
+        String result = umsAdminService.login(dto);
         if (result.equals("-1")) {
             return GlobalResult.error("不存在该用户！", result);
         } else if (result.equals("-2")) {
@@ -98,9 +90,9 @@ public class UmsAdminController {
         return GlobalResult.error("修改失败", result);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/del/{id}")
     @ApiOperation(value = "删除指定用户")
-    public GlobalResult delete(Long id) {
+    public GlobalResult delete(@PathVariable("id") Long id) {
         int result = umsAdminService.delete(id);
         if (result > 0) {
             return GlobalResult.success("删除成功", result);
@@ -161,7 +153,7 @@ public class UmsAdminController {
         return GlobalResult.success("登出成功！", result);
     }
 
-    @GetMapping("/getuser")
+    @GetMapping("/getInfo")
     @ApiOperation(value = "获取登录用户信息")
     public GlobalResult getUser(){
         UmsAdmin result = umsAdminService.getUser();

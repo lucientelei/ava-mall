@@ -2,6 +2,7 @@ package com.lucien.malll.service.ums;
 
 
 import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsResource;
@@ -25,11 +26,9 @@ public interface UmsAdminService {
 
     /**
      * 用户登录
-     * @param username 用户名
-     * @param password 密码
      * @return         生成的jwt token
      */
-    String login(String username, String password);
+    String login(UmsAdminLoginDto dto);
 
     /**
      * 用户注册

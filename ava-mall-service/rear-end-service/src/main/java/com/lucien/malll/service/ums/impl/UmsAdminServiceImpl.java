@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.lucien.mall.dto.ums.UmsAdminDto;
+import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.mapper.UmsAdminMapper;
 import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
@@ -67,21 +68,18 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     /**
      * 用户登录
-     *
-     * @param username 用户名
-     * @param password 密码
      * @return 生成的jwt token
      * -1用户名错误
      */
     @Override
-    public String login(String username, String password) {
-        UmsAdmin umsAdmin = getAdminByUsername(username);
+    public String login(UmsAdminLoginDto dto) {
+        UmsAdmin umsAdmin = getAdminByUsername(dto.getUsername());
         if (StringUtils.isEmpty(umsAdmin)){
             return "-1";
         }
         Subject subject = SecurityUtils.getSubject();
 
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, DigestUtils.md5DigestAsHex(password.getBytes()));
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(dto.getUsername(), DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()));
 
         boolean loginSuccess = false;
 
@@ -101,7 +99,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
 
         if (loginSuccess) {
-            String token = JWTUtils.sign(username, JWTUtils.SECRET);
+            String token = JWTUtils.sign(dto.getUsername(), JWTUtils.SECRET);
             try {
                 redisUtils.setCacheObject("TOKENADMIN:" + token, JSON.toJSON(umsAdmin));
                 redisUtils.expire("TOKENADMIN:" + token, JWTUtils.EXPIRE_TIME);
