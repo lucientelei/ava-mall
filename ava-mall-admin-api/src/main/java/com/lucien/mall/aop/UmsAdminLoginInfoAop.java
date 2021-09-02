@@ -1,15 +1,12 @@
 package com.lucien.mall.aop;
 
-import com.lucien.mall.domain.JwtToken;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsAdminLoginLog;
-import com.lucien.malll.service.UmsAdminLoginLogService;
-import com.lucien.malll.service.UmsAdminService;
+import com.lucien.malll.service.ums.UmsAdminLoginLogService;
+import com.lucien.malll.service.ums.UmsAdminService;
 import eu.bitwalker.useragentutils.Browser;
-import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.apache.shiro.SecurityUtils;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,12 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.dto.oms.OmsOrderReturnApplyResult;
+import com.lucien.mall.dto.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
 import com.lucien.mall.pojo.OmsOrderReturnApplyExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderReturnApplyMapper {
     long countByExample(OmsOrderReturnApplyExample example);
@@ -27,4 +30,14 @@ public interface OmsOrderReturnApplyMapper {
     int updateByPrimaryKeySelective(OmsOrderReturnApply record);
 
     int updateByPrimaryKey(OmsOrderReturnApply record);
+
+    /**
+     * 查询申请列表
+     */
+    List<OmsOrderReturnApply> getList(@Param("queryParam") OmsReturnApplyQueryParam queryParam);
+
+    /**
+     * 获取申请详情
+     */
+    OmsOrderReturnApplyResult getDetail(@Param("id")Long id);
 }

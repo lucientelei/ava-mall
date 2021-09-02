@@ -7,7 +7,7 @@ import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsResource;
 import com.lucien.mall.pojo.UmsRole;
 import com.lucien.mall.utils.RedisUtils;
-import com.lucien.malll.service.UmsAdminService;
+import com.lucien.malll.service.ums.UmsAdminService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

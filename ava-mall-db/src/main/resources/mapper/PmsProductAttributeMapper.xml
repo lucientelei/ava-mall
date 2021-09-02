@@ -320,7 +320,7 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="getProductAttrInfo" resultType="com.lucien.mall.dto.ProductAttrInfo">
+  <select id="getProductAttrInfo" resultType="com.lucien.mall.dto.pms.ProductAttrInfo">
         SELECT
             pa.id  attributeId,
             pac.id attributeCategoryId

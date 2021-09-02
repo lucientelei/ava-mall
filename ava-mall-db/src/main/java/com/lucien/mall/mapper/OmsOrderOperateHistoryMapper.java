@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.OmsOrderOperateHistory;
 import com.lucien.mall.pojo.OmsOrderOperateHistoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderOperateHistoryMapper {
     long countByExample(OmsOrderOperateHistoryExample example);
@@ -27,4 +28,9 @@ public interface OmsOrderOperateHistoryMapper {
     int updateByPrimaryKeySelective(OmsOrderOperateHistory record);
 
     int updateByPrimaryKey(OmsOrderOperateHistory record);
+
+    /**
+     * 批量创建
+     */
+    int insertList(@Param("list") List<OmsOrderOperateHistory> orderOperateHistoryList);
 }

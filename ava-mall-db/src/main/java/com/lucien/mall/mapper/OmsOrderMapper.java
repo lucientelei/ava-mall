@@ -1,9 +1,13 @@
 package com.lucien.mall.mapper;
 
+import com.lucien.mall.dto.oms.OmsOrderDeliveryParam;
+import com.lucien.mall.dto.oms.OmsOrderDetail;
+import com.lucien.mall.dto.oms.OmsOrderQueryParam;
 import com.lucien.mall.pojo.OmsOrder;
 import com.lucien.mall.pojo.OmsOrderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderMapper {
     long countByExample(OmsOrderExample example);
@@ -27,4 +31,19 @@ public interface OmsOrderMapper {
     int updateByPrimaryKeySelective(OmsOrder record);
 
     int updateByPrimaryKey(OmsOrder record);
+
+    /**
+     * 条件查询订单
+     */
+    List<OmsOrder> getList(@Param("queryParam") OmsOrderQueryParam queryParam);
+
+    /**
+     * 批量发货
+     */
+    int delivery(@Param("list") List<OmsOrderDeliveryParam> deliveryParamList);
+
+    /**
+     * 获取订单详情
+     */
+    OmsOrderDetail getDetail(@Param("id") Long id);
 }

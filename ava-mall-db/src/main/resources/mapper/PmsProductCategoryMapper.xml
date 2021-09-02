@@ -17,7 +17,7 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lucien.mall.pojo.PmsProductCategory">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
-  <resultMap id="listWithChildrenMap" type="com.lucien.mall.dto.PmsProductCategoryWithChildrenItem"
+  <resultMap id="listWithChildrenMap" type="com.lucien.mall.dto.pms.PmsProductCategoryWithChildrenItem"
              extends="com.lucien.mall.mapper.PmsProductCategoryMapper.BaseResultMap">
     <collection property="children" resultMap="com.lucien.mall.mapper.PmsProductCategoryMapper.BaseResultMap"
                 columnPrefix="child_"></collection>

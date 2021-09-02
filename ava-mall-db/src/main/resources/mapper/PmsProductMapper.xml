@@ -47,7 +47,7 @@
     <result column="detail_html" jdbcType="LONGVARCHAR" property="detailHtml" />
     <result column="detail_mobile_html" jdbcType="LONGVARCHAR" property="detailMobileHtml" />
   </resultMap>
-  <resultMap id="updateInfoMap" type="com.lucien.mall.dto.PmsProductResult" extends="com.lucien.mall.mapper.PmsProductMapper.ResultMapWithBLOBs">
+  <resultMap id="updateInfoMap" type="com.lucien.mall.dto.pms.PmsProductResult" extends="com.lucien.mall.mapper.PmsProductMapper.ResultMapWithBLOBs">
     <result column="cateParentId" jdbcType="BIGINT" property="cateParentId" />
     <collection property="productLadderList" columnPrefix="ladder_" resultMap="com.lucien.mall.mapper.PmsProductLadderMapper.BaseResultMap">
     </collection>
