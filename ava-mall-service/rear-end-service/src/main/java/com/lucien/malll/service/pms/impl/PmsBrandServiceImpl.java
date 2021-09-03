@@ -80,7 +80,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     public List<PmsBrand> listBrand(String keyword, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         PmsBrandExample example = new PmsBrandExample();
-        example.setOrderByClause("sort desc");
+        example.setOrderByClause("id asc");
         PmsBrandExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(keyword)){
             criteria.andNameLike('%' + keyword + '%');
@@ -137,6 +137,6 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         pmsBrand.setFactoryStatus(factoryStatus);
         PmsBrandExample example = new PmsBrandExample();
         example.createCriteria().andIdIn(ids);
-        return brandMapper.updateByExample(pmsBrand, example);
+        return brandMapper.updateByExampleSelective(pmsBrand, example);
     }
 }

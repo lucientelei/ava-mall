@@ -31,10 +31,10 @@ public class PmsProductController {
     @ApiOperation(value = "新增商品")
     public GlobalResult insert(@RequestBody PmsProductParam param){
         int result = productService.insert(param);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
@@ -61,68 +61,67 @@ public class PmsProductController {
     @ApiOperation(value = "模糊搜索")
     public GlobalResult list(@PathVariable("keyword") String keyWord){
         List<PmsProduct> result = productService.list(keyWord);
-        System.out.println(result.size());
         return GlobalResult.success(result);
     }
 
-    @PostMapping("/update/verify/{status}")
+    @PostMapping("/update/verify")
     @ApiOperation(value = "批量修改商品审核状态")
-    public GlobalResult updateVerifyStatus(@RequestParam("ids") List<Long> ids,
-                                           @PathVariable("status") Integer status,
-                                           @RequestParam("detail") String detail){
+    public GlobalResult updateVerifyStatus(@RequestParam List<Long> ids,
+                                           @RequestParam Integer status,
+                                           @RequestParam String detail){
         int result = productService.updateVerifyStatus(ids, status, detail);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
-    @PostMapping("/update/publish/{status}")
+    @PostMapping("/update/publish")
     @ApiOperation(value = "批量修改商品上架状态")
-    public GlobalResult updatePublishStatus(@RequestParam("ids") List<Long> ids,
-                                            @PathVariable("status") Integer status){
-        int result = productService.updatePublishStatus(ids, status);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+    public GlobalResult updatePublishStatus(@RequestParam List<Long> ids,
+                                            @RequestParam Integer publishStatus){
+        int result = productService.updatePublishStatus(ids, publishStatus);
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
-    @PostMapping("/update/recommand/{status}")
+    @PostMapping("/update/recommend")
     @ApiOperation(value = "批量修改商品推荐状态")
-    public GlobalResult updateRecommandStatus(@RequestParam("ids")List<Long> ids,
-                                              @PathVariable("status") Integer status){
-        int result = productService.updateRecommandStatus(ids, status);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+    public GlobalResult updateRecommandStatus(@RequestParam List<Long> ids,
+                                              @RequestParam Integer recommendStatus){
+        int result = productService.updateRecommandStatus(ids, recommendStatus);
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
-    @PostMapping("/update/new/{status}")
+    @PostMapping("/update/new")
     @ApiOperation(value = "批量修改商品新品状态")
-    public GlobalResult updateNewStatus(@RequestParam("ids")List<Long> ids,
-                                              @PathVariable("status") Integer status){
-        int result = productService.updateNewStatus(ids, status);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+    public GlobalResult updateNewStatus(@RequestParam List<Long> ids,
+                                        @RequestParam Integer newStatus){
+        int result = productService.updateNewStatus(ids, newStatus);
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
-    @PostMapping("/update/delete/{status}")
-    @ApiOperation(value = "批量修改商品新品状态")
-    public GlobalResult updateDeleteStatus(@RequestParam("ids")List<Long> ids,
-                                        @PathVariable("status") Integer status){
-        int result = productService.updateDeleteStatus(ids, status);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+    @PostMapping("/update/delete")
+    @ApiOperation(value = "批量修改商品删除状态")
+    public GlobalResult updateDeleteStatus(@RequestParam List<Long> ids,
+                                           @RequestParam Integer deleteStatus){
+        int result = productService.updateDeleteStatus(ids, deleteStatus);
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 
@@ -131,10 +130,10 @@ public class PmsProductController {
     public GlobalResult update(@PathVariable("id") Long id,
                                @RequestBody PmsProductParam productParam){
         int result = productService.update(id, productParam);
-        if (result != 1){
-            return GlobalResult.error();
-        }else {
+        if (result > 0){
             return GlobalResult.success(result);
+        }else {
+            return GlobalResult.error();
         }
     }
 }

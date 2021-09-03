@@ -30,10 +30,10 @@ public class PmsProductAttributeController {
     @ApiOperation(value = "新增商品属性")
     public GlobalResult insert(@RequestBody PmsProductAttributeParam param){
         int result = attributeService.insert(param);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @PostMapping("/update/{id}")
@@ -41,10 +41,10 @@ public class PmsProductAttributeController {
     public GlobalResult update(@PathVariable("id") Long id,
                                @RequestBody PmsProductAttributeParam param){
         int result = attributeService.update(id, param);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @GetMapping("/getitem/{id}")
@@ -57,10 +57,10 @@ public class PmsProductAttributeController {
         return GlobalResult.success(result);
     }
 
-    @GetMapping("/getlist/{cid}/{type}")
+    @GetMapping("/getlist/{cid}")
     @ApiOperation(value = "根据分类分页获取商品属性")
     public GlobalResult<GlobalPage<PmsProductAttribute>> getList(@PathVariable("cid") Long cid,
-                                            @PathVariable("type") Integer type,
+                                            @RequestParam("type") Integer type,
                                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
         List<PmsProductAttribute> result = attributeService.getList(cid, type, pageSize, pageNum);
@@ -71,10 +71,10 @@ public class PmsProductAttributeController {
     @ApiOperation(value = "批量删除商品属性")
     public GlobalResult delete(@RequestParam("ids") List<Long> ids){
         int result = attributeService.delete(ids);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @GetMapping("/info/{productCategoryId}")

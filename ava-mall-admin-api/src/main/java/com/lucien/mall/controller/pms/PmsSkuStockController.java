@@ -25,12 +25,12 @@ public class PmsSkuStockController {
     @GetMapping("/list/{id}")
     @ApiOperation(value = "根据产品Id和skuCode搜索")
     public GlobalResult list(@PathVariable("id") Long id,
-                             @RequestParam("keyWord") String keyWord){
-        List<PmsSkuStock> result = skuStockService.list(id, keyWord);
+                             @RequestParam(value = "keyword", required = false) String keyword){
+        List<PmsSkuStock> result = skuStockService.list(id, keyword);
         return GlobalResult.success(result);
     }
 
-    @GetMapping("/update/{pid}")
+    @PostMapping("/update/{pid}")
     @ApiOperation(value = "批量更新商品库存信息")
     public GlobalResult update(@PathVariable("pid") Long pid,
                                @RequestBody List<PmsSkuStock> skuStockList){

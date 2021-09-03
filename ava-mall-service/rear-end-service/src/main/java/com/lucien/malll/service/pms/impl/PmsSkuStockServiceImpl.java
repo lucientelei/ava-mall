@@ -30,7 +30,7 @@ public class PmsSkuStockServiceImpl implements PmsSkuStockService {
     @Override
     public List<PmsSkuStock> list(Long id, String keyWord) {
         PmsSkuStockExample example = new PmsSkuStockExample();
-        PmsSkuStockExample.Criteria criteria = example.createCriteria().andIdEqualTo(id);
+        PmsSkuStockExample.Criteria criteria = example.createCriteria().andProductIdEqualTo(id);
         if (!StringUtils.isEmpty(keyWord)){
             criteria.andSkuCodeLike('%' + keyWord + '%');
         }

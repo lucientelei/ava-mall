@@ -5,6 +5,7 @@ import com.lucien.mall.dto.ums.UmsAdminFront;
 import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
 import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
+import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsMenu;
@@ -142,9 +143,10 @@ public class UmsAdminController {
         return GlobalResult.success("修改密码成功", result);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{id}/{status}")
     @ApiOperation(value = "修改账号状态")
-    public GlobalResult updateStatus(@PathVariable("id") Long id, Integer status) {
+    public GlobalResult updateStatus(@PathVariable("id") Long id,
+                                     @PathVariable("status") Integer status) {
         int result = umsAdminService.updateStatus(id, status);
         if (result > 0) {
             return GlobalResult.success("修改成功！",result);
@@ -166,5 +168,26 @@ public class UmsAdminController {
         List<UmsMenu> menuList = roleService.getMenuList(result.getId());
         result.setMenuList(menuList);
         return GlobalResult.success(result);
+    }
+
+    @PostMapping("/update/role")
+    @ApiOperation(value = "修改用户角色关系")
+    @ResponseBody
+    public GlobalResult updateRole(@RequestParam("adminId") Long adminId,
+                                   @RequestParam("roleIds") List<Long> roleIds){
+        int result = umsAdminService.updateRole(adminId, roleIds);
+        if (result > 0){
+            return GlobalResult.success(result);
+        }
+        return GlobalResult.error();
+    }
+
+    @GetMapping("/list")
+    @ApiOperation(value = "根据用户名或姓名分页获取用户列表")
+    public GlobalResult<GlobalPage<UmsAdmin>> list(String keyword,
+                                         @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                         @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
+        List<UmsAdmin> result = umsAdminService.list(keyword, pageSize, pageNum);
+        return GlobalResult.success(GlobalPage.restPage(result));
     }
 }

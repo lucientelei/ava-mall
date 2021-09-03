@@ -6,6 +6,7 @@ import com.lucien.mall.pojo.*;
 import com.lucien.malll.service.ums.UmsRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -51,8 +52,9 @@ public class UmsRoleServiceImpl implements UmsRoleService {
     public List<UmsRole> list(String keyWord, Integer pageSize, Integer pageNum) {
         PageHelper.startPage(pageNum, pageSize);
         UmsRoleExample example = new UmsRoleExample();
-        UmsRoleExample.Criteria criteria = example.createCriteria();
-        criteria.andNameLike('%' + keyWord + '%');
+        if (!StringUtils.isEmpty(keyWord)){
+            example.createCriteria().andNameLike('%' + keyWord + '%');
+        }
         return roleMapper.selectByExample(example);
     }
 
@@ -161,5 +163,18 @@ public class UmsRoleServiceImpl implements UmsRoleService {
             roleResourceRelationMapper.insert(relation);
         }
         return resourceIds.size();
+    }
+
+    /**
+     * 更新角色状态
+     * @param roleId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateStatus(Long roleId, Integer status) {
+        UmsRole umsRole = roleMapper.selectByPrimaryKey(roleId);
+        umsRole.setStatus(status);
+        return roleMapper.updateByPrimaryKeySelective(umsRole);
     }
 }

@@ -108,4 +108,21 @@ public interface UmsAdminService {
      * @return
      */
     UmsAdminFront getInfo();
+
+    /**
+     * 修改用户角色关系
+     * @param adminId
+     * @param roleIds
+     * @return
+     */
+    int updateRole(Long adminId, List<Long> roleIds);
+
+    /**
+     * 根据用户名或姓名分页获取用户列表
+     * @param keyword
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    List<UmsAdmin> list(String keyword, Integer pageSize, Integer pageNum);
 }

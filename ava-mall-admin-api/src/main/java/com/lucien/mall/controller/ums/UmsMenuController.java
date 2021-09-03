@@ -79,9 +79,10 @@ public class UmsMenuController {
         return GlobalResult.success(GlobalPage.restPage(result));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{id}/{hidden}")
     @ApiOperation(value = "修改菜单是否显示")
-    public GlobalResult updateHidden(Long id, Integer hidden){
+    public GlobalResult updateHidden(@PathVariable("id") Long id,
+                                     @PathVariable("hidden") Integer hidden){
         int result = menuService.updateHidden(id, hidden);
         if (result > 0){
             return GlobalResult.success(result);

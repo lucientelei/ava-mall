@@ -108,8 +108,8 @@ public class PmsBrandController {
 
     @PostMapping("/update/show")
     @ApiOperation(value = "修改显示状态")
-    public GlobalResult updateShowStatus(@RequestParam("ids") List<Long> ids,
-                                         @RequestParam("showStatus") Integer showStatus){
+    public GlobalResult updateShowStatus(@RequestParam List<Long> ids,
+                                         @RequestParam Integer showStatus){
         int result = brandService.updateShowStatus(ids, showStatus);
         if (result != 1){
             return GlobalResult.error(result);
@@ -120,8 +120,8 @@ public class PmsBrandController {
 
     @PostMapping("/update/factory")
     @ApiOperation(value = "修改厂家制造商状态")
-    public GlobalResult updateFactoryStatus(@RequestParam("ids") List<Long> ids,
-                                         @RequestParam("factoryStatus") Integer factoryStatus){
+    public GlobalResult updateFactoryStatus(@RequestParam List<Long> ids,
+                                         @RequestParam Integer factoryStatus){
         int result = brandService.updateFactoryStatus(ids, factoryStatus);
         if (result != 1){
             return GlobalResult.error(result);

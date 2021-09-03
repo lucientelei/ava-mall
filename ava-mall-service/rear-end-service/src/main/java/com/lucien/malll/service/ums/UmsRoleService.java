@@ -86,4 +86,12 @@ public interface UmsRoleService {
      * @return
      */
     int allocResource(Long roleId, List<Long> resourceIds);
+
+    /**
+     * 更新角色状态
+     * @param roleId
+     * @param status
+     * @return
+     */
+    int updateStatus(Long roleId, Integer status);
 }

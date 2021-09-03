@@ -3,16 +3,14 @@ package com.lucien.malll.service.ums.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
 import com.lucien.mall.dto.ums.UmsAdminFront;
 import com.lucien.mall.dto.ums.UmsAdminLoginDto;
 import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
 import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.mapper.UmsAdminMapper;
 import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
-import com.lucien.mall.pojo.UmsAdmin;
-import com.lucien.mall.pojo.UmsAdminExample;
-import com.lucien.mall.pojo.UmsResource;
-import com.lucien.mall.pojo.UmsRole;
+import com.lucien.mall.pojo.*;
 import com.lucien.mall.utils.JWTUtils;
 import com.lucien.mall.utils.RedisUtils;
 import com.lucien.malll.service.ums.UmsAdminRoleRelationService;
@@ -24,9 +22,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -315,5 +315,51 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
         adminFront.setRoles(roles);
         return adminFront;
+    }
+
+    /**
+     * 修改用户角色关系
+     * @param adminId
+     * @param roleIds
+     * @return
+     */
+    @Override
+    public int updateRole(Long adminId, List<Long> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+        //删除原来的角色关系
+        UmsAdminRoleRelationExample roleRelationExample = new UmsAdminRoleRelationExample();
+        roleRelationExample.createCriteria().andAdminIdEqualTo(adminId);
+        roleRelationMapper.deleteByExample(roleRelationExample);
+
+        if (!CollectionUtils.isEmpty(roleIds)){
+            List<UmsAdminRoleRelation> list = new ArrayList<>();
+            for (Long roleId : roleIds) {
+                UmsAdminRoleRelation roleRelation = new UmsAdminRoleRelation();
+                roleRelation.setAdminId(adminId);
+                roleRelation.setRoleId(roleId);
+                list.add(roleRelation);
+            }
+            roleRelationMapper.insertList(list);
+        }
+        return count;
+    }
+
+    /**
+     * 根据用户名或姓名分页获取用户列表
+     * @param keyword
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    @Override
+    public List<UmsAdmin> list(String keyword, Integer pageSize, Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        UmsAdminExample example = new UmsAdminExample();
+        UmsAdminExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(keyword)){
+            criteria.andUsernameLike('%' + keyword + '%');
+            example.or(example.createCriteria().andNickNameLike('%' + keyword + '%'));
+        }
+        return adminMapper.selectByExample(example);
     }
 }
