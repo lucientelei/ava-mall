@@ -30,7 +30,7 @@
     <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
     <result column="receive_note" jdbcType="VARCHAR" property="receiveNote" />
   </resultMap>
-  <resultMap id="returnApplyDetailResultMap" type="com.lucien.mall.dto.oms.OmsOrderReturnApplyResult" extends="com.lucien.mall.mapper.OmsOrderReturnApplyMapper.BaseResultMap">
+  <resultMap id="returnApplyDetailResultMap" type="com.lucien.mall.rear.oms.OmsOrderReturnApplyResult" extends="com.lucien.mall.mapper.OmsOrderReturnApplyMapper.BaseResultMap">
     <association property="companyAddress" resultMap="com.lucien.mall.mapper.OmsCompanyAddressMapper.BaseResultMap" columnPrefix="ca_"/>
   </resultMap>
   <sql id="Example_Where_Clause">

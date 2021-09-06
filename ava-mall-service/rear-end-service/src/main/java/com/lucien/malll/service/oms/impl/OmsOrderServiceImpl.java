@@ -1,7 +1,7 @@
 package com.lucien.malll.service.oms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.oms.*;
+import com.lucien.mall.rear.oms.*;
 import com.lucien.mall.mapper.OmsOrderMapper;
 import com.lucien.mall.mapper.OmsOrderOperateHistoryMapper;
 import com.lucien.mall.pojo.OmsOrder;
@@ -98,7 +98,7 @@ public class OmsOrderServiceImpl implements OmsOrderService {
             operateHistory.setCreateTime(new Date());
             operateHistory.setOrderStatus(2);
             operateHistory.setNote("商家发货");
-            operateHistory.setOperateMan("后台管理源");
+            operateHistory.setOperateMan("后台管理员");
             return operateHistory;
         }).collect(Collectors.toList());
         historyMapper.insertList(historyList);
@@ -149,15 +149,16 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     @Override
     public int updateNote(Long id, String note, Integer status) {
         OmsOrder omsOrder = new OmsOrder();
+        omsOrder.setId(id);
         omsOrder.setNote(note);
-        omsOrder.setStatus(status);
         omsOrder.setModifyTime(new Date());
         int count = orderMapper.updateByPrimaryKeySelective(omsOrder);
+        System.out.println(count);
         OmsOrderOperateHistory history = new OmsOrderOperateHistory();
         history.setOrderId(id);
         history.setCreateTime(new Date());
         history.setNote("修改订单备注信息:" + note);
-        history.setOperateMan("后踢管理员");
+        history.setOperateMan("后台管理员");
         history.setOrderStatus(status);
         historyMapper.insert(history);
         return count;

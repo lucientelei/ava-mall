@@ -1,6 +1,6 @@
 package com.lucien.malll.service.ums;
 
-import com.lucien.mall.dto.ums.UmsMenuNode;
+import com.lucien.mall.rear.ums.UmsMenuNode;
 import com.lucien.mall.pojo.UmsMenu;
 
 import java.util.List;

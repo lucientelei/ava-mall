@@ -1,6 +1,6 @@
 package com.lucien.mall.controller.ums;
 
-import com.lucien.mall.dto.ums.UmsMenuNode;
+import com.lucien.mall.rear.ums.UmsMenuNode;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsMenu;

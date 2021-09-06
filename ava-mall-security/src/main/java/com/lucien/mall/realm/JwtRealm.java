@@ -49,7 +49,6 @@ public class JwtRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("jwtrealm执行授权===");
         UmsAdmin umsAdmin = (UmsAdmin) principalCollection.getPrimaryPrincipal();
         System.out.println("jwtrealm==="+umsAdmin.getUsername());
         //查询数据库，获取用户的角色信息
@@ -77,16 +76,14 @@ public class JwtRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("jwtreaml执行登录操作");
         String username = (String) token.getPrincipal();
 
         //获取携带token
         Object credentials = token.getCredentials();
 
-        Object cacheObject = redisUtils.getCacheObject("TOKEN:" + credentials);
+        Object cacheObject = redisUtils.get("TOKEN:" + credentials);
         //判断前台还是后台用户授权
         if (!StringUtils.isEmpty(cacheObject)){
-            System.out.println("umsmember用户获取");
             UmsMember umsMember = umsMemberService.getByUsername(username);
             if (umsMember.getStatus() == 0){
                 throw new LockedAccountException("该用户已被锁定,暂时无法登录！");

@@ -1,7 +1,7 @@
 package com.lucien.malll.service.ums.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.ums.UmsMenuNode;
+import com.lucien.mall.rear.ums.UmsMenuNode;
 import com.lucien.mall.mapper.UmsMenuMapper;
 import com.lucien.mall.pojo.UmsMenu;
 import com.lucien.mall.pojo.UmsMenuExample;

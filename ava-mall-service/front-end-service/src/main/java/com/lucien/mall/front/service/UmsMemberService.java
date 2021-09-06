@@ -54,4 +54,9 @@ public interface UmsMemberService {
      */
     int update(Long id, UmsMember umsMember);
 
+    /**
+     * 获取当前登录会员
+     * @return
+     */
+    UmsMember getCurrentMember();
 }

@@ -93,8 +93,8 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         if (loginSuccess) {
             String token = JWTUtils.sign(username, JWTUtils.SECRET);
             try {
-                redisUtils.setCacheObject("TOKEN:" + token, JSON.toJSON(umsMember));
-                redisUtils.expire("TOKEN:" + token, JWTUtils.EXPIRE_TIME);
+                redisUtils.set("TOKEN:" + token, String.valueOf(JSON.toJSON(umsMember)), JWTUtils.EXPIRE_TIME);
+//                redisUtils.expire("TOKEN:" + token, JWTUtils.EXPIRE_TIME);
             } catch (RedisException e) {
                 e.printStackTrace();
             }
@@ -153,10 +153,10 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     @Override
     public int logout(String token) {
         try {
-            if (StringUtils.isEmpty(redisUtils.getCacheObject("TOKEN:" + token))){
+            if (StringUtils.isEmpty(redisUtils.get("TOKEN:" + token))){
                 return 1;
             }
-            redisUtils.deleteObject("TOKEN:" + token);
+            redisUtils.del("TOKEN:" + token);
             Subject subject = SecurityUtils.getSubject();
             subject.logout();
         }catch (Exception e){
@@ -176,5 +176,15 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         umsMember.setId(id);
         int result = memberMapper.updateByPrimaryKeySelective(umsMember);
         return result;
+    }
+
+    /**
+     * 获取当前登录会员
+     * @return
+     */
+    @Override
+    public UmsMember getCurrentMember() {
+        UmsMember umsMember = (UmsMember) SecurityUtils.getSubject().getPrincipal();
+        return umsMember;
     }
 }

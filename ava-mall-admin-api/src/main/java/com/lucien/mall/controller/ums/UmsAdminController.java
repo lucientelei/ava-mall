@@ -1,10 +1,10 @@
 package com.lucien.mall.controller.ums;
 
 import com.lucien.mall.annotation.LoginInfoAnnotation;
-import com.lucien.mall.dto.ums.UmsAdminFront;
-import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
-import com.lucien.mall.dto.ums.UmsAdminLoginDto;
-import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
+import com.lucien.mall.rear.ums.UmsAdminFront;
+import com.lucien.mall.rear.ums.UmsAdminRegisterDto;
+import com.lucien.mall.rear.ums.UmsAdminLoginDto;
+import com.lucien.mall.rear.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsAdmin;

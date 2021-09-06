@@ -145,12 +145,10 @@ public class JWTUtils {
         DecodedJWT jwt = JWT.decode(token);
         //获取token的参数信息
         Map<String, Claim> claims = jwt.getClaims();
-
         try {
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTCreator.Builder builder = JWT.create().withExpiresAt(date);
-
             for (Map.Entry<String, Claim> entry : claims.entrySet()) {
                 builder.withClaim(entry.getKey(), entry.getValue().asString());
             }
@@ -182,11 +180,6 @@ public class JWTUtils {
             log.debug("validate is token error ", e);
             return null;
         }
-    }
-
-    public static String getName(String token){
-        DecodedJWT jwt = JWT.require(Algorithm.HMAC256(SECRET)).build().verify(token);
-        return jwt.getClaim("username").asString();
     }
 }
 

@@ -1,7 +1,7 @@
 package com.lucien.malll.service.pms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.pms.PmsProductAttributeCategoryItem;
+import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.mapper.PmsProductAttributeCategoryMapper;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 import com.lucien.mall.pojo.PmsProductAttributeCategoryExample;

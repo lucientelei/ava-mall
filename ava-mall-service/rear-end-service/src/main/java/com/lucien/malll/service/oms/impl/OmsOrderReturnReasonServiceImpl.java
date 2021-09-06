@@ -52,7 +52,7 @@ public class OmsOrderReturnReasonServiceImpl implements OmsOrderReturnReasonServ
     @Override
     public int update(Long id, OmsOrderReturnReason returnReason) {
         returnReason.setId(id);
-        return reasonMapper.updateByPrimaryKeySelective(returnReason);
+        return reasonMapper.updateByPrimaryKey(returnReason);
     }
 
     /**

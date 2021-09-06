@@ -2,9 +2,9 @@ package com.lucien.malll.service.pms.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.pms.PmsProductParam;
-import com.lucien.mall.dto.pms.PmsProductQueryParam;
-import com.lucien.mall.dto.pms.PmsProductResult;
+import com.lucien.mall.rear.pms.PmsProductParam;
+import com.lucien.mall.rear.pms.PmsProductQueryParam;
+import com.lucien.mall.rear.pms.PmsProductResult;
 import com.lucien.mall.mapper.*;
 import com.lucien.mall.pojo.*;
 import com.lucien.malll.service.pms.PmsProductService;

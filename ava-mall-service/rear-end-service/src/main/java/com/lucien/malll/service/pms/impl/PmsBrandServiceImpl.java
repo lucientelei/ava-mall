@@ -1,7 +1,7 @@
 package com.lucien.malll.service.pms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.pms.PmsBrandDto;
+import com.lucien.mall.rear.pms.PmsBrandDto;
 import com.lucien.mall.mapper.PmsBrandMapper;
 import com.lucien.mall.pojo.PmsBrand;
 import com.lucien.mall.pojo.PmsBrandExample;

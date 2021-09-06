@@ -1,7 +1,7 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.dto.oms.OmsOrderReturnApplyResult;
-import com.lucien.mall.dto.oms.OmsReturnApplyQueryParam;
+import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
+import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
 import com.lucien.mall.pojo.OmsOrderReturnApplyExample;
 import org.apache.ibatis.annotations.Param;

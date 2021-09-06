@@ -1,8 +1,8 @@
 package com.lucien.mall.controller.oms;
 
-import com.lucien.mall.dto.oms.OmsOrderReturnApplyResult;
-import com.lucien.mall.dto.oms.OmsReturnApplyQueryParam;
-import com.lucien.mall.dto.oms.OmsUpdateStatusParam;
+import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
+import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
+import com.lucien.mall.rear.oms.OmsUpdateStatusParam;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.OmsOrderReturnApply;

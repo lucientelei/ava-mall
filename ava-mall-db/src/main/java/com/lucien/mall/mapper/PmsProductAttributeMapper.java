@@ -1,6 +1,6 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.dto.pms.ProductAttrInfo;
+import com.lucien.mall.rear.pms.ProductAttrInfo;
 import com.lucien.mall.pojo.PmsProductAttribute;
 import com.lucien.mall.pojo.PmsProductAttributeExample;
 import org.apache.ibatis.annotations.Param;

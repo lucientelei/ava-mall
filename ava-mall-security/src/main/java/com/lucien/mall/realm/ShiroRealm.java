@@ -48,7 +48,6 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("shiroreaml执行授权===");
         //获取当前用户
         UmsAdmin umsAdmin = (UmsAdmin) principalCollection.getPrimaryPrincipal();
         System.out.println("shirorealm"+umsAdmin.getUsername());
@@ -78,13 +77,12 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("shiroreaml执行登录操作");
         String username = (String) token.getPrincipal();
 
         //获取携带token
         Object credentials = token.getCredentials();
 
-        Object cacheObject = redisUtils.getCacheObject("TOKEN:" + credentials);
+        Object cacheObject = redisUtils.get("TOKEN:" + credentials);
         //判断前台还是后台用户授权
         if (!StringUtils.isEmpty(cacheObject)){
             System.out.println("umsmember用户获取");

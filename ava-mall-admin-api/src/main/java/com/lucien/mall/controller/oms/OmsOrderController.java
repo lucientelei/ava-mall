@@ -1,6 +1,6 @@
 package com.lucien.mall.controller.oms;
 
-import com.lucien.mall.dto.oms.*;
+import com.lucien.mall.rear.oms.*;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.OmsOrder;
@@ -34,7 +34,7 @@ public class OmsOrderController {
         return GlobalResult.success(GlobalPage.restPage(result));
     }
 
-    @GetMapping("/close")
+    @PostMapping("/close")
     @ApiOperation(value = "批量关闭订单")
     public GlobalResult close(@RequestParam("ids") List<Long> ids,
                               @RequestParam String note){
@@ -45,7 +45,7 @@ public class OmsOrderController {
         return GlobalResult.error(result);
     }
 
-    @GetMapping("/del")
+    @PostMapping("/del")
     @ApiOperation(value = "批量删除订单")
     public GlobalResult del(@RequestParam("ids") List<Long> ids){
         int result = orderService.del(ids);

@@ -1,6 +1,6 @@
 package com.lucien.malll.service.pms;
 
-import com.lucien.mall.dto.pms.PmsBrandDto;
+import com.lucien.mall.rear.pms.PmsBrandDto;
 import com.lucien.mall.pojo.PmsBrand;
 
 import java.util.List;

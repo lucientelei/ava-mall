@@ -1,6 +1,6 @@
 package com.lucien.malll.service.oms;
 
-import com.lucien.mall.dto.oms.*;
+import com.lucien.mall.rear.oms.*;
 import com.lucien.mall.pojo.OmsOrder;
 
 import java.util.List;

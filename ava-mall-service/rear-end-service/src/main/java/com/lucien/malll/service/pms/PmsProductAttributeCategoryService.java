@@ -1,6 +1,6 @@
 package com.lucien.malll.service.pms;
 
-import com.lucien.mall.dto.pms.PmsProductAttributeCategoryItem;
+import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 
 import java.util.List;

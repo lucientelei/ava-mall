@@ -1,6 +1,6 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.dto.pms.PmsProductAttributeCategoryItem;
+import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 import com.lucien.mall.pojo.PmsProductAttributeCategoryExample;
 import org.apache.ibatis.annotations.Param;

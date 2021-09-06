@@ -1,7 +1,7 @@
 package com.lucien.mall.controller.pms;
 
-import com.lucien.mall.dto.pms.PmsProductAttributeParam;
-import com.lucien.mall.dto.pms.ProductAttrInfo;
+import com.lucien.mall.rear.pms.PmsProductAttributeParam;
+import com.lucien.mall.rear.pms.ProductAttrInfo;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsProductAttribute;
@@ -67,7 +67,7 @@ public class PmsProductAttributeController {
         return GlobalResult.success(GlobalPage.restPage(result));
     }
 
-    @DeleteMapping("/del")
+    @PostMapping("/del")
     @ApiOperation(value = "批量删除商品属性")
     public GlobalResult delete(@RequestParam("ids") List<Long> ids){
         int result = attributeService.delete(ids);
@@ -79,7 +79,7 @@ public class PmsProductAttributeController {
 
     @GetMapping("/info/{productCategoryId}")
     @ApiOperation(value = "获取商品分类对应属性列表")
-    public GlobalResult getProductAttrInfo(@PathVariable("productCategoryId") Long productCategoryId){
+    public GlobalResult<List<ProductAttrInfo>> getProductAttrInfo(@PathVariable("productCategoryId") Long productCategoryId){
         List<ProductAttrInfo> result = attributeService.getProductAttrInfo(productCategoryId);
         if (StringUtils.isEmpty(result)) {
             return GlobalResult.error(result);

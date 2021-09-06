@@ -1,7 +1,7 @@
 package com.lucien.mall.controller.pms;
 
-import com.lucien.mall.dto.pms.PmsProductCategoryParam;
-import com.lucien.mall.dto.pms.PmsProductCategoryWithChildrenItem;
+import com.lucien.mall.rear.pms.PmsProductCategoryParam;
+import com.lucien.mall.rear.pms.PmsProductCategoryWithChildrenItem;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsProductCategory;
@@ -31,10 +31,10 @@ public class PmsProductCategoryController {
     @ApiOperation(value = "新增商品分类")
     public GlobalResult insert(@RequestBody PmsProductCategoryParam param){
         int result = categoryService.insert(param);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @GetMapping("/list/{parentId}")
@@ -43,7 +43,6 @@ public class PmsProductCategoryController {
                                                                  @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                  @RequestParam(value = "pageNum", defaultValue = "1")Integer pageNum){
         List<PmsProductCategory> result = categoryService.listPage(parentId, pageSize, pageNum);
-        System.out.println(result.size());
         if (CollectionUtils.isEmpty(result)){
             return GlobalResult.error("未查询到数据");
         }
@@ -55,20 +54,20 @@ public class PmsProductCategoryController {
     public GlobalResult update(@PathVariable("id") Long id,
                                @RequestBody PmsProductCategoryParam param){
         int result = categoryService.update(id, param);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @DeleteMapping("/del/{id}")
     @ApiOperation(value = "删除商品分类")
     public GlobalResult delete(@PathVariable("id") Long id){
         int result = categoryService.delete(id);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @GetMapping("/getitem/{id}")
@@ -81,26 +80,29 @@ public class PmsProductCategoryController {
         return GlobalResult.success(result);
     }
 
-    @PostMapping("/update/nav/{status}")
+    @PostMapping("/update/nav")
     @ApiOperation(value = "批量修改导航状态")
     public GlobalResult updateNavStatus(@RequestParam("ids") List<Long> ids,
-                                        @PathVariable("status") Integer status){
-        int result = categoryService.updateNavStatus(ids, status);
-        if (result != 1) {
-            return GlobalResult.error(result);
+                                        @RequestParam("status") Integer status){
+        for (Long id : ids) {
+            System.out.println(id + "---" + status);
         }
-        return GlobalResult.success(result);
+        int result = categoryService.updateNavStatus(ids, status);
+        if (result > 0) {
+            return GlobalResult.success(result);
+        }
+        return GlobalResult.error(result);
     }
 
-    @PostMapping("/update/show/{status}")
+    @PostMapping("/update/show")
     @ApiOperation(value = "批量修改显示状态")
     public GlobalResult updateShowStatus(@RequestParam("ids") List<Long> ids,
-                                        @PathVariable("status") Integer status){
+                                        @RequestParam("status") Integer status){
         int result = categoryService.updateShowStatus(ids, status);
-        if (result != 1) {
-            return GlobalResult.error(result);
+        if (result > 0) {
+            return GlobalResult.success(result);
         }
-        return GlobalResult.success(result);
+        return GlobalResult.error(result);
     }
 
     @GetMapping("/list/children")

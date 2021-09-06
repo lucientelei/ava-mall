@@ -47,7 +47,7 @@
     <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
   </resultMap>
-  <resultMap id="orderDetailResultMap" type="com.lucien.mall.dto.oms.OmsOrderDetail" extends="com.lucien.mall.mapper.OmsOrderMapper.BaseResultMap">
+  <resultMap id="orderDetailResultMap" type="com.lucien.mall.rear.oms.OmsOrderDetail" extends="com.lucien.mall.mapper.OmsOrderMapper.BaseResultMap">
     <collection property="orderItemList" resultMap="com.lucien.mall.mapper.OmsOrderItemMapper.BaseResultMap" columnPrefix="item_"/>
     <collection property="historyList" resultMap="com.lucien.mall.mapper.OmsOrderOperateHistoryMapper.BaseResultMap" columnPrefix="history_"/>
   </resultMap>

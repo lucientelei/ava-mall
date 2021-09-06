@@ -4,10 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.ums.UmsAdminFront;
-import com.lucien.mall.dto.ums.UmsAdminLoginDto;
-import com.lucien.mall.dto.ums.UmsAdminRegisterDto;
-import com.lucien.mall.dto.ums.UpdateAdminPasswordDto;
+import com.lucien.mall.rear.ums.UmsAdminFront;
+import com.lucien.mall.rear.ums.UmsAdminLoginDto;
+import com.lucien.mall.rear.ums.UmsAdminRegisterDto;
+import com.lucien.mall.rear.ums.UpdateAdminPasswordDto;
 import com.lucien.mall.mapper.UmsAdminMapper;
 import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
 import com.lucien.mall.pojo.*;
@@ -103,11 +103,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         if (loginSuccess) {
             String token = JWTUtils.sign(dto.getUsername(), JWTUtils.SECRET);
             try {
-                redisUtils.setCacheObject("TOKENADMIN:" + token, JSON.toJSON(umsAdmin));
-                redisUtils.expire("TOKENADMIN:" + token, JWTUtils.EXPIRE_TIME);
+                redisUtils.set("TOKENADMIN:" + token, JSON.toJSONString(umsAdmin), JWTUtils.EXPIRE_TIME);
+//                redisUtils.expire("TOKENADMIN:" + token, JWTUtils.EXPIRE_TIME, TimeUnit.HOURS);
             } catch (RedisException e) {
                 e.printStackTrace();
             }
+            System.out.println("==="+StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token)));
             return token;
         }
 
@@ -142,7 +143,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
         List<UmsAdmin> umsAdmins = adminMapper.selectByExample(umsAdminExample);
         UmsAdmin registerAdmin = umsAdmins.get(0);
-        System.out.println(registerAdmin.getId());
         roleRelationService.insert(registerAdmin.getId(), Long.valueOf(5));
 
         return umsAdmin;
@@ -277,12 +277,18 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public int logout(String token) {
         try {
-            if (StringUtils.isEmpty(redisUtils.getCacheObject("TOKENADMIN:" + token))){
+            System.out.println("==="+StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token)));
+            if (!StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token))){
+                System.out.println("删除token");
+                redisUtils.del("TOKENADMIN:" + token);
+                Subject subject = SecurityUtils.getSubject();
+                subject.logout();
                 return 1;
+            }else {
+//                Object o = redisUtils.get("TOKENADMIN:" + token);
+//                System.out.println(o.getClass());
+                System.out.println("未找到TOKEN");
             }
-            redisUtils.deleteObject("TOKENADMIN:" + token);
-            Subject subject = SecurityUtils.getSubject();
-            subject.logout();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -1,8 +1,8 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.dto.oms.OmsOrderDeliveryParam;
-import com.lucien.mall.dto.oms.OmsOrderDetail;
-import com.lucien.mall.dto.oms.OmsOrderQueryParam;
+import com.lucien.mall.rear.oms.OmsOrderDeliveryParam;
+import com.lucien.mall.rear.oms.OmsOrderDetail;
+import com.lucien.mall.rear.oms.OmsOrderQueryParam;
 import com.lucien.mall.pojo.OmsOrder;
 import com.lucien.mall.pojo.OmsOrderExample;
 import org.apache.ibatis.annotations.Param;

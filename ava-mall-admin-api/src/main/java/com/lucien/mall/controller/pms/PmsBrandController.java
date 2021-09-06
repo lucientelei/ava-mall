@@ -1,6 +1,6 @@
 package com.lucien.mall.controller.pms;
 
-import com.lucien.mall.dto.pms.PmsBrandDto;
+import com.lucien.mall.rear.pms.PmsBrandDto;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsBrand;

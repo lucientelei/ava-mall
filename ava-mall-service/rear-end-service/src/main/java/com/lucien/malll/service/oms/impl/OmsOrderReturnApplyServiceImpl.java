@@ -1,9 +1,9 @@
 package com.lucien.malll.service.oms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.dto.oms.OmsOrderReturnApplyResult;
-import com.lucien.mall.dto.oms.OmsReturnApplyQueryParam;
-import com.lucien.mall.dto.oms.OmsUpdateStatusParam;
+import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
+import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
+import com.lucien.mall.rear.oms.OmsUpdateStatusParam;
 import com.lucien.mall.mapper.OmsOrderReturnApplyMapper;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
 import com.lucien.mall.pojo.OmsOrderReturnApplyExample;

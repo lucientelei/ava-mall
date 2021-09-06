@@ -47,7 +47,7 @@ public class OmsOrderReturnReasonController {
     @PostMapping("/update/{id}")
     @ApiOperation(value = "修改退货原因")
     public GlobalResult update(@PathVariable("id") Long id,
-                               OmsOrderReturnReason returnReason) {
+                               @RequestBody OmsOrderReturnReason returnReason) {
         int result = reasonService.update(id, returnReason);
         if (result > 0) {
             return GlobalResult.success(result);

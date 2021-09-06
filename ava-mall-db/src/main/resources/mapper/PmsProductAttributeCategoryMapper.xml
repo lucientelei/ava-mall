@@ -7,7 +7,7 @@
     <result column="attribute_count" jdbcType="INTEGER" property="attributeCount" />
     <result column="param_count" jdbcType="INTEGER" property="paramCount" />
   </resultMap>
-  <resultMap id="getListWithAttrMap" type="com.lucien.mall.dto.pms.PmsProductAttributeCategoryItem" extends="com.lucien.mall.mapper.PmsProductAttributeCategoryMapper.BaseResultMap">
+  <resultMap id="getListWithAttrMap" type="com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem" extends="com.lucien.mall.mapper.PmsProductAttributeCategoryMapper.BaseResultMap">
     <collection property="productAttributeList" columnPrefix="attr_" resultMap="com.lucien.mall.mapper.PmsProductAttributeMapper.BaseResultMap">
     </collection>
   </resultMap>

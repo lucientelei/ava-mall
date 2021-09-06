@@ -1,8 +1,8 @@
 package com.lucien.mall.controller.pms;
 
-import com.lucien.mall.dto.pms.PmsProductParam;
-import com.lucien.mall.dto.pms.PmsProductQueryParam;
-import com.lucien.mall.dto.pms.PmsProductResult;
+import com.lucien.mall.rear.pms.PmsProductParam;
+import com.lucien.mall.rear.pms.PmsProductQueryParam;
+import com.lucien.mall.rear.pms.PmsProductResult;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsProduct;

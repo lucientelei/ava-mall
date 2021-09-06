@@ -1,7 +1,7 @@
 package com.lucien.malll.service.pms;
 
-import com.lucien.mall.dto.pms.PmsProductCategoryParam;
-import com.lucien.mall.dto.pms.PmsProductCategoryWithChildrenItem;
+import com.lucien.mall.rear.pms.PmsProductCategoryParam;
+import com.lucien.mall.rear.pms.PmsProductCategoryWithChildrenItem;
 import com.lucien.mall.pojo.PmsProductCategory;
 
 import java.util.List;
