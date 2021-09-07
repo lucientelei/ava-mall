@@ -1,7 +1,7 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.impl.ums;
 
 import com.alibaba.fastjson.JSON;
-import com.lucien.mall.front.service.UmsMemberService;
+import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.mapper.UmsMemberLevelMapper;
 import com.lucien.mall.mapper.UmsMemberMapper;
 import com.lucien.mall.pojo.UmsMember;

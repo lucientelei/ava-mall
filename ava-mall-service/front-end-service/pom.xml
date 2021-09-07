@@ -27,6 +27,7 @@
             <groupId>com.lucien.mall</groupId>
             <artifactId>ava-mall-common</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

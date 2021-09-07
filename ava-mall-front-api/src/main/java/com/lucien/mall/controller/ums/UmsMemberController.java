@@ -1,9 +1,8 @@
 package com.lucien.mall.controller.ums;
 
-import com.lucien.mall.annotation.LoginInfoAnnotation;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsMember;
-import com.lucien.mall.front.service.UmsMemberService;
+import com.lucien.mall.front.service.ums.UmsMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

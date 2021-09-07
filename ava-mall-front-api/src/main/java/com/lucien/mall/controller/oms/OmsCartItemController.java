@@ -2,8 +2,8 @@ package com.lucien.mall.controller.oms;
 
 import com.lucien.mall.front.CartProduct;
 import com.lucien.mall.front.CartPromotionItem;
-import com.lucien.mall.front.service.OmsCartItemService;
-import com.lucien.mall.front.service.UmsMemberService;
+import com.lucien.mall.front.service.oms.OmsCartItemService;
+import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.OmsCartItem;
 import io.swagger.annotations.Api;

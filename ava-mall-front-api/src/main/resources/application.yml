@@ -61,7 +61,12 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      #mongodb连接的数据库
+      database: ava-mall-db
 
   redis:
     # 地址

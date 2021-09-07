@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service;
+package com.lucien.mall.front.service.oms;
 
 import com.lucien.mall.front.CartProduct;
 import com.lucien.mall.front.CartPromotionItem;

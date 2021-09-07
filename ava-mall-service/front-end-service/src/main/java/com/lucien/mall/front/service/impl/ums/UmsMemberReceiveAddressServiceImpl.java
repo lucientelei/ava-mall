@@ -1,11 +1,10 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.impl.ums;
 
-import com.lucien.mall.front.service.UmsMemberReceiveAddressService;
+import com.lucien.mall.front.service.ums.UmsMemberReceiveAddressService;
+import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.mapper.UmsMemberReceiveAddressMapper;
-import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsMemberReceiveAddress;
 import com.lucien.mall.pojo.UmsMemberReceiveAddressExample;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,12 +16,15 @@ import java.util.List;
  * @Date 2021/8/31
  * 会员收货地址管理Impl
  */
-@Primary
 @Service
+@Primary
 public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddressService {
 
     @Autowired
     private UmsMemberReceiveAddressMapper addressMapper;
+
+    @Autowired
+    private UmsMemberService memberService;
 
     /**
      * 获取当前会员的收货地址
@@ -30,9 +32,8 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
      */
     @Override
     public List<UmsMemberReceiveAddress> list() {
-        UmsMember umsMember = (UmsMember) SecurityUtils.getSubject().getPrincipal();
         UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
-        example.createCriteria().andMemberIdEqualTo(umsMember.getId());
+        example.createCriteria().andMemberIdEqualTo(memberService.getCurrentMember().getId());
 
         List<UmsMemberReceiveAddress> addresses = addressMapper.selectByExample(example);
 
@@ -46,6 +47,7 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
      */
     @Override
     public int insert(UmsMemberReceiveAddress address) {
+        address.setMemberId(memberService.getCurrentMember().getId());
         return addressMapper.insert(address);
     }
 

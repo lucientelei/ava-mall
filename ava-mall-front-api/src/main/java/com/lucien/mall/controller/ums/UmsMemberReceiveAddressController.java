@@ -1,6 +1,6 @@
 package com.lucien.mall.controller.ums;
 
-import com.lucien.mall.front.service.UmsMemberReceiveAddressService;
+import com.lucien.mall.front.service.ums.UmsMemberReceiveAddressService;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.UmsMemberReceiveAddress;
 import io.swagger.annotations.Api;

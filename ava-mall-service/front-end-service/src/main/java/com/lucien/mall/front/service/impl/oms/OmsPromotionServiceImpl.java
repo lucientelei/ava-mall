@@ -1,8 +1,8 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.impl.oms;
 
 import com.lucien.mall.front.CartPromotionItem;
 import com.lucien.mall.front.PromotionProduct;
-import com.lucien.mall.front.service.OmsPromotionService;
+import com.lucien.mall.front.service.oms.OmsPromotionService;
 import com.lucien.mall.mapper.PortalProductMapper;
 import com.lucien.mall.pojo.OmsCartItem;
 import com.lucien.mall.pojo.PmsProductFullReduction;

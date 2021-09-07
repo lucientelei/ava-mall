@@ -1,7 +1,7 @@
 package com.lucien.mall.realm;
 
 import com.lucien.mall.domain.JwtToken;
-import com.lucien.mall.front.service.UmsMemberService;
+import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.pojo.UmsAdmin;
 import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsResource;
