@@ -11,11 +11,9 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +48,8 @@ public class DruidConfig {
         // 这些参数可以在 com.alibaba.druid.support.http.StatViewServlet 的父类 com.alibaba.druid.support.http.ResourceServlet 中找到
         Map<String,String> initParams = new HashMap<>();
 
-        initParams.put("loginUsername","lucien");
-        initParams.put("loginPassword","q799774821");
+        initParams.put("loginUsername","admin");
+        initParams.put("loginPassword","admin");
         initParams.put("allow",""); //默认就是允许所有访问
 
         //deny：Druid 后台拒绝谁访问，表示禁止此ip访问

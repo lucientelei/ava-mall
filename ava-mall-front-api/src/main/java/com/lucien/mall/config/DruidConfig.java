@@ -48,8 +48,8 @@ public class DruidConfig {
         // 这些参数可以在 com.alibaba.druid.support.http.StatViewServlet 的父类 com.alibaba.druid.support.http.ResourceServlet 中找到
         Map<String,String> initParams = new HashMap<>();
 
-        initParams.put("loginUsername","lucien");
-        initParams.put("loginPassword","q799774821");
+        initParams.put("loginUsername","admin");
+        initParams.put("loginPassword","admin");
         initParams.put("allow",""); //默认就是允许所有访问
 
         //deny：Druid 后台拒绝谁访问，表示禁止此ip访问

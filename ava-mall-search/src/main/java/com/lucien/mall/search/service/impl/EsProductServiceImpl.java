@@ -41,8 +41,7 @@ public class EsProductServiceImpl implements EsProductService {
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     /**
-     * 导入商品到ES
-     *
+     * 初始化索引库
      * @return
      */
     @PostConstruct
@@ -56,6 +55,23 @@ public class EsProductServiceImpl implements EsProductService {
             iterator.next();
         }
         log.info("初始化ES索引库成功，添加数据：" + result + "条");
+    }
+
+    /**
+     * 添加商品到ES库
+     * @return
+     */
+    @Override
+    public int create() {
+        int result = 0;
+        List<EsProduct> allEsProductList = productMapper.getAllEsProductList(null);
+        Iterable<EsProduct> esProductIterable = productRepository.saveAll(allEsProductList);
+        Iterator<EsProduct> iterator = esProductIterable.iterator();
+        while (iterator.hasNext()){
+            result++;
+            iterator.next();
+        }
+        return result;
     }
 
     /**
@@ -102,6 +118,14 @@ public class EsProductServiceImpl implements EsProductService {
             }
             productRepository.saveAll(esProductList);
         }
+    }
+
+    /**
+     * 删除ES库中的所有数据
+     */
+    @Override
+    public void delete() {
+        productRepository.deleteAll();
     }
 
     /**

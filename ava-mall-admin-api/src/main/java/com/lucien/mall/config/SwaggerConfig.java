@@ -54,9 +54,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo(){
         Contact contact = new Contact("lucien", "", "q799774821@163.com");
         return new ApiInfoBuilder()
-                .title("Ava-Mall API")
+                .title("Ava-Mall-Admin 接口文档")
                 .contact(contact)
-                .description("Ava-Mall API接口")
+                .description("Ava-Mall-Admin API接口")
                 .version("1.0")
                 .build();
     }

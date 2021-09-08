@@ -50,7 +50,6 @@ public class JwtRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         UmsAdmin umsAdmin = (UmsAdmin) principalCollection.getPrimaryPrincipal();
-        System.out.println("jwtrealm==="+umsAdmin.getUsername());
         //查询数据库，获取用户的角色信息
         Set<String> roleSet = new HashSet<>();
         List<UmsRole> roleList = umsAdminService.getRoleList(umsAdmin.getId());
@@ -92,7 +91,6 @@ public class JwtRealm extends AuthorizingRealm {
                     new SimpleAuthenticationInfo(umsMember, umsMember.getPassword(), getName());
             return info;
         }else{
-            System.out.println("umsadmin管理员获取");
             UmsAdmin umsAdmin = umsAdminService.getAdminByUsername(username);
             if (umsAdmin.getStatus() == 0) {
                 throw new LockedAccountException("该用户已被锁定,暂时无法登录！");

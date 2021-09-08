@@ -110,6 +110,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/swagger/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+        filterChainDefinitionMap.put("/doc.html/**", "anon");
         //静态资源
         filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");

@@ -14,6 +14,12 @@ import java.util.List;
 public interface EsProductService {
 
     /**
+     * 添加商品到ES库
+     * @return
+     */
+    int create();
+
+    /**
      *根据ID创建商品
      * @param id
      * @return
@@ -32,6 +38,11 @@ public interface EsProductService {
      * @return
      */
     void delete(List<Long> ids);
+
+    /**
+     * 删除ES库中的所有数据
+     */
+    void delete();
 
     /**
      *根据关键字搜索名称或者副标题

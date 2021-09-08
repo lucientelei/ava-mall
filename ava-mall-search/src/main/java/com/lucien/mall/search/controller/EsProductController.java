@@ -25,6 +25,16 @@ public class EsProductController {
     @Autowired
     private EsProductService productService;
 
+    @PostMapping("/create")
+    @ApiOperation(value = "添加商品到ES库")
+    public GlobalResult create(){
+        int result = productService.create();
+        if (result > 0){
+            return GlobalResult.success(result);
+        }
+        return GlobalResult.error();
+    }
+
     @PostMapping("/create/{id}")
     @ApiOperation(value = "根据ID创建商品")
     public GlobalResult create(@PathVariable("id") Long id){
@@ -36,7 +46,7 @@ public class EsProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ApiOperation(value = "根据ID删除商品/完全删除\"")
+    @ApiOperation(value = "根据ID删除商品/完全删除")
     public GlobalResult delete(@PathVariable("id") Long id){
         productService.delete(id);
         return GlobalResult.success("删除成功");
@@ -47,6 +57,13 @@ public class EsProductController {
     public GlobalResult delete(@RequestParam("ids") List<Long> ids){
         productService.delete(ids);
         return GlobalResult.success("批量删除成功");
+    }
+
+    @DeleteMapping("/delete/all")
+    @ApiOperation(value = "清空ES索引库")
+    public GlobalResult delete(){
+        productService.delete();
+        return GlobalResult.success();
     }
 
     @GetMapping("/search/simple")

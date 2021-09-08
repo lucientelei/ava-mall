@@ -51,7 +51,6 @@ public class UmsAdminController {
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
     public GlobalResult login(@RequestBody UmsAdminLoginDto dto) {
-        System.out.println(dto.getPassword()+"--"+dto.getUsername());
         String result = umsAdminService.login(dto);
         if (result.equals("-1")) {
             return GlobalResult.error("不存在该用户！", result);

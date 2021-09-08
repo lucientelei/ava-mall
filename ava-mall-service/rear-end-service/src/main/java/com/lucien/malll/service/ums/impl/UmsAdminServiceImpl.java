@@ -2,15 +2,14 @@ package com.lucien.malll.service.ums.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
+import com.lucien.mall.mapper.UmsAdminMapper;
+import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
+import com.lucien.mall.pojo.*;
 import com.lucien.mall.rear.ums.UmsAdminFront;
 import com.lucien.mall.rear.ums.UmsAdminLoginDto;
 import com.lucien.mall.rear.ums.UmsAdminRegisterDto;
 import com.lucien.mall.rear.ums.UpdateAdminPasswordDto;
-import com.lucien.mall.mapper.UmsAdminMapper;
-import com.lucien.mall.mapper.UmsAdminRoleRelationMapper;
-import com.lucien.mall.pojo.*;
 import com.lucien.mall.utils.JWTUtils;
 import com.lucien.mall.utils.RedisUtils;
 import com.lucien.malll.service.ums.UmsAdminRoleRelationService;
@@ -103,15 +102,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         if (loginSuccess) {
             String token = JWTUtils.sign(dto.getUsername(), JWTUtils.SECRET);
             try {
-                redisUtils.set("TOKENADMIN:" + token, JSON.toJSONString(umsAdmin), JWTUtils.EXPIRE_TIME);
-//                redisUtils.expire("TOKENADMIN:" + token, JWTUtils.EXPIRE_TIME, TimeUnit.HOURS);
+                redisUtils.set("TOKENADMIN:" + token, umsAdmin.toString(), JWTUtils.EXPIRE_TIME);
             } catch (RedisException e) {
                 e.printStackTrace();
             }
-            System.out.println("==="+StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token)));
             return token;
         }
-
         return "登录失败！";
     }
 
@@ -277,16 +273,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public int logout(String token) {
         try {
-            System.out.println("==="+StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token)));
             if (!StringUtils.isEmpty(redisUtils.get("TOKENADMIN:" + token))){
-                System.out.println("删除token");
                 redisUtils.del("TOKENADMIN:" + token);
                 Subject subject = SecurityUtils.getSubject();
                 subject.logout();
                 return 1;
             }else {
-//                Object o = redisUtils.get("TOKENADMIN:" + token);
-//                System.out.println(o.getClass());
                 System.out.println("未找到TOKEN");
             }
         }catch (Exception e){
