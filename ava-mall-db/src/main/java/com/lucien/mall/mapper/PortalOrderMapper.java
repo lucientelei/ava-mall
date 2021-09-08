@@ -1,7 +1,7 @@
 package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.OmsOrderItem;
-import com.lucien.mall.rear.oms.OmsOrderDetail;
+import com.lucien.mall.front.OmsOrderDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

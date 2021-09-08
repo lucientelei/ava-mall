@@ -106,7 +106,7 @@ public class ConfirmOrderResult {
         this.integrationConsumeSetting = integrationConsumeSetting;
     }
 
-    public Integer getMemberIntegration() {
+    public Integer getMemberIntegration(Integer integration) {
         return memberIntegration;
     }
 
