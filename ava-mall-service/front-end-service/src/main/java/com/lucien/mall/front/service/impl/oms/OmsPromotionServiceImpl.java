@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -50,11 +51,19 @@ public class OmsPromotionServiceImpl implements OmsPromotionService {
                     cartPromotionItem.setPromotionMessage("单品促销");
                     //商品原价-促销价
                     PmsSkuStock skuStock = getOriginalPrice(promotionProduct, item.getProductSkuId());
-                    BigDecimal originalPrice = skuStock.getPrice();
-                    //单品促销使用原价
-                    cartPromotionItem.setPrice(originalPrice);
-                    cartPromotionItem.setReduceAmount(originalPrice.subtract(skuStock.getPromotionPrice()));
-                    cartPromotionItem.setRealStock(skuStock.getStock()-skuStock.getLockStock());
+                    //库存表中没有则默认设置真实库存为100
+                    if (StringUtils.isEmpty(skuStock)){
+                        cartPromotionItem.setPrice(item.getPrice());
+                        cartPromotionItem.setReduceAmount(new BigDecimal(0));
+                        cartPromotionItem.setRealStock(100);
+                    }
+                    else {
+                        BigDecimal originalPrice = skuStock.getPrice();
+                        //单品促销使用原价
+                        cartPromotionItem.setPrice(originalPrice);
+                        cartPromotionItem.setReduceAmount(originalPrice.subtract(skuStock.getPromotionPrice()));
+                        cartPromotionItem.setRealStock(skuStock.getStock()-skuStock.getLockStock());
+                    }
                     cartPromotionItem.setIntegration(promotionProduct.getGiftPoint());
                     cartPromotionItem.setGrowth(promotionProduct.getGiftGrowth());
                     cartPromotionItemList.add(cartPromotionItem);

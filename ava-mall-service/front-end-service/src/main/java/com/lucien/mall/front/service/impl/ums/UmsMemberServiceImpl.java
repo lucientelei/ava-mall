@@ -187,4 +187,17 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         UmsMember umsMember = (UmsMember) SecurityUtils.getSubject().getPrincipal();
         return umsMember;
     }
+
+    /**
+     * 根据用户ID更新用户积分
+     * @param id
+     * @param integration
+     */
+    @Override
+    public void updateIntegration(Long id, Integer integration) {
+        UmsMember member = new UmsMember();
+        member.setId(id);
+        member.setIntegration(integration);
+        memberMapper.updateByPrimaryKeySelective(member);
+    }
 }

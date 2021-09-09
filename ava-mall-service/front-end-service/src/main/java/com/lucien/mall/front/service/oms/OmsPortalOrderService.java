@@ -43,7 +43,7 @@ public interface OmsPortalOrderService {
      * 确认收货
      * @param orderId
      */
-    void confirmReceiveOrder(Long orderId);
+    int confirmReceiveOrder(Long orderId);
 
     /**
      * 分页获取用户订单
@@ -65,7 +65,7 @@ public interface OmsPortalOrderService {
      * 删除订单
      * @param orderId
      */
-    void deleteOrder(Long orderId);
+    int deleteOrder(Long orderId);
 
     /**
      * 自动取消超时订单

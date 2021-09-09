@@ -2,8 +2,9 @@ package com.lucien.mall.mapper;
 
 import com.lucien.mall.pojo.OmsOrderItem;
 import com.lucien.mall.pojo.OmsOrderItemExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderItemMapper {
     long countByExample(OmsOrderItemExample example);
@@ -27,4 +28,9 @@ public interface OmsOrderItemMapper {
     int updateByPrimaryKeySelective(OmsOrderItem record);
 
     int updateByPrimaryKey(OmsOrderItem record);
+
+    /**
+     * 批量插入
+     */
+    int insertList(@Param("list") List<OmsOrderItem> list);
 }

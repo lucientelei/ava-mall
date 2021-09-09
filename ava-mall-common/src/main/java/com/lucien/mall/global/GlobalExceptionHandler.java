@@ -3,12 +3,13 @@ package com.lucien.mall.global;
 import com.lucien.mall.constant.HttpStatus;
 import com.lucien.mall.global.error.MyException;
 import com.lucien.mall.myEnum.ExceptionEnum;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.apache.shiro.authz.UnauthorizedException;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -54,6 +55,13 @@ public class GlobalExceptionHandler {
         String[] split = message.split(" ");
         return GlobalResult.error(HttpStatus.UNAUTHORIZED,"您没有" + split[split.length - 1] + "角色");
     }
+
+//    @ExceptionHandler(value = AvaMallException.class)
+//    @ResponseBody
+//    public GlobalResult exceptionHandler(HttpServletRequest req, AvaMallException e){
+//        logger.error("发生异常！原因是:",e.getMsg());
+//        return GlobalResult.error(500, String.valueOf(ExceptionEnum.BODY_NOT_MATCH));
+//    }
 
     @ExceptionHandler(value =Exception.class)
     @ResponseBody

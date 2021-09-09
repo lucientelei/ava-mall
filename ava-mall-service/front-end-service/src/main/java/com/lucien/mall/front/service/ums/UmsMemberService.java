@@ -59,4 +59,11 @@ public interface UmsMemberService {
      * @return
      */
     UmsMember getCurrentMember();
+
+    /**
+     * 根据用户ID更新用户积分
+     * @param id
+     * @param integration
+     */
+    void updateIntegration(Long id,Integer integration);
 }

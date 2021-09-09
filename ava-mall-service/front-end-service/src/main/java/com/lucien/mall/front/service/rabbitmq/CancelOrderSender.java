@@ -10,6 +10,8 @@ import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * @Author Lucien
  * @Date 2021/9/8
@@ -25,8 +27,7 @@ public class CancelOrderSender {
 
     public void sendMsg(Long orderId, final long delayTimes){
         amqpTemplate.convertAndSend(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getExchange(),
-                QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey(),
-                orderId,
+                QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey(), orderId,
                 new MessagePostProcessor() {
                     @Override
                     public Message postProcessMessage(Message message) throws AmqpException {
@@ -35,7 +36,12 @@ public class CancelOrderSender {
                         return message;
                     }
                 });
-        log.info("send orderId:{}",orderId);
+        Date date = new Date(delayTimes);
+        long hour = delayTimes/(60*60*1000);
+        long minute = (delayTimes - hour*60*60*1000)/(60*1000);
+        long second = (delayTimes - hour*60*60*1000 - minute*60*1000)/1000;
+        System.out.println(hour+ "时" + minute + "分 " + second+"秒");
+        log.info("send orderId:{}", orderId);
     }
 
 }

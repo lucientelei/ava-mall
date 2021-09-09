@@ -16,9 +16,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtils {
 
-//    @Autowired
-//    public RedisTemplate redisTemplate;
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -50,7 +47,7 @@ public class RedisUtils {
      * @param key
      * @return
      */
-    public long incr(String key, long delta) {
+    public Long incr(String key, long delta) {
         return redisTemplate.opsForValue().increment(key, delta);
     }
 
@@ -182,4 +179,7 @@ public class RedisUtils {
         return redisTemplate.opsForList().rightPush(key, value);
     }
 
+//    public Long incr(String key, long delta){
+//        return redisTemplate.opsForValue().increment(key, delta);
+//    }
 }
