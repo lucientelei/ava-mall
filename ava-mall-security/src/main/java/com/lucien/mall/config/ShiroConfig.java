@@ -121,7 +121,10 @@ public class ShiroConfig {
         //druid
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/alipay/**", "anon");
+
         filterChainDefinitionMap.put("/home/**", "anon");
+        filterChainDefinitionMap.put("/portal/brand/**", "anon");
+        filterChainDefinitionMap.put("/portal/product/**", "anon");
 
 
         // 需登录才能访问

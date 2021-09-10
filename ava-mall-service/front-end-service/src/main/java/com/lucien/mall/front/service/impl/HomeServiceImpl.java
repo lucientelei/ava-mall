@@ -162,15 +162,15 @@ public class HomeServiceImpl implements HomeService {
         //首页广告
         result.setAdvertiseList(getHomeAdvertise());
         //推荐品牌
-        result.setBrandList(homeMapper.getRecommendBrandList(0, 6));
+        result.setBrandList(homeMapper.getRecommendBrandList(0, 10));
         //秒杀信息
         result.setHomeFlashPromotion(getHomeFlashPromotion());
         //新品推荐
-        result.setNewProductList(homeMapper.getNewProductList(0, 4));
+        result.setNewProductList(homeMapper.getNewProductList(0, 8));
         //人气推荐
-        result.setHotProductList(homeMapper.getHotProductList(0, 4));
+        result.setHotProductList(homeMapper.getHotProductList(0, 8));
         //推荐专题
-        result.setSubjectList(homeMapper.getRecommendSubjectList(0, 4));
+        result.setSubjectList(homeMapper.getRecommendSubjectList(0, 8));
 
         return result;
     }

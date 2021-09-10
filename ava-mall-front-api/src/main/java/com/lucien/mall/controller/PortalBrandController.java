@@ -27,9 +27,9 @@ public class PortalBrandController {
     @GetMapping("/recommend/list")
     @ApiOperation(value = "分页获取推荐品牌")
     public GlobalResult<List<PmsBrand>> recommendList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                      @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
+                                      @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize){
         List<PmsBrand> result = brandService.recommendList(pageNum, pageSize);
-        return GlobalResult.success(result);
+        return GlobalResult.success(GlobalPage.restPage(result));
     }
 
     @GetMapping("/product/list")

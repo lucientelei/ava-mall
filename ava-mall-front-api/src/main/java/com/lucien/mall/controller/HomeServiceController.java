@@ -35,7 +35,7 @@ public class HomeServiceController {
 
     @GetMapping("/recommend/product/list")
     @ApiOperation(value = "首页商品推荐")
-    public GlobalResult<GlobalPage<PmsProduct>> recommendProductList(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    public GlobalResult<GlobalPage<PmsProduct>> recommendProductList(@RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize,
                                                          @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
         List<PmsProduct> result = homeService.recommendProductList(pageSize, pageNum);
         return GlobalResult.success(GlobalPage.restPage(result));

@@ -20,3 +20,10 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+
+
+# 消息队列定义
+rabbitmq:
+  queue:
+    name:
+      cancelOrder: cancelOrderQueue
