@@ -78,4 +78,10 @@ public class UmsMemberController {
         return GlobalResult.success("更新成功", result);
     }
 
+    @GetMapping("/getcurr")
+    @ApiOperation(value = "获取当前登录用户信息")
+    public GlobalResult getCurrentMember(){
+        UmsMember result = memberService.getCurrentMember();
+        return GlobalResult.success(result);
+    }
 }

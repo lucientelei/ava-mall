@@ -3,6 +3,7 @@ package com.lucien.mall.front.service.impl.ums;
 import com.lucien.mall.front.service.ums.UmsMemberReceiveAddressService;
 import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.mapper.UmsMemberReceiveAddressMapper;
+import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsMemberReceiveAddress;
 import com.lucien.mall.pojo.UmsMemberReceiveAddressExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,20 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
      */
     @Override
     public int insert(UmsMemberReceiveAddress address) {
-        address.setMemberId(memberService.getCurrentMember().getId());
+        UmsMember member = memberService.getCurrentMember();
+        address.setMemberId(member.getId());
+
+        if (address.getDefaultStatus() == 1){
+            UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
+            example.createCriteria().andMemberIdEqualTo(member.getId()).andDefaultStatusEqualTo(1);
+            List<UmsMemberReceiveAddress> receiveAddresses = addressMapper.selectByExample(example);
+            if (receiveAddresses.size() > 0){
+                UmsMemberReceiveAddress recordAddress = receiveAddresses.get(0);
+                recordAddress.setDefaultStatus(0);
+                addressMapper.updateByPrimaryKeySelective(recordAddress);
+            }
+        }
+
         return addressMapper.insert(address);
     }
 
@@ -69,9 +83,19 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
      */
     @Override
     public int update(Long id, UmsMemberReceiveAddress address) {
+        UmsMember member = memberService.getCurrentMember();
         address.setId(id);
-        int count = addressMapper.updateByPrimaryKeySelective(address);
-        return count;
+        if (address.getDefaultStatus() == 1){
+            UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
+            example.createCriteria().andMemberIdEqualTo(member.getId()).andDefaultStatusEqualTo(1);
+            List<UmsMemberReceiveAddress> receiveAddresses = addressMapper.selectByExample(example);
+            if (receiveAddresses.size() > 0){
+                UmsMemberReceiveAddress recordAddress = receiveAddresses.get(0);
+                recordAddress.setDefaultStatus(0);
+                addressMapper.updateByPrimaryKey(recordAddress);
+            }
+        }
+        return addressMapper.updateByPrimaryKeySelective(address);
     }
 
     /**
