@@ -80,4 +80,11 @@ public class UmsMemberReceiveAddressController {
             return GlobalResult.success(result);
         }
     }
+
+    @GetMapping("/getdefault/address")
+    @ApiOperation(value = "获取用户默认地址")
+    public GlobalResult getDefaultAddress(){
+        UmsMemberReceiveAddress result = addressService.getDefaultAddress();
+        return GlobalResult.success(result);
+    }
 }

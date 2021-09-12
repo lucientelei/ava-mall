@@ -78,7 +78,7 @@ public class OmsCartItemController {
         return GlobalResult.error(result);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     @ApiOperation(value = "批量删除购物车中的商品")
     public GlobalResult delete(@RequestParam List<Long> ids){
         int result = cartItemService.delete(memberService.getCurrentMember().getId(), ids);
@@ -88,7 +88,7 @@ public class OmsCartItemController {
         return GlobalResult.error(result);
     }
 
-    @DeleteMapping("/clear/{memberId}")
+    @PostMapping("/clear/{memberId}")
     @ApiOperation(value = "清空购物车")
     public GlobalResult clear(@PathVariable("memberId") Long memberId){
         int result = cartItemService.clear(memberId);
@@ -96,5 +96,12 @@ public class OmsCartItemController {
             return GlobalResult.success(result);
         }
         return GlobalResult.error(result);
+    }
+
+    @GetMapping("/list/byids")
+    @ApiOperation(value = "通过ids获取购物车商品数据")
+    public GlobalResult listByIds(@RequestParam("ids") List<Long> ids){
+        List<OmsCartItem> result = cartItemService.listByIds(ids);
+        return GlobalResult.success(result);
     }
 }

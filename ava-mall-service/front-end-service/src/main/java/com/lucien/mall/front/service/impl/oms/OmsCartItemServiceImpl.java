@@ -201,4 +201,16 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
         example.createCriteria().andMemberIdEqualTo(memberId);
         return cartItemMapper.updateByExampleSelective(cartItem, example);
     }
+
+    /**
+     * 通过ids获取购物车商品数据
+     * @param ids
+     * @return
+     */
+    @Override
+    public List<OmsCartItem> listByIds(List<Long> ids) {
+        OmsCartItemExample example = new OmsCartItemExample();
+        example.createCriteria().andIdIn(ids);
+        return cartItemMapper.selectByExample(example);
+    }
 }

@@ -45,4 +45,10 @@ public interface UmsMemberReceiveAddressService {
      * @return
      */
     UmsMemberReceiveAddress getItem(Long id);
+
+    /**
+     * 获取用户默认地址
+     * @return
+     */
+    UmsMemberReceiveAddress getDefaultAddress();
 }

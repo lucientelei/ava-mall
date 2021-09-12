@@ -107,4 +107,16 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     public UmsMemberReceiveAddress getItem(Long id) {
         return addressMapper.selectByPrimaryKey(id);
     }
+
+    /**
+     * 获取用户默认地址
+     * @return
+     */
+    @Override
+    public UmsMemberReceiveAddress getDefaultAddress() {
+        UmsMember member = memberService.getCurrentMember();
+        UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
+        example.createCriteria().andMemberIdEqualTo(member.getId()).andDefaultStatusEqualTo(1);
+        return addressMapper.selectByExample(example).get(0);
+    }
 }

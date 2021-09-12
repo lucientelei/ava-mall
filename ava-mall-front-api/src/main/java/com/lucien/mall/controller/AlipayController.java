@@ -1,6 +1,7 @@
 package com.lucien.mall.controller;
 
 import com.lucien.mall.front.service.AlipayService;
+import com.lucien.mall.front.service.oms.OmsPortalOrderService;
 import com.lucien.mall.global.GlobalResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,12 +20,17 @@ import java.math.BigDecimal;
 @RequestMapping("/alipay")
 @Api(tags = "AlipayController", description = "支付宝沙箱支付接口")
 public class AlipayController {
+
     @Autowired
     private AlipayService alipayService;
+
+    @Autowired
+    private OmsPortalOrderService orderService;
 
     @PostMapping("/pay")
     @ApiOperation(value = "支付")
     public GlobalResult pay(String subject, BigDecimal money, String tradeNo){
+        orderService.paySuccess(Long.valueOf(tradeNo), 1);
         String result = alipayService.toPay(subject, money, tradeNo);
         return GlobalResult.success(result);
     }

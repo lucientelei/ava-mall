@@ -76,5 +76,10 @@ public interface OmsCartItemService {
      */
     int clear(Long memberId);
 
-
+    /**
+     * 通过ids获取购物车商品数据
+     * @param ids
+     * @return
+     */
+    List<OmsCartItem> listByIds(List<Long> ids);
 }
