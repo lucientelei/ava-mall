@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service.impl.oms;
+package com.lucien.mall.front.service.oms.impl;
 
 import com.lucien.mall.front.OmsOrderReturnApplyParam;
 import com.lucien.mall.front.service.oms.OmsPortalOrderReturnApplyService;

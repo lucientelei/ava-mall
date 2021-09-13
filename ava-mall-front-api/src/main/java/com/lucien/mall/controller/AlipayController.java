@@ -1,6 +1,6 @@
 package com.lucien.mall.controller;
 
-import com.lucien.mall.front.service.AlipayService;
+import com.lucien.mall.front.service.portal.AlipayService;
 import com.lucien.mall.front.service.oms.OmsPortalOrderService;
 import com.lucien.mall.global.GlobalResult;
 import io.swagger.annotations.Api;

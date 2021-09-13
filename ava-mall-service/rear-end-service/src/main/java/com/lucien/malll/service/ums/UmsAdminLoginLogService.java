@@ -22,7 +22,7 @@ public interface UmsAdminLoginLogService {
      * 查询所有用户登录记录
      * @return
      */
-    List<UmsAdminLoginLog> list();
+    List<UmsAdminLoginLog> list(Integer pageNum, Integer pageSize);
 
     /**
      * 根据用户名查询登录日志

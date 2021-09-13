@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service.impl.pms;
+package com.lucien.mall.front.service.pms.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;

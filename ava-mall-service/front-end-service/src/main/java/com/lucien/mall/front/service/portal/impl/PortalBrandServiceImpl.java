@@ -1,7 +1,7 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.portal.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.front.service.PortalBrandService;
+import com.lucien.mall.front.service.portal.PortalBrandService;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.mapper.HomeMapper;
 import com.lucien.mall.mapper.PmsBrandMapper;

@@ -1,6 +1,6 @@
 package com.lucien.mall.controller;
 
-import com.lucien.mall.front.service.PortalBrandService;
+import com.lucien.mall.front.service.portal.PortalBrandService;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsBrand;

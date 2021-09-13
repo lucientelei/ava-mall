@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service.impl.ums;
+package com.lucien.mall.front.service.ums.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.lucien.mall.front.CartPromotionItem;

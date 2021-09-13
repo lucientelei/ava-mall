@@ -1,9 +1,9 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.portal.impl;
 
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
-import com.lucien.mall.front.service.AlipayService;
+import com.lucien.mall.front.service.portal.AlipayService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Primary
 public class AlipayServiceImpl implements AlipayService {
 
-    private static final String returnURL = "http://5284-2409-8954-f118-d197-853f-61b-bc75-6acf.ngrok.io";
+    private static final String returnURL = "http://localhost:8710/order";
 
     /**
      * 生成支付表单

@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service.impl.ums;
+package com.lucien.mall.front.service.ums.impl;
 
 import com.lucien.mall.domain.MemberReadHistory;
 import com.lucien.mall.front.service.ums.MemberReadHistoryService;

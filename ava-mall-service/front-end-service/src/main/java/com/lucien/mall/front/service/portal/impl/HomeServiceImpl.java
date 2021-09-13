@@ -1,11 +1,11 @@
-package com.lucien.mall.front.service.impl;
+package com.lucien.mall.front.service.portal.impl;
 
 
 import com.github.pagehelper.PageHelper;
 import com.lucien.mall.front.FlashPromotionProduct;
 import com.lucien.mall.front.HomeContentResult;
 import com.lucien.mall.front.HomeFlashPromotion;
-import com.lucien.mall.front.service.HomeService;
+import com.lucien.mall.front.service.portal.HomeService;
 import com.lucien.mall.mapper.*;
 import com.lucien.mall.pojo.*;
 import com.lucien.mall.utils.DateUtil;

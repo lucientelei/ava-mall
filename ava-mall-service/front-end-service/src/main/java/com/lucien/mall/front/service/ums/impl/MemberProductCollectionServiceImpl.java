@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service.impl.ums;
+package com.lucien.mall.front.service.ums.impl;
 
 import com.lucien.mall.domain.MemberProductCollection;
 import com.lucien.mall.front.service.ums.MemberProductCollectionService;

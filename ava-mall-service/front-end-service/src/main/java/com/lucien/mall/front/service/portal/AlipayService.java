@@ -1,4 +1,4 @@
-package com.lucien.mall.front.service;
+package com.lucien.mall.front.service.portal;
 
 import java.math.BigDecimal;
 

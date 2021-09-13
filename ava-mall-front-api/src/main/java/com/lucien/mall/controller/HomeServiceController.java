@@ -1,7 +1,7 @@
 package com.lucien.mall.controller;
 
 import com.lucien.mall.front.HomeContentResult;
-import com.lucien.mall.front.service.HomeService;
+import com.lucien.mall.front.service.portal.HomeService;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.CmsSubject;
