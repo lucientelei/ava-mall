@@ -39,14 +39,27 @@ public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
      */
     @Override
     public int insert(MemberReadHistory memberReadHistory) {
-        UmsMember member = memberService.getCurrentMember();
-        memberReadHistory.setMemberId(member.getId());
-        memberReadHistory.setMemberNickname(member.getNickname());
-        memberReadHistory.setMemberIcon(member.getIcon());
-        memberReadHistory.setId(null);
-        memberReadHistory.setCreateTime(new Date());
-        //保存给定的实体
-        readHistoryRepository.save(memberReadHistory);
+        //商品重复标识
+        boolean flag = false;
+        List<MemberReadHistory> productHistoryList = readHistoryRepository.findAll();
+        for (MemberReadHistory readHistory : productHistoryList) {
+            if (readHistory.getProductId().equals(memberReadHistory.getProductId())){
+                flag = true;
+            }
+        }
+        if (!flag){
+            System.out.println("历史记录中不存在商品");
+            UmsMember member = memberService.getCurrentMember();
+            memberReadHistory.setMemberId(member.getId());
+            memberReadHistory.setMemberNickname(member.getNickname());
+            memberReadHistory.setMemberIcon(member.getIcon());
+            memberReadHistory.setId(null);
+            memberReadHistory.setCreateTime(new Date());
+            //保存给定的实体
+            readHistoryRepository.save(memberReadHistory);
+        }else {
+            System.out.println("存在商品 不添加");
+        }
         return 1;
     }
 
@@ -80,6 +93,10 @@ public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
     public Page<MemberReadHistory> list(Integer pageNum, Integer pageSize) {
         UmsMember member = memberService.getCurrentMember();
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+//        Optional<MemberReadHistory> repository = readHistoryRepository.findById("613eb089caefc50e02afe13d");
+//        MemberReadHistory memberReadHistory = repository.get();
+//        System.out.println(memberReadHistory.toString());
         return readHistoryRepository.findByMemberIdOrderByCreateTimeDesc(member.getId(), pageable);
     }
 

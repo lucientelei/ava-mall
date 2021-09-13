@@ -104,12 +104,12 @@ public class OmsPortalOrderController {
 
     @PostMapping("/delete/order")
     @ApiOperation(value = "用户删除订单")
-    public GlobalResult deleteOrder(Long orderId){
+    public GlobalResult deleteOrder(@RequestParam("orderId") Long orderId){
         int result = orderService.deleteOrder(orderId);
         if (result == -1){
-            return GlobalResult.error("不能确认他人订单", result);
+            return GlobalResult.success("不能确认他人订单", result);
         }else if (result == -2){
-            return GlobalResult.error("只能删除已完成或已关闭的订单", result);
+            return GlobalResult.success("只能删除已完成或已关闭的订单", result);
         }
         return GlobalResult.success(result);
     }

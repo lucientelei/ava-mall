@@ -34,4 +34,6 @@ public class AlipayController {
         String result = alipayService.toPay(subject, money, tradeNo);
         return GlobalResult.success(result);
     }
+
+
 }

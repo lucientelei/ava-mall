@@ -38,4 +38,11 @@ public interface MemberReadHistoryService {
      * 清空浏览记录
      */
     void clear();
+
+    /**
+     *
+     * @param ids
+     * @return
+     */
+//    Iterable<MemberReadHistory> findAllById(Iterable<String> ids);
 }

@@ -113,4 +113,20 @@ public class MemberReadHistory {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "MemberReadHistory{" +
+                "id='" + id + '\'' +
+                ", memberId=" + memberId +
+                ", memberNickname='" + memberNickname + '\'' +
+                ", memberIcon='" + memberIcon + '\'' +
+                ", productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPic='" + productPic + '\'' +
+                ", productSubTitle='" + productSubTitle + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

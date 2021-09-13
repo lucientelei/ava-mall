@@ -25,6 +25,6 @@ public class CancelOrderReceiver {
     @RabbitHandler
     public void handle(Long orderId){
         portalOrderService.cancelOrder(orderId);
-        log.info("process orderId:{}",orderId);
+        log.info("取消超时订单，订单号:{}",orderId);
     }
 }

@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 @Primary
 public class AlipayServiceImpl implements AlipayService {
 
+    private static final String returnURL = "http://5284-2409-8954-f118-d197-853f-61b-bc75-6acf.ngrok.io";
 
     /**
      * 生成支付表单
@@ -33,7 +34,7 @@ public class AlipayServiceImpl implements AlipayService {
         String payForm = null;
         try {
             AlipayTradePagePayResponse pay =
-                    Factory.Payment.Page().pay(subject, tradeNo, String.valueOf(money), "https://cn.bing.com/");
+                    Factory.Payment.Page().pay(subject, tradeNo, String.valueOf(money), returnURL);
 
             if (ResponseChecker.success(pay)) {
                 payForm = pay.getBody();
@@ -42,6 +43,45 @@ public class AlipayServiceImpl implements AlipayService {
             e.printStackTrace();
         }
         return payForm;
+
+    }
+
+    @Override
+    public String payTest() {
+//        String order_no = UUID.randomUUID().toString();    //77777777
+//        String body = "";
+//        String total_fee = "999.99";  //真实金钱
+//        AlipayClient alipayClient = new DefaultAlipayClient(aliPayConfig.getGatewayUrl(), aliPayConfig.getAppID(), aliPayConfig.getMerchantPrivateKey(), aliPayConfig.getFormat(),
+//                aliPayConfig.getCharset(), aliPayConfig.getAlipayPublicKey(), aliPayConfig.getSignType()); //获得初始化的AlipayClient
+//        AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();//创建API对应的request类
+//        JSONObject jsonObject = new JSONObject();
+//        /**
+//         * 订单号
+//         */
+//        jsonObject.put("out_trade_no", order_no);
+//        /**
+//         * 支付金额
+//         */
+//        jsonObject.put("total_amount", total_fee);
+//        jsonObject.put("body", "");
+//        /**
+//         * 订单主题
+//         */
+//        jsonObject.put("subject", "测试支付宝支付");
+//        /**
+//         * 订单支付有效时间
+//         */
+//        jsonObject.put("timeout_express", "90m");
+//        request.setBizContent(jsonObject.toString());
+//        request.setNotifyUrl(aliPayConfig.getNotifyUrl());
+//        AlipayTradePrecreateResponse response = alipayClient.execute(request);
+//        System.err.print(response.getBody());
+//        //根据response中的结果继续业务逻辑处理
+//        if (response.getMsg().equals("Success")) {
+//            String qrcode = response.getQrCode();
+//            return qrcode;
+//        }
+        return "请求失败";
 
     }
 }

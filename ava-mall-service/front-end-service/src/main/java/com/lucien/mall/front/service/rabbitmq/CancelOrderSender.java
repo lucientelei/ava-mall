@@ -41,7 +41,7 @@ public class CancelOrderSender {
         long minute = (delayTimes - hour*60*60*1000)/(60*1000);
         long second = (delayTimes - hour*60*60*1000 - minute*60*1000)/1000;
         System.out.println(hour+ "时" + minute + "分 " + second+"秒");
-        log.info("send orderId:{}", orderId);
+        log.info("发送订单延迟消息，订单号:{}", orderId);
     }
 
 }

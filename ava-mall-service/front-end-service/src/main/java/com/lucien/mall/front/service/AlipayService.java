@@ -20,4 +20,5 @@ public interface AlipayService {
      */
     String toPay(String subject, BigDecimal money, String tradeNo);
 
+    String payTest();
 }
