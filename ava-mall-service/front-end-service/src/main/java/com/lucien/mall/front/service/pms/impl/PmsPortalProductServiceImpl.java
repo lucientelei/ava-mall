@@ -1,6 +1,5 @@
 package com.lucien.mall.front.service.pms.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
 import com.lucien.mall.front.PmsPortalProductDetail;
 import com.lucien.mall.front.PmsProductCategoryNode;
@@ -35,21 +34,7 @@ public class PmsPortalProductServiceImpl implements PmsPortalProductService {
     private PmsBrandMapper brandMapper;
 
     @Autowired
-    private PmsProductAttributeMapper productAttributeMapper;
-
-    @Autowired
-    private PmsProductAttributeValueMapper productAttributeValueMapper;
-
-    @Autowired
     private PmsSkuStockMapper skuStockMapper;
-
-    //商品阶梯价格
-    @Autowired
-    private PmsProductLadderMapper productLadderMapper;
-
-    //商品满减
-    @Autowired
-    private PmsProductFullReductionMapper productFullReductionMapper;
 
     @Autowired
     private PortalProductMapper portalProductMapper;
@@ -139,46 +124,11 @@ public class PmsPortalProductServiceImpl implements PmsPortalProductService {
         PmsBrand brand = brandMapper.selectByPrimaryKey(product.getBrandId());
         productDetail.setBrand(brand);
 
-        //商品属性与参数
-        PmsProductAttributeExample attributeExample = new PmsProductAttributeExample();
-        attributeExample.createCriteria().andProductAttributeCategoryIdEqualTo(product.getProductAttributeCategoryId());
-        List<PmsProductAttribute> attributeList = productAttributeMapper.selectByExample(attributeExample);
-        productDetail.setProductAttributeList(attributeList);
-        if (CollUtil.isNotEmpty(attributeList)){
-            List<Long> attributeIds = attributeList.stream().map(PmsProductAttribute::getId).collect(Collectors.toList());
-            PmsProductAttributeValueExample attributeValueExample = new PmsProductAttributeValueExample();
-            attributeValueExample.createCriteria()
-                    .andProductIdEqualTo(product.getId())
-                    .andProductAttributeIdIn(attributeIds);
-            List<PmsProductAttributeValue> attributeValueList = productAttributeValueMapper.selectByExample(attributeValueExample);
-            productDetail.setProductAttributeValueList(attributeValueList);
-        }
-
         //商品的sku库存信息
         PmsSkuStockExample skuStockExample = new PmsSkuStockExample();
         skuStockExample.createCriteria().andProductIdEqualTo(product.getId());
         List<PmsSkuStock> skuStockList = skuStockMapper.selectByExample(skuStockExample);
         productDetail.setSkuStockList(skuStockList);
-
-        //商品阶梯价格设置
-        //促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
-        if (product.getPromotionType() == 3){
-            PmsProductLadderExample productLadderExample = new PmsProductLadderExample();
-            productLadderExample.createCriteria().andProductIdEqualTo(product.getId());
-            List<PmsProductLadder> productLadderList = productLadderMapper.selectByExample(productLadderExample);
-            productDetail.setProductLadderList(productLadderList);
-        }
-
-        //商品满减价格设置
-        if (product.getPromotionType() == 4){
-            PmsProductFullReductionExample fullReductionExample = new PmsProductFullReductionExample();
-            fullReductionExample.createCriteria().andProductIdEqualTo(product.getId());
-            List<PmsProductFullReduction> fullReductionList = productFullReductionMapper.selectByExample(fullReductionExample);
-            productDetail.setProductFullReductionList(fullReductionList);
-        }
-
-        //商品可用优惠券
-        productDetail.setCouponList(portalProductMapper.getAvailableCouponList(product.getId(), product.getProductCategoryId()));
 
         return productDetail;
     }

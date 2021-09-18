@@ -1,6 +1,5 @@
 package com.lucien.mall.controller.oms;
 
-import com.lucien.mall.front.CartProduct;
 import com.lucien.mall.front.CartPromotionItem;
 import com.lucien.mall.front.service.oms.OmsCartItemService;
 import com.lucien.mall.front.service.ums.UmsMemberService;
@@ -9,7 +8,6 @@ import com.lucien.mall.pojo.OmsCartItem;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,16 +51,6 @@ public class OmsCartItemController {
                                        @RequestParam Integer quantity){
         int result = cartItemService.updateQuantity(id, memberService.getCurrentMember().getId(), quantity);
         if (result > 0){
-            return GlobalResult.success(result);
-        }
-        return GlobalResult.error(result);
-    }
-
-    @GetMapping("/get/cart/product/{productId}")
-    @ApiOperation(value = "获取购物车中用于选择商品规格的商品信息")
-    public GlobalResult<CartProduct> getCartProduct(@PathVariable("productId") Long productId){
-        CartProduct result = cartItemService.getCartProduct(productId);
-        if (!StringUtils.isEmpty(result)) {
             return GlobalResult.success(result);
         }
         return GlobalResult.error(result);

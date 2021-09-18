@@ -1,6 +1,5 @@
 package com.lucien.mall.front;
 
-import com.lucien.mall.pojo.UmsIntegrationConsumeSetting;
 import com.lucien.mall.pojo.UmsMemberReceiveAddress;
 
 import java.math.BigDecimal;
@@ -12,18 +11,8 @@ import java.util.List;
  * 前台确认订单信息
  */
 public class ConfirmOrderResult {
-
-    //包含优惠信息的购物车信息
-    private List<CartPromotionItem> cartPromotionItemList;
-
     //用户收货地址列表
     private List<UmsMemberReceiveAddress> memberReceiveAddressList;
-
-    //用户可用优惠券列表
-    private List<SmsCouponHistoryDetail> couponHistoryDetailList;
-
-    //积分使用规则
-    private UmsIntegrationConsumeSetting integrationConsumeSetting;
 
     //会员持有的积分
     private Integer memberIntegration;
@@ -31,7 +20,7 @@ public class ConfirmOrderResult {
     //计算的金额
     private CalcAmount calcAmount;
 
-    public static class CalcAmount{
+    public static class CalcAmount {
         //订单商品总金额
         private BigDecimal totalAmount;
         //运费
@@ -74,36 +63,12 @@ public class ConfirmOrderResult {
         }
     }
 
-    public List<CartPromotionItem> getCartPromotionItemList() {
-        return cartPromotionItemList;
-    }
-
-    public void setCartPromotionItemList(List<CartPromotionItem> cartPromotionItemList) {
-        this.cartPromotionItemList = cartPromotionItemList;
-    }
-
     public List<UmsMemberReceiveAddress> getMemberReceiveAddressList() {
         return memberReceiveAddressList;
     }
 
     public void setMemberReceiveAddressList(List<UmsMemberReceiveAddress> memberReceiveAddressList) {
         this.memberReceiveAddressList = memberReceiveAddressList;
-    }
-
-    public List<SmsCouponHistoryDetail> getCouponHistoryDetailList() {
-        return couponHistoryDetailList;
-    }
-
-    public void setCouponHistoryDetailList(List<SmsCouponHistoryDetail> couponHistoryDetailList) {
-        this.couponHistoryDetailList = couponHistoryDetailList;
-    }
-
-    public UmsIntegrationConsumeSetting getIntegrationConsumeSetting() {
-        return integrationConsumeSetting;
-    }
-
-    public void setIntegrationConsumeSetting(UmsIntegrationConsumeSetting integrationConsumeSetting) {
-        this.integrationConsumeSetting = integrationConsumeSetting;
     }
 
     public Integer getMemberIntegration(Integer integration) {

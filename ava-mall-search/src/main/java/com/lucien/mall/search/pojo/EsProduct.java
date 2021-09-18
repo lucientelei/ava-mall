@@ -59,8 +59,6 @@ public class EsProduct implements Serializable {
 
     private Integer stock;
 
-    private Integer promotionType;
-
     private Integer sort;
 
     @Field(type =FieldType.Nested)
@@ -190,15 +188,7 @@ public class EsProduct implements Serializable {
         this.stock = stock;
     }
 
-    public Integer getPromotionType() {
-        return promotionType;
-    }
-
-    public void setPromotionType(Integer promotionType) {
-        this.promotionType = promotionType;
-    }
-
-    public Integer getSort() {
+   public Integer getSort() {
         return sort;
     }
 

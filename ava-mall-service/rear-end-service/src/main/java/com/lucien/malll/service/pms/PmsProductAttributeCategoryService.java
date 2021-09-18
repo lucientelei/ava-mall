@@ -1,6 +1,5 @@
 package com.lucien.malll.service.pms;
 
-import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 
 import java.util.List;
@@ -48,10 +47,4 @@ public interface PmsProductAttributeCategoryService {
      * @return
      */
     List<PmsProductAttributeCategory> list(Integer pageSize, Integer pageNum);
-
-    /**
-     * 获取包含属性的属性分类
-     * @return
-     */
-    List<PmsProductAttributeCategoryItem> getListWithAttr();
 }

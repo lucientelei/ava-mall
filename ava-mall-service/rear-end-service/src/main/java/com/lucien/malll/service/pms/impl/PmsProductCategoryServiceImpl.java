@@ -1,19 +1,19 @@
 package com.lucien.malll.service.pms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.rear.pms.PmsProductCategoryParam;
-import com.lucien.mall.rear.pms.PmsProductCategoryWithChildrenItem;
-import com.lucien.mall.mapper.PmsProductCategoryAttributeRelationMapper;
 import com.lucien.mall.mapper.PmsProductCategoryMapper;
 import com.lucien.mall.mapper.PmsProductMapper;
-import com.lucien.mall.pojo.*;
+import com.lucien.mall.pojo.PmsProduct;
+import com.lucien.mall.pojo.PmsProductCategory;
+import com.lucien.mall.pojo.PmsProductCategoryExample;
+import com.lucien.mall.pojo.PmsProductExample;
+import com.lucien.mall.rear.pms.PmsProductCategoryParam;
+import com.lucien.mall.rear.pms.PmsProductCategoryWithChildrenItem;
 import com.lucien.malll.service.pms.PmsProductCategoryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,9 +26,6 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
 
     @Autowired
     private PmsProductCategoryMapper categoryMapper;
-
-    @Autowired
-    private PmsProductCategoryAttributeRelationMapper relationMapper;
 
     @Autowired
     private PmsProductMapper productMapper;
@@ -51,22 +48,6 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
     }
 
     /**
-     * 批量插入商品分类与筛选属性关系表
-     * @param productCategoryId 商品分类id
-     * @param productAttributeIdList 相关商品筛选属性id集合
-     */
-    private void insertRelationList(Long productCategoryId, List<Long> productAttributeIdList){
-        List<PmsProductCategoryAttributeRelation> relationList = new ArrayList<>();
-        for (Long productAttrId : productAttributeIdList) {
-            PmsProductCategoryAttributeRelation relation = new PmsProductCategoryAttributeRelation();
-            relation.setProductAttributeId(productAttrId);
-            relation.setProductCategoryId(productCategoryId);
-            relationList.add(relation);
-        }
-        relationMapper.insertList(relationList);
-    }
-
-    /**
      * 新增分类
      * @param param
      * @return
@@ -78,10 +59,6 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         BeanUtils.copyProperties(param, productCategory);
         setCategoryLevel(productCategory);
         int count = categoryMapper.insertSelective(productCategory);
-        List<Long> attributeIdList = param.getProductAttributeIdList();
-        if (!CollectionUtils.isEmpty(attributeIdList)){
-            insertRelationList(productCategory.getId(), attributeIdList);
-        }
         return count;
     }
 
@@ -119,18 +96,6 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         PmsProductExample productExample = new PmsProductExample();
         productExample.createCriteria().andProductCategoryIdEqualTo(id);
         productMapper.updateByExample(pmsProduct, productExample);
-
-        //同时更新筛选属性的信息
-        if (!CollectionUtils.isEmpty(param.getProductAttributeIdList())){
-            PmsProductCategoryAttributeRelationExample relationExample = new PmsProductCategoryAttributeRelationExample();
-            relationExample.createCriteria().andProductAttributeIdEqualTo(id);
-            relationMapper.deleteByExample(relationExample);
-            insertRelationList(id, param.getProductAttributeIdList());
-        }else {
-            PmsProductCategoryAttributeRelationExample relationExample = new PmsProductCategoryAttributeRelationExample();
-            relationExample.createCriteria().andProductCategoryIdEqualTo(id);
-            relationMapper.deleteByExample(relationExample);
-        }
 
         return categoryMapper.updateByPrimaryKeySelective(productCategory);
     }

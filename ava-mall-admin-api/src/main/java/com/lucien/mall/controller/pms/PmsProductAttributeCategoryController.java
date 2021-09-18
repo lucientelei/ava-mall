@@ -1,6 +1,5 @@
 package com.lucien.mall.controller.pms;
 
-import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
@@ -74,10 +73,4 @@ public class PmsProductAttributeCategoryController {
         return GlobalResult.success(GlobalPage.restPage(result));
     }
 
-    @GetMapping("/list/attr")
-    @ApiOperation(value = "获取包含属性的属性分类")
-    public GlobalResult getListWithAttr(){
-        List<PmsProductAttributeCategoryItem> result = categoryService.getListWithAttr();
-        return GlobalResult.success(result);
-    }
 }

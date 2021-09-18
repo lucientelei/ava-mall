@@ -1,6 +1,5 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 import com.lucien.mall.pojo.PmsProductAttributeCategoryExample;
 import org.apache.ibatis.annotations.Param;
@@ -30,8 +29,4 @@ public interface PmsProductAttributeCategoryMapper {
 
     int updateByPrimaryKey(PmsProductAttributeCategory record);
 
-    /**
-     * 获取包含属性的商品属性分类
-     */
-    List<PmsProductAttributeCategoryItem> getListWithAttr();
 }

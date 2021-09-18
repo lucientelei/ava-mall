@@ -1,10 +1,8 @@
 package com.lucien.mall.front.service.oms.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.lucien.mall.front.CartProduct;
 import com.lucien.mall.front.CartPromotionItem;
 import com.lucien.mall.front.service.oms.OmsCartItemService;
-import com.lucien.mall.front.service.oms.OmsPromotionService;
 import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.mapper.OmsCartItemMapper;
 import com.lucien.mall.mapper.PortalProductMapper;
@@ -40,8 +38,6 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
     @Autowired
     private PortalProductMapper portalProductMapper;
 
-    @Autowired
-    private OmsPromotionService promotionService;
 
     /**
      * 根据会员id,商品id和规格获取购物车中商品
@@ -103,27 +99,6 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
     }
 
     /**
-     * 获取包含促销活动信息的购物车列表
-     *
-     * @param memberId
-     * @param cartIds
-     * @return
-     */
-    @Override
-    public List<CartPromotionItem> listPromotion(Long memberId, List<Long> cartIds) {
-        List<OmsCartItem> cartItems = list(memberId);
-        if (CollUtil.isNotEmpty(cartItems)){
-            //过滤获取指定信息
-            cartItems = cartItems.stream().filter(item -> cartIds.contains(item.getId())).collect(Collectors.toList());
-        }
-        List<CartPromotionItem> cartPromotionItems = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(cartItems)){
-            cartPromotionItems = promotionService.calcCartPromotion(cartItems);
-        }
-        return cartPromotionItems;
-    }
-
-    /**
      * 修改某个购物车商品的数量
      *
      * @param id
@@ -155,17 +130,6 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
         OmsCartItemExample example = new OmsCartItemExample();
         example.createCriteria().andIdIn(ids).andMemberIdEqualTo(memberId);
         return cartItemMapper.updateByExampleSelective(cartItem, example);
-    }
-
-    /**
-     * 获取购物车中用于选择商品规格的商品信息
-     *
-     * @param productId
-     * @return
-     */
-    @Override
-    public CartProduct getCartProduct(Long productId) {
-        return portalProductMapper.getCartProduct(productId);
     }
 
     /**

@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lucien.mall.mapper.PortalProductMapper">
-    <resultMap id="cartProductMap" type="com.lucien.mall.front.CartProduct" autoMapping="true">
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <collection property="productAttributeList" columnPrefix="attr_" resultMap="com.lucien.mall.mapper.PmsProductAttributeMapper.BaseResultMap">
-        </collection>
-        <collection property="skuStockList" columnPrefix="sku_" resultMap="com.lucien.mall.mapper.PmsSkuStockMapper.BaseResultMap">
-        </collection>
-    </resultMap>
     <resultMap id="promotionProductMap" type="com.lucien.mall.front.PromotionProduct" extends="com.lucien.mall.mapper.PmsProductMapper.BaseResultMap">
         <id column="id" jdbcType="BIGINT" property="id" />
         <collection property="skuStockList" columnPrefix="sku_" resultMap="com.lucien.mall.mapper.PmsSkuStockMapper.BaseResultMap">
         </collection>
-        <collection property="productLadderList" columnPrefix="ladder_" resultMap="com.lucien.mall.mapper.PmsProductLadderMapper.BaseResultMap">
-        </collection>
-        <collection property="productFullReductionList" columnPrefix="full_" resultMap="com.lucien.mall.mapper.PmsProductFullReductionMapper.BaseResultMap">
-        </collection>
     </resultMap>
-    <select id="getCartProduct" resultMap="cartProductMap">
+    <select id="getCartProduct" resultMap="com.lucien.mall.mapper.PmsProductMapper.BaseResultMap">
         SELECT
             p.id id,
             p.`name` name,
@@ -25,22 +14,12 @@
             p.price price,
             p.pic pic,
             p.product_attribute_category_id productAttributeCategoryId,
-            p.stock stock,
-            pa.id attr_id,
-            pa.`name` attr_name,
-            ps.id sku_id,
-            ps.sku_code sku_code,
-            ps.price sku_price,
-            ps.stock sku_stock,
-            ps.pic sku_pic
+            p.stock stock
         FROM
             pms_product p
-            LEFT JOIN pms_product_attribute pa ON p.product_attribute_category_id = pa.product_attribute_category_id
-            LEFT JOIN pms_sku_stock ps ON p.id=ps.product_id
-        WHERE
+            WHERE
             p.id = #{id}
-            AND pa.type = 0
-        ORDER BY pa.sort desc
+        ORDER BY p.id desc
     </select>
     <select id="getPromotionProductList" resultMap="promotionProductMap">
         SELECT
@@ -71,32 +50,5 @@
         <foreach collection="ids" open="(" close=")" item="id" separator=",">
             #{id}
         </foreach>
-    </select>
-    <select id="getAvailableCouponList" resultMap="com.lucien.mall.mapper.SmsCouponMapper.BaseResultMap">
-        SELECT *
-        FROM sms_coupon
-        WHERE use_type = 0
-          AND start_time &lt; NOW()
-          AND end_time &gt; NOW()
-        UNION
-        (
-            SELECT c.*
-            FROM sms_coupon_product_category_relation cpc
-                     LEFT JOIN sms_coupon c ON cpc.coupon_id = c.id
-            WHERE c.use_type = 1
-              AND c.start_time &lt; NOW()
-              AND c.end_time &gt; NOW()
-              AND cpc.product_category_id = #{productCategoryId}
-        )
-        UNION
-        (
-            SELECT c.*
-            FROM sms_coupon_product_relation cp
-                     LEFT JOIN sms_coupon c ON cp.coupon_id = c.id
-            WHERE c.use_type = 2
-              AND c.start_time &lt; NOW()
-              AND c.end_time &gt; NOW()
-              AND cp.product_id = #{productId}
-        )
     </select>
 </mapper>

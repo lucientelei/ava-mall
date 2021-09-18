@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 /**
  * @Author Lucien
@@ -44,9 +43,6 @@ public class PmsProductCategoryParam {
 
     @ApiModelProperty("描述")
     private String description;
-
-    @ApiModelProperty("产品相关筛选属性集合")
-    private List<Long> productAttributeIdList;
 
     public Long getParentId() {
         return parentId;
@@ -120,11 +116,4 @@ public class PmsProductCategoryParam {
         this.description = description;
     }
 
-    public List<Long> getProductAttributeIdList() {
-        return productAttributeIdList;
-    }
-
-    public void setProductAttributeIdList(List<Long> productAttributeIdList) {
-        this.productAttributeIdList = productAttributeIdList;
-    }
 }

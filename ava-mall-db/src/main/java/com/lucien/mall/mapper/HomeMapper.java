@@ -1,7 +1,6 @@
 package com.lucien.mall.mapper;
 
 import com.lucien.mall.front.FlashPromotionProduct;
-import com.lucien.mall.pojo.CmsSubject;
 import com.lucien.mall.pojo.PmsBrand;
 import com.lucien.mall.pojo.PmsProduct;
 import org.apache.ibatis.annotations.Param;
@@ -33,10 +32,5 @@ public interface HomeMapper {
      * 获取人气推荐
      */
     List<PmsProduct> getHotProductList(@Param("offset") Integer offset,@Param("limit") Integer limit);
-
-    /**
-     * 获取推荐专题
-     */
-    List<CmsSubject> getRecommendSubjectList(@Param("offset") Integer offset, @Param("limit") Integer limit);
-
+    
 }

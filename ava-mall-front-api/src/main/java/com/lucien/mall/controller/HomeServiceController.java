@@ -4,7 +4,6 @@ import com.lucien.mall.front.HomeContentResult;
 import com.lucien.mall.front.service.portal.HomeService;
 import com.lucien.mall.global.GlobalPage;
 import com.lucien.mall.global.GlobalResult;
-import com.lucien.mall.pojo.CmsSubject;
 import com.lucien.mall.pojo.PmsProduct;
 import com.lucien.mall.pojo.PmsProductCategory;
 import io.swagger.annotations.Api;
@@ -47,15 +46,7 @@ public class HomeServiceController {
         List<PmsProductCategory> result = homeService.getProductCateList(parentId);
         return GlobalResult.success(result);
     }
-
-    @GetMapping("/subject/list")
-    @ApiOperation(value = "根据专题分类分页获取专题")
-    public GlobalResult<GlobalPage<CmsSubject>> getSubjectList(@RequestParam(required = false) Long cateId,
-                                       @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
-        List<CmsSubject> result = homeService.getSubjectList(cateId, pageSize, pageNum);
-        return GlobalResult.success(GlobalPage.restPage(result));
-    }
+    
 
     @GetMapping("/hot/product/list")
     @ApiOperation(value = "分页获取人气推荐商品")

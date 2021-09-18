@@ -40,33 +40,9 @@ public class PmsProductServiceImpl implements PmsProductService {
     @Autowired
     private PmsMemberPriceMapper memberPriceMapper;
 
-    //商品阶梯价格表
-    @Autowired
-    private PmsProductLadderMapper ladderMapper;
-
-    //商品满减表
-    @Autowired
-    private PmsProductFullReductionMapper fullReductionMapper;
-
     //商品SKU表 库存量
     @Autowired
     private PmsSkuStockMapper stockMapper;
-
-    //商品属性值表
-    @Autowired
-    private PmsProductAttributeValueMapper attributeValueMapper;
-
-    //商品审核记录表
-    @Autowired
-    private PmsProductVertifyRecordMapper vertifyRecordMapper;
-
-    //商品专题关系表
-    @Autowired
-    private CmsSubjectProductRelationMapper subjectProductRelationMapper;
-
-    //商品优选关系表
-    @Autowired
-    private CmsPrefrenceAreaProductRelationMapper areaProductRelationMapper;
 
     /**
      * 建立和插入关系表操作
@@ -184,21 +160,10 @@ public class PmsProductServiceImpl implements PmsProductService {
         Long productId = product.getId();
         //商品会员价格
         relateAndInsertList(memberPriceMapper, param.getMemberPriceList(), productId);
-        //商品阶梯价格
-        relateAndInsertList(ladderMapper, param.getProductLadderList(), productId);
-        //商品满减
-        relateAndInsertList(fullReductionMapper, param.getProductFullReductionList(), productId);
-        //处理sku的编码
+       //处理sku的编码
         handleSkuStockCode(param.getSkuStockList(),productId);
         //商品SKU表
         relateAndInsertList(stockMapper, param.getSkuStockList(), productId);
-        //商品属性值
-        relateAndInsertList(attributeValueMapper, param.getProductAttributeValueList(), productId);
-        //关联专题
-        relateAndInsertList(subjectProductRelationMapper, param.getSubjectProductRelationList(), productId);
-        //关联优选
-        relateAndInsertList(areaProductRelationMapper, param.getPrefrenceAreaProductRelationList(), productId);
-
         count = 1;
 
         return count;
@@ -274,7 +239,6 @@ public class PmsProductServiceImpl implements PmsProductService {
             record.setVertifyMan("Admin");
             list.add(record);
         }
-        vertifyRecordMapper.insertList(list);
         return count;
     }
 
@@ -372,33 +336,8 @@ public class PmsProductServiceImpl implements PmsProductService {
         priceExample.createCriteria().andProductIdEqualTo(id);
         memberPriceMapper.deleteByExample(priceExample);
         relateAndInsertList(memberPriceMapper, productParam.getMemberPriceList(), id);
-        //阶梯价格
-        PmsProductLadderExample ladderExample = new PmsProductLadderExample();
-        ladderExample.createCriteria().andProductIdEqualTo(id);
-        ladderMapper.deleteByExample(ladderExample);
-        relateAndInsertList(ladderMapper, productParam.getProductLadderList(), id);
-        //满减价格
-        PmsProductFullReductionExample fullReductionExample = new PmsProductFullReductionExample();
-        fullReductionExample.createCriteria().andProductIdEqualTo(id);
-        fullReductionMapper.deleteByExample(fullReductionExample);
-        relateAndInsertList(fullReductionMapper, productParam.getProductFullReductionList(), id);
         //修改sku库存信息
         handleUpdateSkuStockList(id, productParam);
-        //商品属性值
-        PmsProductAttributeValueExample valueExample = new PmsProductAttributeValueExample();
-        valueExample.createCriteria().andProductIdEqualTo(id);
-        attributeValueMapper.deleteByExample(valueExample);
-        relateAndInsertList(attributeValueMapper, productParam.getProductAttributeValueList(), id);
-        //商品专题
-        CmsSubjectProductRelationExample relationExample = new CmsSubjectProductRelationExample();
-        relationExample.createCriteria().andProductIdEqualTo(id);
-        subjectProductRelationMapper.deleteByExample(relationExample);
-        relateAndInsertList(subjectProductRelationMapper, productParam.getSubjectProductRelationList(), id);
-        //商品优选
-        CmsPrefrenceAreaProductRelationExample productRelationExample = new CmsPrefrenceAreaProductRelationExample();
-        productRelationExample.createCriteria().andProductIdEqualTo(id);
-        areaProductRelationMapper.deleteByExample(productRelationExample);
-        relateAndInsertList(areaProductRelationMapper, productParam.getPrefrenceAreaProductRelationList(), id);
         count = 1;
         return count;
     }

@@ -1,7 +1,6 @@
 package com.lucien.malll.service.pms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.rear.pms.PmsProductAttributeCategoryItem;
 import com.lucien.mall.mapper.PmsProductAttributeCategoryMapper;
 import com.lucien.mall.pojo.PmsProductAttributeCategory;
 import com.lucien.mall.pojo.PmsProductAttributeCategoryExample;
@@ -80,12 +79,4 @@ public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttribu
         return categoryMapper.selectByExample(new PmsProductAttributeCategoryExample());
     }
 
-    /**
-     * 获取包含属性的属性分类
-     * @return
-     */
-    @Override
-    public List<PmsProductAttributeCategoryItem> getListWithAttr() {
-        return categoryMapper.getListWithAttr();
-    }
 }

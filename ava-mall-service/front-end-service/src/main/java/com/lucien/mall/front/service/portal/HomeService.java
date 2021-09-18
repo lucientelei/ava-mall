@@ -1,7 +1,6 @@
 package com.lucien.mall.front.service.portal;
 
 import com.lucien.mall.front.HomeContentResult;
-import com.lucien.mall.pojo.CmsSubject;
 import com.lucien.mall.pojo.PmsProduct;
 import com.lucien.mall.pojo.PmsProductCategory;
 
@@ -29,12 +28,6 @@ public interface HomeService {
      * @param parentId 0:获取一级分类；其他：获取指定二级分类
      */
     List<PmsProductCategory> getProductCateList(Long parentId);
-
-    /**
-     * 根据专题分类分页获取专题
-     * @param cateId 专题分类id
-     */
-    List<CmsSubject> getSubjectList(Long cateId, Integer pageSize, Integer pageNum);
 
     /**
      * 分页获取人气推荐商品
