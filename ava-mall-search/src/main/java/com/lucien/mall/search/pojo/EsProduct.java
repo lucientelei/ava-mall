@@ -7,7 +7,6 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @Author Lucien
@@ -17,7 +16,7 @@ import java.util.List;
  * @Id定义了Elasticsearch的_id
  * @Field定义字段类型等信息
  */
-@Document(indexName = "pms", type = "product",shards = 1,replicas = 0)
+@Document(indexName = "pms", type = "product", shards = 1, replicas = 0)
 public class EsProduct implements Serializable {
 
     private static final long serialVersionUID = -1L;
@@ -40,13 +39,13 @@ public class EsProduct implements Serializable {
 
     private String pic;
 
-    @Field(analyzer = "ik_max_word",type = FieldType.Text)
+    @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String name;
 
-    @Field(analyzer = "ik_max_word",type = FieldType.Text)
+    @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String subTitle;
 
-    @Field(analyzer = "ik_max_word",type = FieldType.Text)
+    @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String keywords;
 
     private BigDecimal price;
@@ -60,9 +59,6 @@ public class EsProduct implements Serializable {
     private Integer stock;
 
     private Integer sort;
-
-    @Field(type =FieldType.Nested)
-    private List<EsProductAttributeValue> attrValueList;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -188,19 +184,11 @@ public class EsProduct implements Serializable {
         this.stock = stock;
     }
 
-   public Integer getSort() {
+    public Integer getSort() {
         return sort;
     }
 
     public void setSort(Integer sort) {
         this.sort = sort;
-    }
-
-    public List<EsProductAttributeValue> getAttrValueList() {
-        return attrValueList;
-    }
-
-    public void setAttrValueList(List<EsProductAttributeValue> attrValueList) {
-        this.attrValueList = attrValueList;
     }
 }
