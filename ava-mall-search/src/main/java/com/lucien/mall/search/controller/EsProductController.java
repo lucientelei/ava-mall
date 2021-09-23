@@ -74,4 +74,15 @@ public class EsProductController {
         Page<EsProduct> result = productService.search(keyWord, pageNum, pageSize);
         return GlobalResult.success(GlobalPage.restPage(result));
     }
+
+    @GetMapping("/test")
+    @ApiOperation(value = "test")
+    public GlobalResult<GlobalPage<List<EsProduct>>> test(@RequestParam(required = false) String keyWord,
+                                                          @RequestParam(required = false, value = "pageNum", defaultValue = "0") Integer pageNum,
+                                                          @RequestParam(required = false, value = "pageSize", defaultValue = "5") Integer pageSize){
+        List<EsProduct> result = productService.test(keyWord, pageNum, pageSize);
+        System.out.println(result.size());
+//        return null;
+        return GlobalResult.success(GlobalPage.restPage(result));
+    }
 }

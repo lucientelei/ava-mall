@@ -80,4 +80,6 @@ public interface EsProductService {
      * @return
      */
     EsProductRelatedInfo searchRelatedInfo(String keyword);
+
+    List<EsProduct> test(String keyWord, Integer pageNum, Integer pageSize);
 }
