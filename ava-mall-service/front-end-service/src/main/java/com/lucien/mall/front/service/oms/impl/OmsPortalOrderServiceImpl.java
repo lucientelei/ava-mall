@@ -151,11 +151,11 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         order.setMemberId(member.getId());
         order.setMemberUsername(member.getUsername());
         order.setCreateTime(new Date());
-        //支付方式：0->未支付；1->支付宝；2->微信
+        //支付方式：0->未支付；1->支付宝
         order.setPayType(param.getPayType());
         //订单来源：0->PC订单；1->app订单
         order.setSourceType(1);
-        //订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单
+        //订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->退货订单
         order.setStatus(0);
         //订单类型：0->正常订单；1->秒杀订单
         order.setOrderType(0);
@@ -419,6 +419,19 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         cancelOrderSender.sendMsg(orderId, delayTimes);
     }
 
+    /**
+     * 设置订单状态
+     * @param orderId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateOrderStatus(Long orderId, Integer status) {
+        OmsOrder order = orderMapper.selectByPrimaryKey(orderId);
+        order.setStatus(status);
+        return orderMapper.updateByPrimaryKey(order);
+    }
+
 
     /**
      * 计算总金额
@@ -527,7 +540,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         Long increment = redisUtils.incr(key, 1);
         sb.append(date);
         sb.append(String.format("%02d", order.getSourceType()));
-        sb.append(String.format("%02d", order.getPayType()));
+        sb.append(String.format("%02d", 1));
         String incrementStr = increment.toString();
         if (incrementStr.length() <= 6) {
             sb.append(String.format("%06d", increment));

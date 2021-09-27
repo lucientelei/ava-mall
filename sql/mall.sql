@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 18/09/2021 22:42:44
+ Date: 27/09/2021 10:02:40
 */
 
 SET NAMES utf8mb4;
@@ -41,7 +41,7 @@ CREATE TABLE `oms_cart_item`  (
   `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_cart_item
@@ -81,6 +81,7 @@ INSERT INTO `oms_cart_item` VALUES (45, 19, 19, 10, 1, 1778.00, 'https://img.ali
 INSERT INTO `oms_cart_item` VALUES (46, 34, 34, 10, 1, 999.00, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', '[全款预售]SEGA EVA新世纪福音战士剧场版终 明日香 景品手办', '[全款预售]SEGA EVA新世纪福音战士剧场版终 明日香 景品手办', '202109150027034', 'lucien_ssa', '2021-09-13 15:35:54', '2021-09-13 15:35:54', 1, 66, '眼镜厂', '5464542', NULL);
 INSERT INTO `oms_cart_item` VALUES (47, 34, 34, 10, 1, 999.00, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', '[全款预售]SEGA EVA新世纪福音战士剧场版终 明日香 景品手办', '[全款预售]SEGA EVA新世纪福音战士剧场版终 明日香 景品手办', '202109150027034', 'lucien_ssa', '2021-09-13 15:36:04', '2021-09-13 15:36:04', 1, 66, '眼镜厂', '5464542', NULL);
 INSERT INTO `oms_cart_item` VALUES (48, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-09-13 17:02:14', '2021-09-13 17:02:14', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (49, 39, 39, 10, 1, 99.00, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '202109270027039', 'lucien_ssa', '2021-09-27 09:05:39', '2021-09-27 09:05:39', 1, 53, '优衣库', '2354545', NULL);
 
 -- ----------------------------
 -- Table structure for oms_company_address
@@ -127,7 +128,7 @@ CREATE TABLE `oms_order`  (
   `discount_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '管理员后台调整订单使用的折扣金额',
   `pay_type` int(1) NULL DEFAULT NULL COMMENT '支付方式：0->未支付；1->支付宝；2->微信',
   `source_type` int(1) NULL DEFAULT NULL COMMENT '订单来源：0->PC订单；1->app订单',
-  `status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
+  `status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->退货订单',
   `order_type` int(1) NULL DEFAULT NULL COMMENT '订单类型：0->正常订单；1->秒杀订单',
   `delivery_company` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物流公司(配送方式)',
   `delivery_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物流单号',
@@ -157,22 +158,12 @@ CREATE TABLE `oms_order`  (
   `comment_time` datetime NULL DEFAULT NULL COMMENT '评价时间',
   `modify_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order
 -- ----------------------------
-INSERT INTO `oms_order` VALUES (1, 10, NULL, '2021091201null000004', '2021-09-12 17:45:05', 'lucien', 228.00, 228.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, '陈少111', '13556787083', '440104', '广东省', '广州市', '越秀区', '越秀一路', '测试测试', 0, 0, NULL, '2021-09-12 18:57:12', NULL, NULL, NULL, '2021-09-13 14:27:16');
-INSERT INTO `oms_order` VALUES (2, 10, NULL, '2021091201null000005', '2021-09-12 20:01:11', 'lucien', 2249.00, 2249.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 3, 0, '圆通快递', '123123', 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 1, 0, NULL, '2021-09-12 20:03:58', '2021-09-13 14:28:26', '2021-09-13 15:36:58', NULL, NULL);
-INSERT INTO `oms_order` VALUES (4, 10, NULL, '2021091201null000007', '2021-09-12 20:04:54', 'lucien', 7599.00, 7599.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, 1, 4, 0, NULL, NULL, 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_order` VALUES (5, 10, NULL, '2021091201null000008', '2021-09-12 20:12:07', 'lucien', 456.00, 456.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 3, 0, '顺丰快递', '125564343', 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 1, 1, NULL, '2021-09-12 20:12:09', '2021-09-12 20:17:52', '2021-09-12 20:30:11', NULL, NULL);
-INSERT INTO `oms_order` VALUES (6, 10, NULL, '2021091201null000009', '2021-09-12 22:03:05', 'lucien', 6799.00, 6799.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 3, 0, '圆通快递', '1234567890', 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, '测试', '13556787083', '110101', '北京市', '北京市', '东城区', '测试', NULL, 1, 1, NULL, '2021-09-12 22:03:06', '2021-09-12 22:07:08', '2021-09-12 22:07:28', NULL, NULL);
-INSERT INTO `oms_order` VALUES (7, 10, NULL, '2021091201null000010', '2021-09-12 22:09:05', 'lucien', 219.00, 219.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 3, 0, '顺丰快递', '456789', 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 1, 0, NULL, '2021-09-12 22:09:06', '2021-09-13 14:28:26', '2021-09-13 14:30:17', NULL, NULL);
-INSERT INTO `oms_order` VALUES (8, 10, NULL, '2021091301null000001', '2021-09-13 10:20:56', 'lucien', 119.00, 119.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-09-13 10:20:57', NULL, NULL, NULL, NULL);
-INSERT INTO `oms_order` VALUES (9, 10, NULL, '2021091301null000002', '2021-09-13 10:42:20', 'lucien', 139.00, 139.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 3, 0, NULL, NULL, 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 1, 1, NULL, '2021-09-13 10:42:21', NULL, '2021-09-13 11:14:00', NULL, NULL);
-INSERT INTO `oms_order` VALUES (10, 10, NULL, '2021091301null000003', '2021-09-13 10:50:18', 'lucien', 1778.00, 1778.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-09-13 10:50:19', NULL, NULL, NULL, NULL);
-INSERT INTO `oms_order` VALUES (11, 10, NULL, '2021091301null000004', '2021-09-13 17:02:24', 'lucien', 999.00, 999.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 2, 0, '中通快递', '12345678', 15, 0, 0, '无优惠', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-09-13 17:02:35', '2021-09-13 17:05:20', NULL, NULL, NULL);
-INSERT INTO `oms_order` VALUES (12, 10, NULL, '2021091801null000001', '2021-09-18 22:41:07', 'lucien', 228.00, 228.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-09-18 22:41:12', NULL, NULL, NULL, NULL);
+INSERT INTO `oms_order` VALUES (1, 10, NULL, '202109270101000001', '2021-09-27 09:16:34', 'lucien', 99.00, 99.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 5, 0, '顺丰快递', '202110927812', 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', '用户要求发顺丰', 0, 0, NULL, '2021-09-27 09:16:38', '2021-09-27 09:39:02', NULL, NULL, '2021-09-27 09:38:15');
 
 -- ----------------------------
 -- Table structure for oms_order_item
@@ -201,22 +192,12 @@ CREATE TABLE `oms_order_item`  (
   `gift_growth` int(11) NULL DEFAULT 0,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_item
 -- ----------------------------
-INSERT INTO `oms_order_item` VALUES (1, 1, '2021091201null000004', 33, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '范思哲', '5435341', 228.00, 1, 33, '202109150027033', 66, '无优惠', 0.00, 0.00, 0.00, 228.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (2, 2, '2021091201null000005', 37, 'https://img.alicdn.com/imgextra/i2/594767740/O1CN01KBVDeF272yAoep8KZ_!!594767740.jpg_430x430q90.jpg', '乐高机械组成人乐高布加迪威龙 Bugatti Chiron拼插积木玩具42083', '范思哲', '5847988', 2249.00, 1, 37, '202109150027037', 65, '无优惠', 0.00, 0.00, 0.00, 2249.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (3, 4, '2021091201null000007', 22, 'https://img.alicdn.com/imgextra/i1/2279837698/O1CN016r3Dsh26jjcIUgSsU_!!2279837698.jpg_430x430q90.jpg', 'Xiaomi/小米 11 Ultra 5G手机全网通官方旗舰店正品官网至尊版系列10新款pro红米青春手机', '小米', '2353522', 7599.00, 1, 22, '202109150027022', 34, '无优惠', 0.00, 0.00, 0.00, 7599.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (4, 5, '2021091201null000008', 33, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '范思哲', '5435341', 228.00, 2, 33, '202109150027033', 66, '无优惠', 0.00, 0.00, 0.00, 228.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (5, 6, '2021091201null000009', 18, 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01xeHXfg22AEQKtkTiK_!!1917047079.png_430x430q90.jpg', 'Apple/苹果 iPhone 12 国行手机', '苹果', '1243543', 6799.00, 1, 18, '202109150027018', 31, '无优惠', 0.00, 0.00, 0.00, 6799.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (6, 7, '2021091201null000010', 14, 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', '清欢日式可调节台灯 木铁结合，全体可调节', '万和', '4512354', 219.00, 1, 14, '202109150027014', 54, '无优惠', 0.00, 0.00, 0.00, 219.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (7, 8, '2021091301null000001', 10, 'http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png', '方形封闭式宠物窝 封闭式设计猫咪独享', '万和', '4523434', 119.00, 1, 10, '202109150027010', 54, '无优惠', 0.00, 0.00, 0.00, 119.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (8, 9, '2021091301null000002', 30, 'https://img.alicdn.com/imgextra/i3/833261111/O1CN014MMkx01K4sfv0hKnn_!!833261111.png_430x430q90.jpg', '新品 眼镜厂 鬼灭之刃景品手办 绊之装玖之型蝴蝶忍', '范思哲', '6343122', 139.00, 1, 30, '202109150027030', 61, '无优惠', 0.00, 0.00, 0.00, 139.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (9, 10, '2021091301null000003', 19, 'https://img.alicdn.com/imgextra/i2/2200877014436/O1CN01anNk4S1idjZTDktag_!!2200877014436.jpg_430x430q90.jpg', '【直营国行】Apple/苹果 AirPods Pro耳机三代原装正品 全国联保', '苹果', '2354344', 1778.00, 1, 19, '202109150027019', 31, '无优惠', 0.00, 0.00, 0.00, 1778.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (10, 11, '2021091301null000004', 34, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', '[全款预售]SEGA EVA新世纪福音战士剧场版终 明日香 景品手办', '眼镜厂', '5464542', 999.00, 1, 34, '202109150027034', 66, '无优惠', 0.00, 0.00, 0.00, 999.00, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (11, 12, '2021091801null000001', 33, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '眼镜厂', '5435341', 228.00, 1, 33, '202109150027033', 66, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
+INSERT INTO `oms_order_item` VALUES (1, 1, '202109270101000001', 39, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '优衣库', '2354545', 99.00, 1, 39, '202109270027039', 53, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_operate_history
@@ -230,21 +211,13 @@ CREATE TABLE `oms_order_operate_history`  (
   `order_status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_operate_history
 -- ----------------------------
-INSERT INTO `oms_order_operate_history` VALUES (1, 12, '后台管理员', '2021-09-06 14:08:29', 4, '修改订单备注信息:备注订单测试');
-INSERT INTO `oms_order_operate_history` VALUES (2, 20, '后台管理员', '2021-09-06 14:13:25', 3, '修改订单备注信息:完成订单\n');
-INSERT INTO `oms_order_operate_history` VALUES (3, 29, '后台管理员', '2021-09-06 14:14:07', 4, '订单关闭:关闭订单');
-INSERT INTO `oms_order_operate_history` VALUES (4, 18, '后台管理员', '2021-09-06 14:21:56', 2, '商家发货');
-INSERT INTO `oms_order_operate_history` VALUES (5, 5, '后台管理员', '2021-09-12 20:17:52', 2, '商家发货');
-INSERT INTO `oms_order_operate_history` VALUES (6, 6, '后台管理员', '2021-09-12 22:07:08', 2, '商家发货');
-INSERT INTO `oms_order_operate_history` VALUES (7, 1, '后台管理员', '2021-09-13 14:27:16', 1, '修改订单备注信息:测试测试');
-INSERT INTO `oms_order_operate_history` VALUES (8, 2, '后台管理员', '2021-09-13 14:28:27', 2, '商家发货');
-INSERT INTO `oms_order_operate_history` VALUES (9, 7, '后台管理员', '2021-09-13 14:28:27', 2, '商家发货');
-INSERT INTO `oms_order_operate_history` VALUES (10, 11, '后台管理员', '2021-09-13 17:05:20', 2, '商家发货');
+INSERT INTO `oms_order_operate_history` VALUES (1, 1, '后台管理员', '2021-09-27 09:38:15', 1, '修改订单备注信息:用户要求发顺丰');
+INSERT INTO `oms_order_operate_history` VALUES (2, 1, '后台管理员', '2021-09-27 09:39:03', 2, '商家发货');
 
 -- ----------------------------
 -- Table structure for oms_order_return_apply
@@ -279,11 +252,12 @@ CREATE TABLE `oms_order_return_apply`  (
   `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
   `receive_note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_return_apply
 -- ----------------------------
+INSERT INTO `oms_order_return_apply` VALUES (1, 1, 1, 1, '202109270101000001', '2021-09-27 09:39:52', 'lucien', 99.00, 'cxyxxx', '13556787083', 1, '2021-09-27 09:56:33', 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '优衣库', NULL, 1, 99.00, 99.00, '颜色不喜欢', '我不想要了', NULL, '确认退货', 'admin', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_return_reason
@@ -698,12 +672,11 @@ CREATE TABLE `pms_sku_stock`  (
   `lock_stock` int(11) NULL DEFAULT 0 COMMENT '锁定库存',
   `sp_data` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性，json格式',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku的库存' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku的库存' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_stock
 -- ----------------------------
-INSERT INTO `pms_sku_stock` VALUES (0, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `pms_sku_stock` VALUES (1, 1, '202109150027001', 3788.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/5ac1bf58Ndefaac16.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (2, 2, '202109150027002', 5499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5acc5248N6a5f81cd.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (3, 3, '202109150027003', 2499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b02804dN66004d73.jpg', NULL, NULL, 0, NULL);
@@ -742,6 +715,11 @@ INSERT INTO `pms_sku_stock` VALUES (35, 35, '202109150027035', 685.00, 100, 10, 
 INSERT INTO `pms_sku_stock` VALUES (36, 36, '202109150027036', 169.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2200877014436/O1CN01JSPiOI1idjdZCtMHb_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (37, 37, '202109150027037', 2249.00, 99, 10, 'https://img.alicdn.com/imgextra/i2/594767740/O1CN01KBVDeF272yAoep8KZ_!!594767740.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (38, 38, '202109150027038', 599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2865745622/O1CN01HfoCnq1rOvJbQlMA8_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (39, 39, '202109270027039', 99.00, 99, 10, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', NULL, NULL, -1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (40, 40, '202109270027040', 88.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2146928739/O1CN01NXcLin2EQVuctfvKH_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (41, 41, '202109270027041', 1098.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/928417138/O1CN01jSa1My22bFodIAtG9_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (42, 42, '202109270027042', 748.00, 100, 10, 'https://gd3.alicdn.com/imgextra/i4/1645999081/O1CN017z5hUT2Gx9NEBAmVV_!!1645999081.jpg_400x400.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (43, 43, '202109270027043', 199.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01tbObGO2LTuAFOdSNx_!!2211009479694.jpg_400x400.jpg', NULL, NULL, 0, NULL);
 
 -- ----------------------------
 -- Table structure for sms_home_brand
@@ -846,7 +824,7 @@ INSERT INTO `ums_admin` VALUES (3, 'admin', 'd941cf1382c4ddb8c1b11620cd5d6279', 
 INSERT INTO `ums_admin` VALUES (4, 'macro', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', 'macro', 'macro专用', '2019-10-06 15:53:51', '2020-02-03 14:55:55', 1);
 INSERT INTO `ums_admin` VALUES (6, 'productAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'product@qq.com', '商品管理员', '只有商品权限', '2020-02-07 16:15:08', '2021-09-08 09:53:14', 1);
 INSERT INTO `ums_admin` VALUES (7, 'orderAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'order@qq.com', '订单管理员', '只有订单管理权限', '2020-02-07 16:15:50', '2021-09-08 11:13:22', 1);
-INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2021-08-25 18:10:21', '2021-09-18 22:13:16', 1);
+INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2021-08-25 18:10:21', '2021-09-27 08:54:32', 1);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -860,7 +838,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -875,6 +853,8 @@ INSERT INTO `ums_admin_login_log` VALUES (7, 8, '2021-09-08 09:34:37', '127.0.0.
 INSERT INTO `ums_admin_login_log` VALUES (8, 8, '2021-09-08 09:36:54', '127.0.0.1', NULL, 'Chrome 9');
 INSERT INTO `ums_admin_login_log` VALUES (9, 8, '2021-09-17 21:33:43', '127.0.0.1', NULL, 'Chrome 9');
 INSERT INTO `ums_admin_login_log` VALUES (10, 8, '2021-09-18 22:13:16', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (11, 8, '2021-09-26 20:15:35', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (12, 8, '2021-09-27 08:54:32', '127.0.0.1', NULL, 'Chrome 9');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation

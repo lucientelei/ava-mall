@@ -560,14 +560,7 @@
   </update>
   <select id="getList" resultMap="com.lucien.mall.mapper.OmsOrderReturnApplyMapper.BaseResultMap">
     SELECT
-    id,
-    create_time,
-    member_username,
-    product_real_price,
-    product_count,
-    return_name,
-    status,
-    handle_time
+    *
     FROM
     oms_order_return_apply
     WHERE

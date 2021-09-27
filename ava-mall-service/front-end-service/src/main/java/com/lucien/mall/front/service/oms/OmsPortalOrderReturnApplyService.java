@@ -1,6 +1,9 @@
 package com.lucien.mall.front.service.oms;
 
 import com.lucien.mall.front.OmsOrderReturnApplyParam;
+import com.lucien.mall.pojo.OmsOrderReturnReason;
+
+import java.util.List;
 
 /**
  * @Author Lucien
@@ -15,4 +18,17 @@ public interface OmsPortalOrderReturnApplyService {
      * @return
      */
     int insert(OmsOrderReturnApplyParam param);
+
+    /**
+     * 获取全部退货原因
+     * @return
+     */
+    List<OmsOrderReturnReason> listReason();
+
+    /**
+     * 获取退货订单状态
+     * @param orderId
+     * @return
+     */
+    int applyStatus(Long orderId);
 }

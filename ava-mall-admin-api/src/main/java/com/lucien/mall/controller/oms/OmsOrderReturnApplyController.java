@@ -50,9 +50,9 @@ public class OmsOrderReturnApplyController {
 
     @GetMapping("/listpage")
     @ApiOperation(value = "分页获取申请信息")
-    public GlobalResult<GlobalPage<OmsOrderReturnApply>> listPage(OmsReturnApplyQueryParam queryParam,
-                                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
+    public GlobalResult listPage(OmsReturnApplyQueryParam queryParam,
+                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
         List<OmsOrderReturnApply> result = applyService.listPage(queryParam, pageSize, pageNum);
         return GlobalResult.success(GlobalPage.restPage(result));
     }

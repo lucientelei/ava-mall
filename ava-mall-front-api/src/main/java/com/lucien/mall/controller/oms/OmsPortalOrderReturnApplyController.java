@@ -3,13 +3,13 @@ package com.lucien.mall.controller.oms;
 import com.lucien.mall.front.OmsOrderReturnApplyParam;
 import com.lucien.mall.front.service.oms.OmsPortalOrderReturnApplyService;
 import com.lucien.mall.global.GlobalResult;
+import com.lucien.mall.pojo.OmsOrderReturnReason;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author Lucien
@@ -31,5 +31,19 @@ public class OmsPortalOrderReturnApplyController {
             return GlobalResult.success(result);
         }
         return GlobalResult.error(result);
+    }
+
+    @GetMapping("/list/reason")
+    @ApiOperation(value = "获取全部退货原因")
+    public GlobalResult listReason(){
+        List<OmsOrderReturnReason> result = returnApplyService.listReason();
+        return GlobalResult.success(result);
+    }
+
+    @GetMapping("/apply/status/{orderId}")
+    @ApiOperation(value = "获取退货订单状态")
+    public GlobalResult applyStatus(@PathVariable("orderId") Long orderId){
+        int result = returnApplyService.applyStatus(orderId);
+        return GlobalResult.success(result);
     }
 }

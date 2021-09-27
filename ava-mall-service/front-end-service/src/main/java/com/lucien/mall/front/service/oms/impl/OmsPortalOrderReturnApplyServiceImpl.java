@@ -2,14 +2,20 @@ package com.lucien.mall.front.service.oms.impl;
 
 import com.lucien.mall.front.OmsOrderReturnApplyParam;
 import com.lucien.mall.front.service.oms.OmsPortalOrderReturnApplyService;
+import com.lucien.mall.front.service.oms.OmsPortalOrderService;
 import com.lucien.mall.mapper.OmsOrderReturnApplyMapper;
+import com.lucien.mall.mapper.OmsOrderReturnReasonMapper;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
+import com.lucien.mall.pojo.OmsOrderReturnApplyExample;
+import com.lucien.mall.pojo.OmsOrderReturnReason;
+import com.lucien.mall.pojo.OmsOrderReturnReasonExample;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author Lucien
@@ -23,6 +29,12 @@ public class OmsPortalOrderReturnApplyServiceImpl implements OmsPortalOrderRetur
     @Autowired
     private OmsOrderReturnApplyMapper returnApplyMapper;
 
+    @Autowired
+    private OmsOrderReturnReasonMapper reasonMapper;
+
+    @Autowired
+    private OmsPortalOrderService orderService;
+
     /**
      * 提交申请
      * @param param
@@ -33,8 +45,31 @@ public class OmsPortalOrderReturnApplyServiceImpl implements OmsPortalOrderRetur
         OmsOrderReturnApply returnApply = new OmsOrderReturnApply();
         BeanUtils.copyProperties(param, returnApply);
         returnApply.setCreateTime(new Date());
+        //设置订单为退货状态
+        orderService.updateOrderStatus(param.getOrderId(), 5);
         //申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝
         returnApply.setStatus(0);
         return returnApplyMapper.insert(returnApply);
+    }
+
+    /**
+     * 获取全部退货原因
+     * @return
+     */
+    @Override
+    public List<OmsOrderReturnReason> listReason() {
+        return reasonMapper.selectByExample(new OmsOrderReturnReasonExample());
+    }
+
+    /**
+     * 获取退货订单状态
+     * @param orderId
+     * @return
+     */
+    @Override
+    public int applyStatus(Long orderId) {
+        OmsOrderReturnApplyExample example = new OmsOrderReturnApplyExample();
+        example.createCriteria().andOrderIdEqualTo(orderId);
+        return returnApplyMapper.selectByExample(example).get(0).getStatus();
     }
 }

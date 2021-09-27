@@ -85,4 +85,12 @@ public interface OmsPortalOrderService {
      * @param orderId
      */
     void sendDelayMsgCancelOrder(Long orderId);
+
+    /**
+     * 设置订单状态
+     * @param orderId
+     * @param status
+     * @return
+     */
+    int updateOrderStatus(Long orderId, Integer status);
 }

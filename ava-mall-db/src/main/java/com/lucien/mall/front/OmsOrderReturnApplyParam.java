@@ -38,9 +38,6 @@ public class OmsOrderReturnApplyParam {
     @ApiModelProperty("商品品牌")
     private String productBrand;
 
-    @ApiModelProperty("商品销售属性：颜色：红色；尺码：xl;")
-    private String productAttr;
-
     @ApiModelProperty("退货数量")
     private Integer productCount;
 
@@ -56,8 +53,16 @@ public class OmsOrderReturnApplyParam {
     @ApiModelProperty("描述")
     private String description;
 
-    @ApiModelProperty("凭证图片，以逗号隔开")
-    private String proofPics;
+    @ApiModelProperty("退款金额")
+    private BigDecimal returnAmount;
+
+    public BigDecimal getReturnAmount() {
+        return returnAmount;
+    }
+
+    public void setReturnAmount(BigDecimal returnAmount) {
+        this.returnAmount = returnAmount;
+    }
 
     public Long getOrderId() {
         return orderId;
@@ -131,14 +136,6 @@ public class OmsOrderReturnApplyParam {
         this.productBrand = productBrand;
     }
 
-    public String getProductAttr() {
-        return productAttr;
-    }
-
-    public void setProductAttr(String productAttr) {
-        this.productAttr = productAttr;
-    }
-
     public Integer getProductCount() {
         return productCount;
     }
@@ -179,11 +176,4 @@ public class OmsOrderReturnApplyParam {
         this.description = description;
     }
 
-    public String getProofPics() {
-        return proofPics;
-    }
-
-    public void setProofPics(String proofPics) {
-        this.proofPics = proofPics;
-    }
 }
