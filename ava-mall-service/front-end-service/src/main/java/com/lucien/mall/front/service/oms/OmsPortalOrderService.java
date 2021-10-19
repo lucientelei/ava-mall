@@ -78,7 +78,7 @@ public interface OmsPortalOrderService {
      * 取消单个超时订单
      * @param orderId
      */
-    void cancelOrder(Long orderId);
+    int cancelOrder(Long orderId);
 
     /**
      * 发送延迟消息给rabbitmq 取消订单

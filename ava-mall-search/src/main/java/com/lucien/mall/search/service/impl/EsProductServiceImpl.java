@@ -129,7 +129,7 @@ public class EsProductServiceImpl implements EsProductService {
      */
     @Override
     public void delete(List<Long> ids) {
-        if (CollUtil.isNotEmpty(ids)) {
+        if (!CollUtil.isNotEmpty(ids)) {
             List<EsProduct> esProductList = new ArrayList<>();
             for (Long id : ids) {
                 EsProduct esProduct = new EsProduct();

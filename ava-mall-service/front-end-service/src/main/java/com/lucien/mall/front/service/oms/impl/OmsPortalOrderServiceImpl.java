@@ -211,17 +211,18 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
      */
     @Override
     public Integer paySuccess(Long orderId, Integer payType) {
+        int result = 0;
         OmsOrder omsOrder = new OmsOrder();
         omsOrder.setId(orderId);
         omsOrder.setStatus(1);
         omsOrder.setPaymentTime(new Date());
         omsOrder.setPayType(payType);
-        orderMapper.updateByPrimaryKeySelective(omsOrder);
+        result += orderMapper.updateByPrimaryKeySelective(omsOrder);
         //恢复所有下单商品的锁定库存，扣减真实库存
-        OmsOrderDetail detail = portalOrderMapper.getDetail(orderId);
-        int count = portalOrderMapper.updateSkuStock(detail.getOrderItemList());
+//        OmsOrderDetail detail = portalOrderMapper.getDetail(orderId);
+//        int count = portalOrderMapper.updateSkuStock(detail.getOrderItemList());
 
-        return count;
+        return result;
     }
 
     /**
@@ -377,13 +378,13 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
      * @param orderId
      */
     @Override
-    public void cancelOrder(Long orderId) {
+    public int cancelOrder(Long orderId) {
         OmsOrderExample example = new OmsOrderExample();
         //查询未付款的取消订单
         example.createCriteria().andIdEqualTo(orderId).andStatusEqualTo(0).andDeleteStatusEqualTo(0);
         List<OmsOrder> cancelOrderList = orderMapper.selectByExample(example);
         if (CollectionUtils.isEmpty(cancelOrderList)) {
-            return;
+            return -1;
         }
         //需要取消的订单
         OmsOrder cancelOrder = cancelOrderList.get(0);
@@ -403,6 +404,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
                 memberService.updateIntegration(member.getId(), member.getIntegration() + cancelOrder.getUseIntegration());
             }
         }
+        return 1;
     }
 
     /**
