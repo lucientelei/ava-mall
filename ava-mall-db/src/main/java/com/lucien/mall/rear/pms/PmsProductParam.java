@@ -12,19 +12,8 @@ import java.util.List;
  */
 public class PmsProductParam extends PmsProduct{
 
-    @ApiModelProperty("商品会员价格设置")
-    private List<PmsMemberPrice> memberPriceList;
-
     @ApiModelProperty("商品的sku库存信息")
     private List<PmsSkuStock> skuStockList;
-
-    public List<PmsMemberPrice> getMemberPriceList() {
-        return memberPriceList;
-    }
-
-    public void setMemberPriceList(List<PmsMemberPrice> memberPriceList) {
-        this.memberPriceList = memberPriceList;
-    }
 
     public List<PmsSkuStock> getSkuStockList() {
         return skuStockList;

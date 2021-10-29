@@ -36,10 +36,6 @@ public class PmsProductServiceImpl implements PmsProductService {
     @Autowired
     private PmsProductMapper productMapper;
 
-    //商品会员价格表
-    @Autowired
-    private PmsMemberPriceMapper memberPriceMapper;
-
     //商品SKU表 库存量
     @Autowired
     private PmsSkuStockMapper stockMapper;
@@ -158,9 +154,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         productMapper.insertSelective(product);
 
         Long productId = product.getId();
-        //商品会员价格
-        relateAndInsertList(memberPriceMapper, param.getMemberPriceList(), productId);
-       //处理sku的编码
+        //处理sku的编码
         handleSkuStockCode(param.getSkuStockList(),productId);
         //商品SKU表
         relateAndInsertList(stockMapper, param.getSkuStockList(), productId);
@@ -331,11 +325,6 @@ public class PmsProductServiceImpl implements PmsProductService {
         PmsProduct product = productParam;
         product.setId(id);
         productMapper.updateByPrimaryKeySelective(product);
-        //会员价格
-        PmsMemberPriceExample priceExample = new PmsMemberPriceExample();
-        priceExample.createCriteria().andProductIdEqualTo(id);
-        memberPriceMapper.deleteByExample(priceExample);
-        relateAndInsertList(memberPriceMapper, productParam.getMemberPriceList(), id);
         //修改sku库存信息
         handleUpdateSkuStockList(id, productParam);
         count = 1;

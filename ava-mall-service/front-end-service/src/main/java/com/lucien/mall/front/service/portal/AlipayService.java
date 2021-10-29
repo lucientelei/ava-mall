@@ -9,7 +9,6 @@ import java.math.BigDecimal;
  */
 public interface AlipayService {
 
-
     /**
      * 生成支付表单
      * @param subject 商品描述
@@ -20,5 +19,4 @@ public interface AlipayService {
      */
     String toPay(String subject, BigDecimal money, String tradeNo);
 
-    String payTest();
 }

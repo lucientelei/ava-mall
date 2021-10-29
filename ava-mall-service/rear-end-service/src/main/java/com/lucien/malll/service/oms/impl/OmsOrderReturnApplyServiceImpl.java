@@ -1,7 +1,6 @@
 package com.lucien.malll.service.oms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
 import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.rear.oms.OmsUpdateStatusParam;
 import com.lucien.mall.mapper.OmsOrderReturnApplyMapper;
@@ -31,7 +30,7 @@ public class OmsOrderReturnApplyServiceImpl implements OmsOrderReturnApplyServic
      * @return
      */
     @Override
-    public OmsOrderReturnApplyResult getItem(Long id) {
+    public OmsOrderReturnApply getItem(Long id) {
         return applyMapper.getDetail(id);
     }
 

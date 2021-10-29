@@ -1,6 +1,5 @@
 package com.lucien.malll.service.oms;
 
-import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
 import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.rear.oms.OmsUpdateStatusParam;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
@@ -19,7 +18,7 @@ public interface OmsOrderReturnApplyService {
      * @param id
      * @return
      */
-    OmsOrderReturnApplyResult getItem(Long id);
+    OmsOrderReturnApply getItem(Long id);
 
     /**
      * 更新申请信息状态

@@ -46,12 +46,12 @@ public class AlipayServiceImpl implements AlipayService {
                 alipayPublicKey,
                 "RSA2");
         AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
-        request.setNotifyUrl("http://localhost:8080/paydone");
-        request.setReturnUrl("http://localhost:8080/paydone");
+        request.setNotifyUrl("http://localhost:8710/order");
+        request.setReturnUrl("http://localhost:8710/order");
         JSONObject bizContent = new JSONObject();
         bizContent.put("out_trade_no", tradeNo);
         bizContent.put("total_amount",money);
-        bizContent.put("subject", "CowForceMall收款方");
+        bizContent.put("subject", "AvaMall收款方");
         bizContent.put("product_code", "FAST_INSTANT_TRADE_PAY");
         request.setBizContent(bizContent.toString());
         AlipayTradePagePayResponse response = null;
@@ -68,44 +68,5 @@ public class AlipayServiceImpl implements AlipayService {
             System.out.println("调用失败");
         }
         return payForm;
-    }
-
-    @Override
-    public String payTest() {
-//        String order_no = UUID.randomUUID().toString();    //77777777
-//        String body = "";
-//        String total_fee = "999.99";  //真实金钱
-//        AlipayClient alipayClient = new DefaultAlipayClient(aliPayConfig.getGatewayUrl(), aliPayConfig.getAppID(), aliPayConfig.getMerchantPrivateKey(), aliPayConfig.getFormat(),
-//                aliPayConfig.getCharset(), aliPayConfig.getAlipayPublicKey(), aliPayConfig.getSignType()); //获得初始化的AlipayClient
-//        AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();//创建API对应的request类
-//        JSONObject jsonObject = new JSONObject();
-//        /**
-//         * 订单号
-//         */
-//        jsonObject.put("out_trade_no", order_no);
-//        /**
-//         * 支付金额
-//         */
-//        jsonObject.put("total_amount", total_fee);
-//        jsonObject.put("body", "");
-//        /**
-//         * 订单主题
-//         */
-//        jsonObject.put("subject", "测试支付宝支付");
-//        /**
-//         * 订单支付有效时间
-//         */
-//        jsonObject.put("timeout_express", "90m");
-//        request.setBizContent(jsonObject.toString());
-//        request.setNotifyUrl(aliPayConfig.getNotifyUrl());
-//        AlipayTradePrecreateResponse response = alipayClient.execute(request);
-//        System.err.print(response.getBody());
-//        //根据response中的结果继续业务逻辑处理
-//        if (response.getMsg().equals("Success")) {
-//            String qrcode = response.getQrCode();
-//            return qrcode;
-//        }
-        return "请求失败";
-
     }
 }

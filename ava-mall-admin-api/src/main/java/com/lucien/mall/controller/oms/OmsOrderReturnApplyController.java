@@ -1,6 +1,5 @@
 package com.lucien.mall.controller.oms;
 
-import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
 import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.rear.oms.OmsUpdateStatusParam;
 import com.lucien.mall.global.GlobalPage;
@@ -30,7 +29,7 @@ public class OmsOrderReturnApplyController {
     @GetMapping("/getitem/{id}")
     @ApiOperation(value = "获取指定申请信息")
     public GlobalResult getItem(@PathVariable("id") Long id){
-        OmsOrderReturnApplyResult result = applyService.getItem(id);
+        OmsOrderReturnApply result = applyService.getItem(id);
         if (StringUtils.isEmpty(result)){
             return GlobalResult.error(result);
         }

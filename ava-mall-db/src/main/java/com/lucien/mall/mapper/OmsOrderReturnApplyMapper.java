@@ -1,6 +1,5 @@
 package com.lucien.mall.mapper;
 
-import com.lucien.mall.rear.oms.OmsOrderReturnApplyResult;
 import com.lucien.mall.rear.oms.OmsReturnApplyQueryParam;
 import com.lucien.mall.pojo.OmsOrderReturnApply;
 import com.lucien.mall.pojo.OmsOrderReturnApplyExample;
@@ -39,5 +38,5 @@ public interface OmsOrderReturnApplyMapper {
     /**
      * 获取申请详情
      */
-    OmsOrderReturnApplyResult getDetail(@Param("id")Long id);
+    OmsOrderReturnApply getDetail(@Param("id")Long id);
 }

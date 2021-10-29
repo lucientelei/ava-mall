@@ -2,12 +2,9 @@ package com.lucien.mall.front.service.ums.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.lucien.mall.front.service.ums.UmsMemberService;
-import com.lucien.mall.mapper.UmsMemberLevelMapper;
 import com.lucien.mall.mapper.UmsMemberMapper;
 import com.lucien.mall.pojo.UmsMember;
 import com.lucien.mall.pojo.UmsMemberExample;
-import com.lucien.mall.pojo.UmsMemberLevel;
-import com.lucien.mall.pojo.UmsMemberLevelExample;
 import com.lucien.mall.utils.JWTUtils;
 import com.lucien.mall.utils.RedisUtils;
 import io.lettuce.core.RedisException;
@@ -35,9 +32,6 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Autowired
     private UmsMemberMapper memberMapper;
-
-    @Autowired
-    private UmsMemberLevelMapper memberLevelMapper;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -125,12 +119,6 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);
 
-        UmsMemberLevelExample levelExample = new UmsMemberLevelExample();
-        levelExample.createCriteria().andDefaultStatusEqualTo(1);
-        List<UmsMemberLevel> umsMemberLevels = memberLevelMapper.selectByExample(levelExample);
-        if (!CollectionUtils.isEmpty(umsMemberLevels)){
-            umsMember.setMemberLevelId(umsMemberLevels.get(0).getId());
-        }
         memberMapper.insert(umsMember);
         return "注册成功";
     }

@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 27/09/2021 11:20:59
+ Date: 29/10/2021 10:08:36
 */
 
 SET NAMES utf8mb4;
@@ -41,36 +41,13 @@ CREATE TABLE `oms_cart_item`  (
   `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_cart_item
 -- ----------------------------
-
--- ----------------------------
--- Table structure for oms_company_address
--- ----------------------------
-DROP TABLE IF EXISTS `oms_company_address`;
-CREATE TABLE `oms_company_address`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `address_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址名称',
-  `send_status` int(1) NULL DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
-  `receive_status` int(1) NULL DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
-  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收发货人姓名',
-  `phone` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货人电话',
-  `province` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省/直辖市',
-  `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '市',
-  `region` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区',
-  `detail_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公司收发货地址表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of oms_company_address
--- ----------------------------
-INSERT INTO `oms_company_address` VALUES (1, '深圳发货点', 1, 1, '大梨', '18000000000', '广东省', '深圳市', '南山区', '科兴科学园');
-INSERT INTO `oms_company_address` VALUES (2, '北京发货点', 0, 0, '大梨', '18000000000', '北京市', NULL, '南山区', '科兴科学园');
-INSERT INTO `oms_company_address` VALUES (3, '南京发货点', 0, 0, '大梨', '18000000000', '江苏省', '南京市', '南山区', '科兴科学园');
+INSERT INTO `oms_cart_item` VALUES (1, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-10-15 21:21:52', '2021-10-15 21:21:52', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (2, 26, 26, 10, 1, 1399.00, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '202109150027026', 'lucien_ssa', '2021-10-15 21:22:30', '2021-10-15 21:22:30', 1, 35, '眼镜厂', '5352342', NULL);
 
 -- ----------------------------
 -- Table structure for oms_order
@@ -122,12 +99,14 @@ CREATE TABLE `oms_order`  (
   `comment_time` datetime NULL DEFAULT NULL COMMENT '评价时间',
   `modify_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order
 -- ----------------------------
 INSERT INTO `oms_order` VALUES (1, 10, NULL, '202109270101000001', '2021-09-27 09:16:34', 'lucien', 99.00, 99.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 5, 0, '顺丰快递', '202110927812', 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', '用户要求发顺丰', 0, 0, NULL, '2021-09-27 09:16:38', '2021-09-27 09:39:02', NULL, NULL, '2021-09-27 09:38:15');
+INSERT INTO `oms_order` VALUES (2, 10, NULL, '202110150101000001', '2021-10-15 21:21:56', 'lucien', 228.00, 228.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-10-15 21:21:56', NULL, NULL, NULL, NULL);
+INSERT INTO `oms_order` VALUES (3, 10, NULL, '202110150101000002', '2021-10-15 21:22:34', 'lucien', 1399.00, 1399.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-10-15 21:22:43', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_item
@@ -156,12 +135,14 @@ CREATE TABLE `oms_order_item`  (
   `gift_growth` int(11) NULL DEFAULT 0,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_item
 -- ----------------------------
 INSERT INTO `oms_order_item` VALUES (1, 1, '202109270101000001', 39, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '优衣库', '2354545', 99.00, 1, 39, '202109270027039', 53, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
+INSERT INTO `oms_order_item` VALUES (2, 2, '202110150101000001', 33, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '眼镜厂', '5435341', 228.00, 1, 33, '202109150027033', 66, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
+INSERT INTO `oms_order_item` VALUES (3, 3, '202110150101000002', 26, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '眼镜厂', '5352342', 1399.00, 1, 26, '202109150027026', 35, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_operate_history
@@ -303,52 +284,6 @@ INSERT INTO `pms_brand` VALUES (10, '苹果', 'A', 450, 1, 1, 55, 200, 'http://m
 INSERT INTO `pms_brand` VALUES (11, 'NIKE', 'N', 0, 1, 1, 33, 100, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg', '', 'NIKE的故事');
 INSERT INTO `pms_brand` VALUES (12, 'MUJI', 'M', 0, 1, 1, 30, 100, 'https://img.zcool.cn/community/014b8e5c910518a801214168790d89.jpg@260w_195h_1c_1e_1o_100sh.jpg', '', '严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。');
 INSERT INTO `pms_brand` VALUES (13, '眼镜厂', 'F', 250, 1, 1, 30, 100, 'https://tse3-mm.cn.bing.net/th/id/OIP-C.UWfXN6640uX0p6t3rlNtLgHaDF?pid=ImgDet&rs=1', '', '眼镜厂');
-
--- ----------------------------
--- Table structure for pms_comment
--- ----------------------------
-DROP TABLE IF EXISTS `pms_comment`;
-CREATE TABLE `pms_comment`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
-  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `star` int(3) NULL DEFAULT NULL COMMENT '评价星数：0->5',
-  `member_ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价的ip',
-  `create_time` datetime NULL DEFAULT NULL,
-  `show_status` int(1) NULL DEFAULT NULL,
-  `product_attribute` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '购买时的商品属性',
-  `collect_couont` int(11) NULL DEFAULT NULL,
-  `read_count` int(11) NULL DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `pics` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上传图片地址，以逗号隔开',
-  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论用户头像',
-  `replay_count` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品评价表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of pms_comment
--- ----------------------------
-
--- ----------------------------
--- Table structure for pms_comment_replay
--- ----------------------------
-DROP TABLE IF EXISTS `pms_comment_replay`;
-CREATE TABLE `pms_comment_replay`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `comment_id` bigint(20) NULL DEFAULT NULL,
-  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `create_time` datetime NULL DEFAULT NULL,
-  `type` int(1) NULL DEFAULT NULL COMMENT '评论人员类型；0->会员；1->管理员',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品评价回复表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of pms_comment_replay
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for pms_member_price
@@ -666,14 +601,14 @@ INSERT INTO `pms_sku_stock` VALUES (22, 22, '202109150027022', 7599.00, 100, 10,
 INSERT INTO `pms_sku_stock` VALUES (23, 23, '202109150027023', 728.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/407700539/O1CN01hPH4eF1FquAsynxJN_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (24, 24, '202109150027024', 1290.00, 100, 10, 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i2/2576722561/O1CN01iPI1O21UmyzT2KOC9_!!2576722561.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (25, 25, '202109150027025', 1199.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/1125378539/TB2mCXLX6TpK1RjSZKPXXa3UpXa_!!1125378539.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (26, 26, '202109150027026', 1399.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (26, 26, '202109150027026', 1399.00, 99, 10, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', NULL, NULL, -1, NULL);
 INSERT INTO `pms_sku_stock` VALUES (27, 27, '202109150027027', 5978.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN016ekYBX1idjahukrhA_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (28, 28, '202109150027028', 2599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01BqPY9s1vlbMPxJiEh_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (29, 29, '202109150027029', 479.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01X5D1o01vlbRMW5gCH_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (30, 30, '202109150027030', 139.00, 99, 10, 'https://img.alicdn.com/imgextra/i3/833261111/O1CN014MMkx01K4sfv0hKnn_!!833261111.png_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (31, 31, '202109150027031', 179.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/833261111/O1CN01yB5M6b1K4saHiFU5A_!!833261111.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (32, 32, '202109150027032', 285.00, 100, 10, 'https://gd1.alicdn.com/imgextra/i1/612966252/O1CN01airkQ51w3Stv4zncN_!!612966252.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (33, 33, '202109150027033', 228.00, 96, 10, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', NULL, NULL, -1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (33, 33, '202109150027033', 228.00, 95, 10, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', NULL, NULL, -2, NULL);
 INSERT INTO `pms_sku_stock` VALUES (34, 34, '202109150027034', 999.00, 99, 10, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
 INSERT INTO `pms_sku_stock` VALUES (35, 35, '202109150027035', 685.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN01C00EWE1idjdHq0XHC_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
 INSERT INTO `pms_sku_stock` VALUES (36, 36, '202109150027036', 169.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2200877014436/O1CN01JSPiOI1idjdZCtMHb_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
@@ -883,35 +818,6 @@ INSERT INTO `ums_member` VALUES (7, 4, 'lion', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6O
 INSERT INTO `ums_member` VALUES (8, 4, 'shari', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `ums_member` VALUES (9, 4, 'aewen', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `ums_member` VALUES (10, 4, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', 'lucien_ssa', '13556787083', 1, '2021-08-31 15:02:01', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.yRIXnUfY40-4ViK0NygIkgAAAA?pid=ImgDet&rs=1', NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
-
--- ----------------------------
--- Table structure for ums_member_level
--- ----------------------------
-DROP TABLE IF EXISTS `ums_member_level`;
-CREATE TABLE `ums_member_level`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `growth_point` int(11) NULL DEFAULT NULL,
-  `default_status` int(1) NULL DEFAULT NULL COMMENT '是否为默认等级：0->不是；1->是',
-  `free_freight_point` decimal(10, 2) NULL DEFAULT NULL COMMENT '免运费标准',
-  `comment_growth_point` int(11) NULL DEFAULT NULL COMMENT '每次评价获取的成长值',
-  `priviledge_free_freight` int(1) NULL DEFAULT NULL COMMENT '是否有免邮特权',
-  `priviledge_sign_in` int(1) NULL DEFAULT NULL COMMENT '是否有签到特权',
-  `priviledge_comment` int(1) NULL DEFAULT NULL COMMENT '是否有评论获奖励特权',
-  `priviledge_promotion` int(1) NULL DEFAULT NULL COMMENT '是否有专享活动特权',
-  `priviledge_member_price` int(1) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
-  `priviledge_birthday` int(1) NULL DEFAULT NULL COMMENT '是否有生日特权',
-  `note` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员等级表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of ums_member_level
--- ----------------------------
-INSERT INTO `ums_member_level` VALUES (1, '黄金会员', 1000, 0, 199.00, 5, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (2, '白金会员', 5000, 0, 99.00, 10, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (3, '钻石会员', 15000, 0, 69.00, 15, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (4, '普通会员', 1, 1, 199.00, 20, 1, 1, 1, 1, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for ums_member_login_log
