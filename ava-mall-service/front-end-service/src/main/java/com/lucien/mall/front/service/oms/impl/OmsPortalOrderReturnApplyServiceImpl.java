@@ -3,16 +3,15 @@ package com.lucien.mall.front.service.oms.impl;
 import com.lucien.mall.front.OmsOrderReturnApplyParam;
 import com.lucien.mall.front.service.oms.OmsPortalOrderReturnApplyService;
 import com.lucien.mall.front.service.oms.OmsPortalOrderService;
+import com.lucien.mall.mapper.OmsOrderMapper;
 import com.lucien.mall.mapper.OmsOrderReturnApplyMapper;
 import com.lucien.mall.mapper.OmsOrderReturnReasonMapper;
-import com.lucien.mall.pojo.OmsOrderReturnApply;
-import com.lucien.mall.pojo.OmsOrderReturnApplyExample;
-import com.lucien.mall.pojo.OmsOrderReturnReason;
-import com.lucien.mall.pojo.OmsOrderReturnReasonExample;
+import com.lucien.mall.pojo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -34,6 +33,9 @@ public class OmsPortalOrderReturnApplyServiceImpl implements OmsPortalOrderRetur
 
     @Autowired
     private OmsPortalOrderService orderService;
+
+    @Autowired
+    private OmsOrderMapper omsOrderMapper;
 
     /**
      * 提交申请
@@ -71,5 +73,19 @@ public class OmsPortalOrderReturnApplyServiceImpl implements OmsPortalOrderRetur
         OmsOrderReturnApplyExample example = new OmsOrderReturnApplyExample();
         example.createCriteria().andOrderIdEqualTo(orderId);
         return returnApplyMapper.selectByExample(example).get(0).getStatus();
+    }
+
+    /**
+     * 判断订单是否被删除
+     * @param orderId
+     * @return
+     */
+    @Override
+    public boolean isOrderExit(Long orderId) {
+        OmsOrder omsOrder = omsOrderMapper.selectByPrimaryKey(orderId);
+        if (StringUtils.isEmpty(omsOrder)){
+            return true;
+        }
+        return false;
     }
 }

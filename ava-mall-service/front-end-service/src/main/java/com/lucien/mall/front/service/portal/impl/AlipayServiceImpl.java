@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @Primary
 public class AlipayServiceImpl implements AlipayService {
 
-    private static final String returnURL = "http://localhost:8710/order";
+    private static final String returnURL = "http://192.168.21.103:8710/order";
 
     /**
      * 生成支付表单
@@ -46,8 +46,8 @@ public class AlipayServiceImpl implements AlipayService {
                 alipayPublicKey,
                 "RSA2");
         AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
-        request.setNotifyUrl("http://localhost:8710/order");
-        request.setReturnUrl("http://localhost:8710/order");
+        request.setNotifyUrl("http://192.168.21.103:8710/order");
+        request.setReturnUrl("http://192.168.21.103:8710/order");
         JSONObject bizContent = new JSONObject();
         bizContent.put("out_trade_no", tradeNo);
         bizContent.put("total_amount",money);

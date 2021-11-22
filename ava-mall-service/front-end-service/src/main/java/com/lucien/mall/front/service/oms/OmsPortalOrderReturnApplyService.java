@@ -31,4 +31,11 @@ public interface OmsPortalOrderReturnApplyService {
      * @return
      */
     int applyStatus(Long orderId);
+
+    /**
+     * 判断订单是否被删除
+     * @param orderId
+     * @return
+     */
+    boolean isOrderExit(Long orderId);
 }

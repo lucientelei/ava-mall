@@ -1,7 +1,6 @@
 package com.lucien.mall.front.service.oms.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lucien.mall.front.CartPromotionItem;
 import com.lucien.mall.front.ConfirmOrderResult;
 import com.lucien.mall.front.OmsOrderDetail;
 import com.lucien.mall.front.OrderParam;
@@ -46,10 +45,6 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     @Autowired
     private UmsMemberReceiveAddressService receiveAddressService;
 
-    //sku库存
-    @Autowired
-    private PmsSkuStockMapper skuStockMapper;
-
     @Autowired
     private OmsOrderMapper orderMapper;
 
@@ -68,6 +63,9 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
 
     @Autowired
     private CancelOrderSender cancelOrderSender;
+
+    @Autowired
+    private OmsOrderReturnApplyMapper returnApplyMapper;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -330,6 +328,12 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     public int deleteOrder(Long orderId) {
         UmsMember member = memberService.getCurrentMember();
         OmsOrder order = orderMapper.selectByPrimaryKey(orderId);
+        OmsOrderReturnApplyExample applyExample = new OmsOrderReturnApplyExample();
+        applyExample.createCriteria().andOrderIdEqualTo(orderId);
+        List<OmsOrderReturnApply> returnApplies = returnApplyMapper.selectByExample(applyExample);
+        if (!CollectionUtils.isEmpty(returnApplies)){
+            returnApplyMapper.deleteByPrimaryKey(returnApplies.get(0).getId());
+        }
         if (!order.getMemberId().equals(member.getId())) {
             return -1;
         } else if (order.getStatus() == 3 || order.getStatus() == 4) {
@@ -360,15 +364,15 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         }
         //关闭订单
         portalOrderMapper.updateOrderStatus(ids, 4);
-        for (OmsOrderDetail timeOutOrder : timeOutOrders) {
-            //接触sku库存锁定
-            portalOrderMapper.releaseSkuStockLock(timeOutOrder.getOrderItemList());
-            //返还积分
-            if (!StringUtils.isEmpty(timeOutOrder.getIntegration())) {
-                UmsMember member = memberService.getById(timeOutOrder.getMemberId());
-                memberService.updateIntegration(member.getId(), member.getIntegration() + timeOutOrder.getIntegration());
-            }
-        }
+//        for (OmsOrderDetail timeOutOrder : timeOutOrders) {
+//            //接触sku库存锁定
+//            portalOrderMapper.releaseSkuStockLock(timeOutOrder.getOrderItemList());
+//            //返还积分
+//            if (!StringUtils.isEmpty(timeOutOrder.getIntegration())) {
+//                UmsMember member = memberService.getById(timeOutOrder.getMemberId());
+//                memberService.updateIntegration(member.getId(), member.getIntegration() + timeOutOrder.getIntegration());
+//            }
+//        }
         return timeOutOrders.size();
     }
 
@@ -395,14 +399,14 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
             orderItemExample.createCriteria().andOrderIdEqualTo(orderId);
             List<OmsOrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
             //解除订单商品锁定
-            if (!CollectionUtils.isEmpty(orderItems)) {
-                portalOrderMapper.releaseSkuStockLock(orderItems);
-            }
+//            if (!CollectionUtils.isEmpty(orderItems)) {
+//                portalOrderMapper.releaseSkuStockLock(orderItems);
+//            }
             //返还积分
-            if (!StringUtils.isEmpty(cancelOrder.getUseIntegration())) {
-                UmsMember member = memberService.getById(cancelOrder.getMemberId());
-                memberService.updateIntegration(member.getId(), member.getIntegration() + cancelOrder.getUseIntegration());
-            }
+//            if (!StringUtils.isEmpty(cancelOrder.getUseIntegration())) {
+//                UmsMember member = memberService.getById(cancelOrder.getMemberId());
+//                memberService.updateIntegration(member.getId(), member.getIntegration() + cancelOrder.getUseIntegration());
+//            }
         }
         return 1;
     }
@@ -447,19 +451,6 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
             totalAmount = totalAmount.add(item.getProductPrice().multiply(new BigDecimal(item.getProductQuantity())));
         }
         return totalAmount;
-    }
-
-    /**
-     * 锁定下单商品的所有库存
-     *
-     * @param cartPromotionItemList
-     */
-    private void lockStock(List<CartPromotionItem> cartPromotionItemList) {
-        for (CartPromotionItem cartPromotionItem : cartPromotionItemList) {
-            PmsSkuStock skuStock = skuStockMapper.selectByPrimaryKey(cartPromotionItem.getProductSkuId());
-            skuStock.setLockStock(skuStock.getLockStock() + cartPromotionItem.getQuantity());
-            skuStockMapper.updateByPrimaryKeySelective(skuStock);
-        }
     }
 
     /**
