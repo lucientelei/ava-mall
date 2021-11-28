@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -33,9 +35,11 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private String port;
 
     @Bean
-    public Docket createRestApi() {
-
-        log.info("......Swagger2启动于 localhost:" + port + "/swagger-ui.html");
+    public Docket createRestApi(Environment env) {
+        boolean enable = env.acceptsProfiles(Profiles.of("dev", "test"));
+        if (enable){
+            log.info("......Swagger2启动于 localhost:" + port + "/swagger-ui.html");
+        }
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
@@ -44,7 +48,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .build()
                 .securitySchemes(securitySchemes())
                 .securityContexts(securityContexts())
-                .apiInfo(apiInfo());
+                .apiInfo(apiInfo())
+                .enable(enable);
     }
 
     /**

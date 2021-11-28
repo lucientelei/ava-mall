@@ -23,18 +23,31 @@ public class FrontApiApplication {
         ConfigurableApplicationContext application = SpringApplication.run(FrontApiApplication.class, args);
 
         Environment env = application.getEnvironment();
-        logger.info("\n----------------------------------------------------------\n\t" +
-                        "Application '{}' is running! Access URLs:\n\t" +
-                        "Local: \t\thttp://localhost:{}\n\t" +
-                        "External: \thttp://{}:{}\n\t" +
-                        "Swagger: \thttp://localhost:{}/swagger-ui.html\n\t" +
-                        "Druid: \t\thttp://localhost:{}/druid/index.html\n" +
-                        "----------------------------------------------------------",
-                env.getProperty("spring.application.name"),
-                env.getProperty("server.port"),
-                InetAddress.getLocalHost().getHostAddress(),
-                env.getProperty("server.port"),
-                env.getProperty("server.port"),
-                env.getProperty("server.port"));
+        String active = env.getProperty("spring.profiles.active");
+        if ("prod".equals(active)) {
+            logger.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "Local: \t\thttp://localhost:{}\n\t" +
+                            "External: \thttp://{}:{}\n\t" +
+                            "----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    env.getProperty("server.port"),
+                    InetAddress.getLocalHost().getHostAddress(),
+                    env.getProperty("server.port"));
+        } else {
+            logger.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "Local: \t\thttp://localhost:{}\n\t" +
+                            "External: \thttp://{}:{}\n\t" +
+                            "Swagger: \thttp://localhost:{}/swagger-ui.html\n\t" +
+                            "Druid: \t\thttp://localhost:{}/druid/index.html\n" +
+                            "----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    env.getProperty("server.port"),
+                    InetAddress.getLocalHost().getHostAddress(),
+                    env.getProperty("server.port"),
+                    env.getProperty("server.port"),
+                    env.getProperty("server.port"));
+        }
     }
 }

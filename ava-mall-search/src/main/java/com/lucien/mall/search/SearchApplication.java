@@ -21,23 +21,36 @@ import java.net.UnknownHostException;
 public class SearchApplication {
 
     private static Logger logger = LoggerFactory.getLogger(SearchApplication.class);
-    
+
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(SearchApplication.class, args);
 
         Environment env = application.getEnvironment();
-        logger.info("\n----------------------------------------------------------\n\t" +
-                        "Application '{}' is running! Access URLs:\n\t" +
-                        "Local: \t\thttp://localhost:{}\n\t" +
-                        "External: \thttp://{}:{}\n\t" +
-                        "Swagger: \thttp://localhost:{}/swagger-ui.html\n\t" +
-                        "Elasticsearch: \t\thttp://localhost:5601/app/kibana#/home\n" +
-                        "----------------------------------------------------------",
-                env.getProperty("spring.application.name"),
-                env.getProperty("server.port"),
-                InetAddress.getLocalHost().getHostAddress(),
-                env.getProperty("server.port"),
-                env.getProperty("server.port"),
-                env.getProperty("server.port"));
+        String active = env.getProperty("spring.profiles.active");
+        if ("prod".equals(active)) {
+            logger.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "Local: \t\thttp://localhost:{}\n\t" +
+                            "External: \thttp://{}:{}\n\t" +
+                            "----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    env.getProperty("server.port"),
+                    InetAddress.getLocalHost().getHostAddress(),
+                    env.getProperty("server.port"));
+        } else {
+            logger.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "Local: \t\thttp://localhost:{}\n\t" +
+                            "External: \thttp://{}:{}\n\t" +
+                            "Swagger: \thttp://localhost:{}/swagger-ui.html\n\t" +
+                            "Druid: \t\thttp://localhost:{}/druid/index.html\n" +
+                            "----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    env.getProperty("server.port"),
+                    InetAddress.getLocalHost().getHostAddress(),
+                    env.getProperty("server.port"),
+                    env.getProperty("server.port"),
+                    env.getProperty("server.port"));
+        }
     }
 }
