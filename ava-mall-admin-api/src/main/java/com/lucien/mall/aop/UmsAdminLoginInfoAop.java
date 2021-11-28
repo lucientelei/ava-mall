@@ -35,6 +35,9 @@ public class UmsAdminLoginInfoAop {
     @Autowired
     private UmsAdminService adminService;
 
+    /**
+     * 后置通知
+     */
     @After(value = "@annotation(com.lucien.mall.annotation.LoginInfoAnnotation)")
     public void after() {
         //获取到请求的属性

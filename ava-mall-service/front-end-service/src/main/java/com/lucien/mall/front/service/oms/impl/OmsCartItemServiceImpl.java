@@ -1,7 +1,5 @@
 package com.lucien.mall.front.service.oms.impl;
 
-import cn.hutool.core.collection.CollUtil;
-import com.lucien.mall.front.CartPromotionItem;
 import com.lucien.mall.front.service.oms.OmsCartItemService;
 import com.lucien.mall.front.service.ums.UmsMemberService;
 import com.lucien.mall.mapper.OmsCartItemMapper;
@@ -15,10 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author Lucien
@@ -47,11 +43,11 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
      */
     public OmsCartItem getCartItem(OmsCartItem cartItem) {
         OmsCartItemExample example = new OmsCartItemExample();
-        OmsCartItemExample.Criteria criteria = example.createCriteria().andMemberIdEqualTo(cartItem.getMemberId())
-                .andProductIdEqualTo(cartItem.getProductId()).andDeleteStatusEqualTo(0);
-        if (!StringUtils.isEmpty(cartItem.getProductSkuId())) {
-            criteria.andProductSkuIdEqualTo(cartItem.getProductSkuId());
-        }
+        OmsCartItemExample.Criteria criteria = example.createCriteria();
+        criteria.andMemberIdEqualTo(cartItem.getMemberId())
+                .andProductIdEqualTo(cartItem.getProductId())
+                .andDeleteStatusEqualTo(0);
+
         List<OmsCartItem> omsCartItems = cartItemMapper.selectByExample(example);
         if (!CollectionUtils.isEmpty(omsCartItems)) {
             return omsCartItems.get(0);
@@ -73,7 +69,7 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
         cartItem.setMemberNickname(umsMember.getNickname());
         cartItem.setDeleteStatus(0);
         OmsCartItem existCartItem = getCartItem(cartItem);
-        if (existCartItem == null) {
+        if (StringUtils.isEmpty(existCartItem)) {
             cartItem.setCreateDate(new Date());
             count = cartItemMapper.insert(cartItem);
         } else {
@@ -168,6 +164,7 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
 
     /**
      * 通过ids获取购物车商品数据
+     *
      * @param ids
      * @return
      */

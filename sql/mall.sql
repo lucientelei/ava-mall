@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 29/10/2021 10:08:36
+ Date: 28/11/2021 12:48:38
 */
 
 SET NAMES utf8mb4;
@@ -41,13 +41,40 @@ CREATE TABLE `oms_cart_item`  (
   `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_cart_item
 -- ----------------------------
-INSERT INTO `oms_cart_item` VALUES (1, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-10-15 21:21:52', '2021-10-15 21:21:52', 1, 66, '眼镜厂', '5435341', NULL);
-INSERT INTO `oms_cart_item` VALUES (2, 26, 26, 10, 1, 1399.00, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '202109150027026', 'lucien_ssa', '2021-10-15 21:22:30', '2021-10-15 21:22:30', 1, 35, '眼镜厂', '5352342', NULL);
+INSERT INTO `oms_cart_item` VALUES (13, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-11-28 11:10:02', '2021-11-28 11:10:02', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (14, 26, 26, 10, 1, 1399.00, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '202109150027026', 'lucien_ssa', '2021-11-28 11:10:15', '2021-11-28 11:10:15', 1, 35, '眼镜厂', '5352342', NULL);
+INSERT INTO `oms_cart_item` VALUES (15, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-11-28 11:39:12', '2021-11-28 11:39:12', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (16, 16, 16, 10, 1, 7488.00, 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '202109150027016', 'lucien_ssa', '2021-11-28 12:18:26', '2021-11-28 12:18:26', 1, 30, '华为', '2343525', NULL);
+
+-- ----------------------------
+-- Table structure for oms_company_address
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_company_address`;
+CREATE TABLE `oms_company_address`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址名称',
+  `send_status` int(1) NULL DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
+  `receive_status` int(1) NULL DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收发货人姓名',
+  `phone` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货人电话',
+  `province` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省/直辖市',
+  `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '市',
+  `region` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区',
+  `detail_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公司收发货地址表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oms_company_address
+-- ----------------------------
+INSERT INTO `oms_company_address` VALUES (1, '深圳发货点', 1, 1, '大梨', '18000000000', '广东省', '深圳市', '南山区', '科兴科学园');
+INSERT INTO `oms_company_address` VALUES (2, '北京发货点', 0, 0, '大梨', '18000000000', '北京市', NULL, '南山区', '科兴科学园');
+INSERT INTO `oms_company_address` VALUES (3, '南京发货点', 0, 0, '大梨', '18000000000', '江苏省', '南京市', '南山区', '科兴科学园');
 
 -- ----------------------------
 -- Table structure for oms_order
@@ -99,14 +126,11 @@ CREATE TABLE `oms_order`  (
   `comment_time` datetime NULL DEFAULT NULL COMMENT '评价时间',
   `modify_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order
 -- ----------------------------
-INSERT INTO `oms_order` VALUES (1, 10, NULL, '202109270101000001', '2021-09-27 09:16:34', 'lucien', 99.00, 99.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 5, 0, '顺丰快递', '202110927812', 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', '用户要求发顺丰', 0, 0, NULL, '2021-09-27 09:16:38', '2021-09-27 09:39:02', NULL, NULL, '2021-09-27 09:38:15');
-INSERT INTO `oms_order` VALUES (2, 10, NULL, '202110150101000001', '2021-10-15 21:21:56', 'lucien', 228.00, 228.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-10-15 21:21:56', NULL, NULL, NULL, NULL);
-INSERT INTO `oms_order` VALUES (3, 10, NULL, '202110150101000002', '2021-10-15 21:22:34', 'lucien', 1399.00, 1399.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 1, 1, 0, NULL, NULL, 15, 0, NULL, 'null', NULL, NULL, NULL, NULL, NULL, 'cxyxxx', '13556787083', '441927', '广东省', '东莞市', '常平镇', '紫荆花园晓辉道51B', NULL, 0, 0, NULL, '2021-10-15 21:22:43', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_item
@@ -135,14 +159,11 @@ CREATE TABLE `oms_order_item`  (
   `gift_growth` int(11) NULL DEFAULT 0,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_item
 -- ----------------------------
-INSERT INTO `oms_order_item` VALUES (1, 1, '202109270101000001', 39, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '优衣库', '2354545', 99.00, 1, 39, '202109270027039', 53, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (2, 2, '202110150101000001', 33, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '眼镜厂', '5435341', 228.00, 1, 33, '202109150027033', 66, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
-INSERT INTO `oms_order_item` VALUES (3, 3, '202110150101000002', 26, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '眼镜厂', '5352342', 1399.00, 1, 26, '202109150027026', 35, NULL, NULL, NULL, 0.00, NULL, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_operate_history
@@ -156,13 +177,12 @@ CREATE TABLE `oms_order_operate_history`  (
   `order_status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_operate_history
 -- ----------------------------
-INSERT INTO `oms_order_operate_history` VALUES (1, 1, '后台管理员', '2021-09-27 09:38:15', 1, '修改订单备注信息:用户要求发顺丰');
-INSERT INTO `oms_order_operate_history` VALUES (2, 1, '后台管理员', '2021-09-27 09:39:03', 2, '商家发货');
+INSERT INTO `oms_order_operate_history` VALUES (1, 14, '后台管理员', '2021-11-28 12:20:15', 2, '商家发货');
 
 -- ----------------------------
 -- Table structure for oms_order_return_apply
@@ -197,12 +217,11 @@ CREATE TABLE `oms_order_return_apply`  (
   `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
   `receive_note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_return_apply
 -- ----------------------------
-INSERT INTO `oms_order_return_apply` VALUES (1, 1, 1, 1, '202109270101000001', '2021-09-27 09:39:52', 'lucien', 99.00, 'cxyxxx', '13556787083', 1, '2021-09-27 09:56:33', 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '优衣库', NULL, 1, 99.00, 99.00, '颜色不喜欢', '我不想要了', NULL, '确认退货', 'admin', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order_return_reason
@@ -433,7 +452,7 @@ INSERT INTO `pms_product` VALUES (22, 6, 34, 0, 3, 'Xiaomi/小米 11 Ultra 5G手
 INSERT INTO `pms_product` VALUES (23, 13, 21, 0, 5, '新款 周大福珠宝首饰福字足金黄金手链计价F222900精选', 'https://img.alicdn.com/imgextra/i3/407700539/O1CN01hPH4eF1FquAsynxJN_!!0-item_pic.jpg_430x430q90.jpg', '5453434', 0, 1, 1, 1, 1, 0, 32, 728.00, NULL, 0, 0, 0, '新款 周大福珠宝首饰福字足金黄金手链计价F222900精选', '新款 周大福珠宝首饰福字足金黄金手链计价F222900精选', 728.00, 100, 0, '', 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p style=\"text-align: center;\"><img src=\"https://img.alicdn.com/imgextra/i1/407700539/O1CN01fzUMnw1Fqu5WUoAKN_!!407700539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/407700539/O1CN01AWCSRQ1FquAk8CyLk_!!407700539.jpg\" align=\"absmiddle\" style=\"width: 550.0px;\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/407700539/O1CN01UqiaZs1FquAj2KVtI_!!407700539.jpg\" align=\"absmiddle\" style=\"width: 550.0px;\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/407700539/O1CN01Pam5rT1FquAiSDN0a_!!407700539.jpg\" align=\"absmiddle\" style=\"width: 550.0px;\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/407700539/TB263NhaGAoBKNjSZSyXXaHAVXa-407700539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/407700539/TB2RpeQXYZnBKNjSZFKXXcGOVXa-407700539.png\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"//img-tmdetail.alicdn.com/tps/i3/T1BYd_XwFcXXb9RTPq-90-90.png\" data-ks-lazyload=\"https://img.alicdn.com/imgextra/i1/407700539/TB2KcmHdVXXXXXtXXXXXXXXXXXX_!!407700539.jpg\" align=\"absmiddle\"><img src=\"//img-tmdetail.alicdn.com/tps/i3/T1BYd_XwFcXXb9RTPq-90-90.png\" data-ks-lazyload=\"https://img.alicdn.com/imgextra/i3/407700539/O1CN01CTAqWI1Fqu51USdnk_!!407700539.jpg\" align=\"absmiddle\"><img src=\"//img-tmdetail.alicdn.com/tps/i3/T1BYd_XwFcXXb9RTPq-90-90.png\" data-ks-lazyload=\"https://img.alicdn.com/imgextra/i1/407700539/O1CN0124HtsB1FquAiwEwbR_!!407700539.jpg\" align=\"absmiddle\"><img src=\"//img-tmdetail.alicdn.com/tps/i3/T1BYd_XwFcXXb9RTPq-90-90.png\" data-ks-lazyload=\"https://img.alicdn.com/imgextra/i1/407700539/TB2sQ64b9CWBuNjy0FhXXb6EVXa-407700539.jpg\" align=\"absmiddle\"></p>', NULL, NULL, NULL, 0, 0, '范思哲', '手链');
 INSERT INTO `pms_product` VALUES (24, 13, 20, 0, 5, '施华洛世奇 SWAROVSKI INFINITY 女项链礼物', 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i2/2576722561/O1CN01iPI1O21UmyzT2KOC9_!!2576722561.jpg_430x430q90.jpg', '5352312', 0, 1, 1, 1, 1, 0, 15, 1290.00, NULL, 0, 0, 0, '施华洛世奇 SWAROVSKI INFINITY 女项链礼物', '施华洛世奇 SWAROVSKI INFINITY 女项链礼物', 1290.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i1/2576722561/O1CN01Wi2Kxb1Umz1FK4HP4_!!2576722561.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2576722561/O1CN01cXYfC91Umz1Ckd8Hg_!!2576722561.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2576722561/O1CN01wCvQAX1Umz1B81fVp_!!2576722561.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2576722561/O1CN01lmWNVr1Umz16zF8fT_!!2576722561.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2576722561/O1CN01fEKi5a1Umz1H4jxbB_!!2576722561.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, '施华洛世奇', NULL);
 INSERT INTO `pms_product` VALUES (25, 13, 21, 0, 5, '天王表钢带简约情侣手表男士女士休闲石英表生日礼物3798', 'https://img.alicdn.com/imgextra/i3/1125378539/TB2mCXLX6TpK1RjSZKPXXa3UpXa_!!1125378539.jpg_430x430q90.jpg', '3534534', 0, 1, 1, 1, 1, 0, 18, 1199.00, NULL, 0, 0, 0, '天王表钢带简约情侣手表男士女士休闲石英表生日礼物3798', '天王表钢带简约情侣手表男士女士休闲石英表生日礼物3798', 1199.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i2/1125378539/O1CN01wi3pFK2CwugOYAdVV_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/1125378539/O1CN01FtB1302CwugJ0NylQ_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/1125378539/O1CN01XZRPBT2CwugHUJ8O9_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/1125378539/O1CN01bLoTDu2CwugKwMsbl_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/1125378539/O1CN01WmXuYu2CwugJ0Ly2F_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/1125378539/O1CN01xHaeQT2Cwug8tnEfo_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/1125378539/O1CN012BIR4Y2CwugN7x3aG_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/1125378539/O1CN01qbcq8A2CwugHYqHqO_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/1125378539/O1CN01Dle9bH2CwugFYQD4y_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/1125378539/O1CN01SbkTUV2CwugN7yX2L_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/1125378539/O1CN016tksZX2Cwugnb5Lse_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/1125378539/O1CN01pk15392CwugOYC6z5_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/1125378539/O1CN012sEGp52CwugHYpgRR_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/1125378539/O1CN010hMgYU2CwugIjtihq_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/1125378539/O1CN01Ha01As2CwugIjtr23_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/1125378539/O1CN01xSMC7U2CwugJ0Kxej_!!1125378539.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, NULL, '耳机');
-INSERT INTO `pms_product` VALUES (26, 13, 35, 0, 5, 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', '5352342', 0, 1, 1, 1, 1, 0, 16, 1399.00, NULL, 0, 0, 0, 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 1399.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i2/647482297/O1CN01MnmORS1Sq4SxSmZGI_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01NXdU4o1Sq4T5aQHLf_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN017DdaDk1Sq4T9X3A3E_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01Mokk521Sq4T79L0rB_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01TPuzdK1Sq4T1iBHvA_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01HMaNmK1Sq4SxSjgRP_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01uqrlkm1Sq4T4ZVplM_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01HMujdY1Sq4T63tY2E_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, NULL, '次时代主机');
+INSERT INTO `pms_product` VALUES (26, 13, 35, 0, 5, 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', '5352342', 0, 1, 1, 1, 1, 0, 16, 1399.00, NULL, 0, 0, 0, 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 1399.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i2/647482297/O1CN01MnmORS1Sq4SxSmZGI_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01NXdU4o1Sq4T5aQHLf_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN017DdaDk1Sq4T9X3A3E_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01Mokk521Sq4T79L0rB_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/647482297/O1CN01TPuzdK1Sq4T1iBHvA_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01HMaNmK1Sq4SxSjgRP_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01uqrlkm1Sq4T4ZVplM_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/647482297/O1CN01HMujdY1Sq4T63tY2E_!!647482297.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, NULL, '耳机');
 INSERT INTO `pms_product` VALUES (27, 13, 36, 0, 5, '索尼PS5主机 电视游戏机 无光驱版 超 蓝光8K 日版家用单机怪物', 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN016ekYBX1idjahukrhA_!!2200877014436.jpg_430x430q90.jpg', '3532343', 0, 1, 1, 1, 1, 0, 3, 5978.00, NULL, 0, 0, 0, '索尼PS5主机 电视游戏机 无光驱版 超 蓝光8K 日版家用单机怪物', '索尼PS5主机 电视游戏机 无光驱版 超 蓝光8K 日版家用单机怪物', 5978.00, 199, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i4/3596652968/O1CN01Oosbmu1XnOAEfSgVb_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/3596652968/O1CN01NR0qUm1XnOANtcaLI_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/3596652968/O1CN01K8q3ln1XnOASj7VcP_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/3596652968/O1CN01sFmGLE1XnOAQFd8Ie_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/3596652968/O1CN01COdpEW1XnOANGRrFD_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/3596652968/O1CN01IFWogx1XnOAT7JMeP_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/3596652968/O1CN01G6OC4e1XnOAN48nk7_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/3596652968/O1CN01rQkysO1XnOARqP8ai_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/3596652968/O1CN01KBZSSY1XnOAEfZCEF_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/3596652968/O1CN01TSgSAC1XnOAKZGQgB_!!3596652968-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"> </p>', NULL, NULL, NULL, 0, 0, NULL, '次时代主机');
 INSERT INTO `pms_product` VALUES (28, 13, 37, 0, 5, '日本直邮Nintendo/任天堂Switch掌上游戏机NS红蓝手柄续航增强版', 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01BqPY9s1vlbMPxJiEh_!!2201168176213.jpg_430x430q90.jpg', '5435432', 0, 1, 1, 1, 1, 0, 4, 2599.00, NULL, 0, 0, 0, '日本直邮Nintendo/任天堂Switch掌上游戏机NS红蓝手柄续航增强版', '日本直邮Nintendo/任天堂Switch掌上游戏机NS红蓝手柄续航增强版', 2599.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<div class=\"content ke-post\" style=\"height: auto;\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN012CRXXX1vlbPphjezH_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01MdAfgE1vlbHcbnRPn_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN013AiaqL1vlbS92pX7W_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i3/2201168176213/O1CN01B5fQQy1vlbSDIWeqS_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN019QyH8Z1vlbSCnjHrB_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01CK5URe1vlbS6LK6Yc_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01Buy4Rj1vlbSGfdrkw_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01SmMssQ1vlbSGfe4D8_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01CgQBZO1vlbS9YIC84_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01RMmGJ11vlbSF4By1t_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01CePTYx1vlbMOXCe89_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01UwIinW1vlbQWTHXYE_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01XwKIbd1vlbQaVApZy_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01flPWJB1vlbHcwtUIF_!!2201168176213.jpg\" class=\"img-ks-lazyload\"><img width=\"790px\" style=\"display: block;\" src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01eftHq81vlbQTrrQNK_!!2201168176213.jpg\" class=\"img-ks-lazyload\"></div>', NULL, NULL, NULL, 0, 0, '眼镜厂', '手办玩具');
 INSERT INTO `pms_product` VALUES (29, 13, 60, 0, 5, '日本直邮海贼王超级DX波特卡斯?D?艾斯 26mm 人偶', 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01X5D1o01vlbRMW5gCH_!!2201168176213.jpg_430x430q90.jpg', '5432311', 0, 1, 1, 1, 1, 0, 20, 479.00, NULL, 0, 0, 0, '日本直邮海贼王超级DX波特卡斯?D?艾斯 26mm 人偶', '日本直邮海贼王超级DX波特卡斯?D?艾斯 26mm 人偶', 479.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<div class=\"content ke-post\" style=\"height: auto;\"><img src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN012CRXXX1vlbPphjezH_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01MdAfgE1vlbHcbnRPn_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01zGwXI11vlbRUC3Esj_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01zGwXI11vlbRUC3Esj_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01F4HdWS1vlbRWOIljo_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01R01VvS1vlbRWOIyDd_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01BPAHxo1vlbRP4xiGo_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01MDrL1l1vlbRL4cUqc_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2201168176213/O1CN01UwIinW1vlbQWTHXYE_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01XwKIbd1vlbQaVApZy_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01flPWJB1vlbHcwtUIF_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2201168176213/O1CN01eftHq81vlbQTrrQNK_!!2201168176213.jpg\" style=\"display: block;\" width=\"790px\" class=\"img-ks-lazyload\"></div>', NULL, NULL, NULL, 0, 0, '眼镜厂', '手办玩具');
@@ -462,7 +481,7 @@ CREATE TABLE `pms_product_attribute_category`  (
   `attribute_count` int(11) NULL DEFAULT 0 COMMENT '属性数量',
   `param_count` int(11) NULL DEFAULT 0 COMMENT '参数数量',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品属性分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品属性分类表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_attribute_category
@@ -473,10 +492,6 @@ INSERT INTO `pms_product_attribute_category` VALUES (3, '手机数码-手机通�
 INSERT INTO `pms_product_attribute_category` VALUES (4, '配件', 0, 0);
 INSERT INTO `pms_product_attribute_category` VALUES (5, '居家', 0, 0);
 INSERT INTO `pms_product_attribute_category` VALUES (6, '洗护', 0, 0);
-INSERT INTO `pms_product_attribute_category` VALUES (10, '测试分类', 0, 0);
-INSERT INTO `pms_product_attribute_category` VALUES (11, '服装-鞋帽', 3, 0);
-INSERT INTO `pms_product_attribute_category` VALUES (12, '总类', 100, 100);
-INSERT INTO `pms_product_attribute_category` VALUES (13, '12323', 0, 0);
 
 -- ----------------------------
 -- Table structure for pms_product_category
@@ -723,7 +738,7 @@ INSERT INTO `ums_admin` VALUES (3, 'admin', 'd941cf1382c4ddb8c1b11620cd5d6279', 
 INSERT INTO `ums_admin` VALUES (4, 'macro', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', 'macro', 'macro专用', '2019-10-06 15:53:51', '2020-02-03 14:55:55', 1);
 INSERT INTO `ums_admin` VALUES (6, 'productAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'product@qq.com', '商品管理员', '只有商品权限', '2020-02-07 16:15:08', '2021-09-08 09:53:14', 1);
 INSERT INTO `ums_admin` VALUES (7, 'orderAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'order@qq.com', '订单管理员', '只有订单管理权限', '2020-02-07 16:15:50', '2021-09-08 11:13:22', 1);
-INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2021-08-25 18:10:21', '2021-09-27 08:54:32', 1);
+INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2021-08-25 18:10:21', '2021-11-28 12:20:03', 1);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -737,7 +752,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -754,6 +769,10 @@ INSERT INTO `ums_admin_login_log` VALUES (9, 8, '2021-09-17 21:33:43', '127.0.0.
 INSERT INTO `ums_admin_login_log` VALUES (10, 8, '2021-09-18 22:13:16', '127.0.0.1', NULL, 'Chrome 9');
 INSERT INTO `ums_admin_login_log` VALUES (11, 8, '2021-09-26 20:15:35', '127.0.0.1', NULL, 'Chrome 9');
 INSERT INTO `ums_admin_login_log` VALUES (12, 8, '2021-09-27 08:54:32', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (13, 8, '2021-10-29 10:49:58', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (14, 8, '2021-11-28 10:41:35', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (15, 8, '2021-11-28 10:49:17', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (16, 8, '2021-11-28 12:20:03', '127.0.0.1', NULL, 'Chrome 9');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation

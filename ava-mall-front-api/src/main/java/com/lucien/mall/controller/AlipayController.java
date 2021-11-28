@@ -30,7 +30,6 @@ public class AlipayController {
     @PostMapping("/pay")
     @ApiOperation(value = "支付")
     public GlobalResult pay(String subject, BigDecimal money, String tradeNo){
-        orderService.paySuccess(Long.valueOf(tradeNo), 1);
         String result = alipayService.toPay(subject, money, tradeNo);
         return GlobalResult.success(result);
     }

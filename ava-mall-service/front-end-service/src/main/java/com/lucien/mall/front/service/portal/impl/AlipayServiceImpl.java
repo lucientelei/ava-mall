@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @Primary
 public class AlipayServiceImpl implements AlipayService {
 
-    private static final String returnURL = "http://192.168.21.103:8710/order";
+    private static final String returnURL = "http://192.168.21.103:8710/paysuccess";
 
     /**
      * 生成支付表单
@@ -31,6 +31,7 @@ public class AlipayServiceImpl implements AlipayService {
      * @param tradeNo 订单号
      * @return 返回一个支付表单
      * @throws Exception
+     * http://192.168.21.103:8710/order
      */
     @Override
     public String toPay(String subject, BigDecimal money, String tradeNo) {
@@ -46,12 +47,12 @@ public class AlipayServiceImpl implements AlipayService {
                 alipayPublicKey,
                 "RSA2");
         AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
-        request.setNotifyUrl("http://192.168.21.103:8710/order");
-        request.setReturnUrl("http://192.168.21.103:8710/order");
+        request.setNotifyUrl("http://192.168.21.103:8710/paysuccess");
+        request.setReturnUrl("http://192.168.21.103:8710/paysuccess");
         JSONObject bizContent = new JSONObject();
         bizContent.put("out_trade_no", tradeNo);
         bizContent.put("total_amount",money);
-        bizContent.put("subject", "AvaMall收款方");
+        bizContent.put("subject", "AVAMall收款方");
         bizContent.put("product_code", "FAST_INSTANT_TRADE_PAY");
         request.setBizContent(bizContent.toString());
         AlipayTradePagePayResponse response = null;

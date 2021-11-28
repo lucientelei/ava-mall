@@ -71,6 +71,12 @@ spring:
   elasticsearch:
     rest:
       uris: localhost:9200
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /mall
+    username: admin
+    password: admin
   devtools:
     restart:
       enabled: true

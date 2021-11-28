@@ -4,6 +4,12 @@ spring:
   profiles:
     #默认为开发环境
     active: prod
+  #热部署配置
+  devtools:
+    restart:
+      enabled: true
+      poll-interval: 5s
+      quiet-period: 3s
 
 # MyBatis配置
 mybatis:

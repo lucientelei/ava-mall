@@ -37,8 +37,9 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lucien.mall.mapper"
                              targetProject="ava-mall-db\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="%">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <table tableName="oms_company_address"></table>
+<!--        <table tableName="%">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

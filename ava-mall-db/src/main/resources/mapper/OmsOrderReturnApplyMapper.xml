@@ -586,7 +586,7 @@
     </if>
   </select>
   <select id="getDetail" resultMap="BaseResultMap">
-        SELECT
+      SELECT
             ra.*, ca.id ca_id,
                   ca.address_name ca_address_name,
                   ca.`name` ca_name,
@@ -597,6 +597,7 @@
                   ca.detail_address ca_detail_address
         FROM
             oms_order_return_apply ra
+            LEFT JOIN oms_company_address ca ON ra.company_address_id = ca.id
         WHERE ra.id=#{id};
     </select>
 </mapper>
