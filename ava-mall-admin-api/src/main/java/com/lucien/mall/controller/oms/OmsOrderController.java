@@ -106,4 +106,15 @@ public class OmsOrderController {
         }
         return GlobalResult.error(result);
     }
+
+    @PostMapping("/pay/success")
+    @ApiOperation(value = "用户支付成功的回调")
+    public GlobalResult paySuccess(@RequestParam Long orderId, @RequestParam Integer payType) {
+        Integer result = orderService.paySuccess(orderId, payType);
+        if (result > 0){
+            return GlobalResult.success("支付成功", result);
+        }
+        return GlobalResult.error();
+    }
+
 }

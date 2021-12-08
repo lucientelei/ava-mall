@@ -191,4 +191,28 @@ public class OmsOrderServiceImpl implements OmsOrderService {
         historyMapper.insert(history);
         return count;
     }
+
+    /**
+     * 支付成功回调
+     *
+     * @param orderId
+     * @param payType
+     * @return
+     */
+    @Override
+    public Integer paySuccess(Long orderId, Integer payType) {
+        int result = 0;
+        OmsOrder omsOrder = new OmsOrder();
+        omsOrder.setId(orderId);
+        omsOrder.setStatus(1);
+        omsOrder.setPaymentTime(new Date());
+        omsOrder.setPayType(payType);
+        result += orderMapper.updateByPrimaryKeySelective(omsOrder);
+        //恢复所有下单商品的锁定库存，扣减真实库存
+//        OmsOrderDetail detail = portalOrderMapper.getDetail(orderId);
+//        int count = portalOrderMapper.updateSkuStock(detail.getOrderItemList());
+
+        return result;
+    }
+
 }

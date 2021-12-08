@@ -1,7 +1,8 @@
 package com.lucien.malll.service.oms;
 
-import com.lucien.mall.rear.oms.*;
 import com.lucien.mall.pojo.OmsOrder;
+import com.lucien.mall.rear.oms.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -72,4 +73,13 @@ public interface OmsOrderService {
      * @return
      */
     int updateReceiverInfo(OmsReceiverInfoParam param);
+
+    /**
+     * 支付成功回调
+     * @param orderId
+     * @param payType
+     * @return
+     */
+    @Transactional
+    Integer paySuccess(Long orderId, Integer payType);
 }

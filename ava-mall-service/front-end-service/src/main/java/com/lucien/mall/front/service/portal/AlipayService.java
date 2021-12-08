@@ -1,5 +1,7 @@
 package com.lucien.mall.front.service.portal;
 
+import com.alipay.api.response.AlipayDataDataserviceBillDownloadurlQueryResponse;
+
 import java.math.BigDecimal;
 
 /**
@@ -19,4 +21,11 @@ public interface AlipayService {
      */
     String toPay(String subject, BigDecimal money, String tradeNo);
 
+    /**
+     * 获取订单
+     * @param billType
+     * @param billDate
+     * @return
+     */
+    AlipayDataDataserviceBillDownloadurlQueryResponse getOrder(String billType, String billDate);
 }
