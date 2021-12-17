@@ -1,6 +1,7 @@
 package com.lucien.mall.controller;
 
 import com.alipay.api.response.AlipayDataDataserviceBillDownloadurlQueryResponse;
+import com.alipay.api.response.AlipayTradePayResponse;
 import com.lucien.mall.front.service.portal.AlipayService;
 import com.lucien.mall.front.service.oms.OmsPortalOrderService;
 import com.lucien.mall.global.GlobalResult;
@@ -39,6 +40,13 @@ public class AlipayController {
     @ApiOperation(value = "获取订单信息")
     public GlobalResult toOrder(String billType, String billDate){
         AlipayDataDataserviceBillDownloadurlQueryResponse result = alipayService.getOrder(billType, billDate);
+        return GlobalResult.success(result);
+    }
+
+    @PostMapping("/facePay")
+    @ApiOperation(value = "当面付")
+    public GlobalResult facePay(){
+        AlipayTradePayResponse result = alipayService.facePay();
         return GlobalResult.success(result);
     }
 }

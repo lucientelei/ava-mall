@@ -2,7 +2,7 @@ spring:
   application:
     name: ava-mall-front-api
   profiles:
-    active: prod
+    active: dev
 
 # MyBatis配置
 mybatis:

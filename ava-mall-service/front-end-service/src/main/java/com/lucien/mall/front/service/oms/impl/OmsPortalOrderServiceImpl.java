@@ -102,7 +102,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         //获取用户购物车及优惠信息
         UmsMember member = memberService.getCurrentMember();
 
-        List<OmsCartItem> list = cartItemService.list(member.getId());
+        List<OmsCartItem> list = cartItemService.listByIds(param.getCartIds());
         for (OmsCartItem omsCartItem : list) {
             OmsOrderItem orderItem = new OmsOrderItem();
             orderItem.setProductId(omsCartItem.getProductId());

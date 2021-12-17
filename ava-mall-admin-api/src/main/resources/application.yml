@@ -3,7 +3,7 @@ spring:
     name: ava-mall-admin-api
   profiles:
     #默认为开发环境
-    active: prod
+    active: dev
   #热部署配置
   devtools:
     restart:

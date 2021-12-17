@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.request.AlipayDataDataserviceBillDownloadurlQueryRequest;
+import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.alipay.api.response.AlipayDataDataserviceBillDownloadurlQueryResponse;
+import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeWapPayResponse;
 import com.lucien.mall.front.service.portal.AlipayService;
 import org.springframework.context.annotation.Primary;
@@ -51,7 +54,7 @@ public class AlipayServiceImpl implements AlipayService {
      */
     @Override
     public String toPay(String subject, BigDecimal money, String tradeNo) {
-        String payForm = null;
+            String payForm = null;
 
         AlipayTradeWapPayRequest request = new AlipayTradeWapPayRequest();
         request.setNotifyUrl(returnURL);
@@ -101,6 +104,29 @@ public class AlipayServiceImpl implements AlipayService {
             System.out.println("调用成功");
         } else {
             System.out.println("调用失败");
+        }
+        return response;
+    }
+
+    @Override
+    public AlipayTradePayResponse facePay() {
+        AlipayTradePayRequest request = new AlipayTradePayRequest();
+        AlipayTradePayModel model = new AlipayTradePayModel();
+        request.setBizModel(model);
+
+        model.setOutTradeNo(System.currentTimeMillis()+"");
+        model.setSubject("Iphone6 16G");
+        model.setTotalAmount("0.01");
+        model.setAuthCode("287936131019793958");//沙箱钱包中的付款码
+        model.setScene("bar_code");
+
+        AlipayTradePayResponse response = null;
+        try {
+            response = alipayClient.execute(request);
+            System.out.println(response.getBody());
+            System.out.println(response.getTradeNo());
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
         }
         return response;
     }
