@@ -190,7 +190,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
             memberService.updateIntegration(member.getId(), member.getIntegration() - param.getUseIntegration());
         }
         //删除购物车商品
-        deleteCartItemList(member);
+        deleteCartItemList(member, param.getCartIds());
         //发送延迟消息取消订单
         sendDelayMsgCancelOrder(order.getId());
         Map<String, Object> result = new HashMap<>();
@@ -547,12 +547,8 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
      * 删除下单商品的购物车信息
      * @param currentMember
      */
-    private void deleteCartItemList(UmsMember currentMember) {
-        List<Long> ids = new ArrayList<>();
-        List<OmsCartItem> list = cartItemService.list(currentMember.getId());
-        for (OmsCartItem omsCartItem : list) {
-            ids.add(omsCartItem.getId());
-        }
+    private void deleteCartItemList(UmsMember currentMember, List<Long> ids) {
         cartItemService.delete(currentMember.getId(), ids);
     }
+
 }

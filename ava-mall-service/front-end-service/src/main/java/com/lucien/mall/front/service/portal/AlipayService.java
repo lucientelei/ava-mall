@@ -1,8 +1,5 @@
 package com.lucien.mall.front.service.portal;
 
-import com.alipay.api.response.AlipayDataDataserviceBillDownloadurlQueryResponse;
-import com.alipay.api.response.AlipayTradePayResponse;
-
 import java.math.BigDecimal;
 
 /**
@@ -22,17 +19,5 @@ public interface AlipayService {
      */
     String toPay(String subject, BigDecimal money, String tradeNo);
 
-    /**
-     * 获取订单
-     * @param billType
-     * @param billDate
-     * @return
-     */
-    AlipayDataDataserviceBillDownloadurlQueryResponse getOrder(String billType, String billDate);
-
-    /**
-     * 当面付
-     * @return
-     */
-    AlipayTradePayResponse facePay();
+    String getCode(BigDecimal money, String tradeNo);
 }
