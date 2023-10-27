@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 商品属性参数
  */
 public class PmsProductAttributeParam {

@@ -4,7 +4,7 @@ import com.lucien.mall.global.error.BaseErrorInfoInterface;
 
 /**
  * @Author Lucien
- * @Date 2021/8/26
+ * @Date 2023/8/26
  * 异常处理枚举类
  */
 public enum ExceptionEnum implements BaseErrorInfoInterface {

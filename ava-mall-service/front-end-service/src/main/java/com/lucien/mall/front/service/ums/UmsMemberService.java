@@ -4,7 +4,7 @@ import com.lucien.mall.pojo.UmsMember;
 
 /**
  * @Author Lucien
- * @Date 2021/8/31
+ * @Date 2023/8/31
  * 前端会员管理Service
  */
 public interface UmsMemberService {

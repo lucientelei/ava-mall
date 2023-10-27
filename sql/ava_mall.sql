@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : local-mysql
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50726
+ Source Server Version : 80020
  Source Host           : localhost:3306
- Source Schema         : mall
+ Source Schema         : ava_mall
 
  Target Server Type    : MySQL
- Target Server Version : 50726
+ Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 28/11/2021 12:48:38
+ Date: 29/08/2023 10:49:56
 */
 
 SET NAMES utf8mb4;
@@ -22,11 +22,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_cart_item`;
 CREATE TABLE `oms_cart_item`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
-  `product_sku_id` bigint(20) NULL DEFAULT NULL,
-  `member_id` bigint(20) NULL DEFAULT NULL,
-  `quantity` int(11) NULL DEFAULT NULL COMMENT '购买数量',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `product_id` bigint NULL DEFAULT NULL,
+  `product_sku_id` bigint NULL DEFAULT NULL,
+  `member_id` bigint NULL DEFAULT NULL,
+  `quantity` int NULL DEFAULT NULL COMMENT '购买数量',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '添加到购物车的价格',
   `product_pic` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品主图',
   `product_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品名称',
@@ -35,31 +35,31 @@ CREATE TABLE `oms_cart_item`  (
   `member_nickname` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '会员昵称',
   `create_date` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `modify_date` datetime NULL DEFAULT NULL COMMENT '修改时间',
-  `delete_status` int(1) NULL DEFAULT 0 COMMENT '是否删除',
-  `product_category_id` bigint(20) NULL DEFAULT NULL COMMENT '商品分类',
+  `delete_status` int NULL DEFAULT 0 COMMENT '是否删除',
+  `product_category_id` bigint NULL DEFAULT NULL COMMENT '商品分类',
   `product_brand` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_cart_item
 -- ----------------------------
-INSERT INTO `oms_cart_item` VALUES (13, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-11-28 11:10:02', '2021-11-28 11:10:02', 1, 66, '眼镜厂', '5435341', NULL);
-INSERT INTO `oms_cart_item` VALUES (14, 26, 26, 10, 1, 1399.00, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '202109150027026', 'lucien_ssa', '2021-11-28 11:10:15', '2021-11-28 11:10:15', 1, 35, '眼镜厂', '5352342', NULL);
-INSERT INTO `oms_cart_item` VALUES (15, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202109150027033', 'lucien_ssa', '2021-11-28 11:39:12', '2021-11-28 11:39:12', 1, 66, '眼镜厂', '5435341', NULL);
-INSERT INTO `oms_cart_item` VALUES (16, 16, 16, 10, 1, 7488.00, 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '202109150027016', 'lucien_ssa', '2021-11-28 12:18:26', '2021-11-28 12:18:26', 1, 30, '华为', '2343525', NULL);
+INSERT INTO `oms_cart_item` VALUES (13, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202309150027033', 'lucien_ssa', '2023-11-28 11:10:02', '2023-11-28 11:10:02', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (14, 26, 26, 10, 1, 1399.00, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', 'Beats Solo Pro头戴式耳机无线蓝牙b魔音降噪运动耳麦高音质', '202309150027026', 'lucien_ssa', '2023-11-28 11:10:15', '2023-11-28 11:10:15', 1, 35, '眼镜厂', '5352342', NULL);
+INSERT INTO `oms_cart_item` VALUES (15, 33, 33, 10, 1, 228.00, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', '海洋堂新世纪福音战士EVA成品初号机', '海洋堂新世纪福音战士EVA成品初号机', '202309150027033', 'lucien_ssa', '2023-11-28 11:39:12', '2023-11-28 11:39:12', 1, 66, '眼镜厂', '5435341', NULL);
+INSERT INTO `oms_cart_item` VALUES (16, 16, 16, 10, 1, 7488.00, 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '202309150027016', 'lucien_ssa', '2023-11-28 12:18:26', '2023-11-28 12:18:26', 1, 30, '华为', '2343525', NULL);
 
 -- ----------------------------
 -- Table structure for oms_company_address
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_company_address`;
 CREATE TABLE `oms_company_address`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `address_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址名称',
-  `send_status` int(1) NULL DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
-  `receive_status` int(1) NULL DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
+  `send_status` int NULL DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
+  `receive_status` int NULL DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收发货人姓名',
   `phone` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货人电话',
   `province` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省/直辖市',
@@ -67,7 +67,7 @@ CREATE TABLE `oms_company_address`  (
   `region` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区',
   `detail_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公司收发货地址表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公司收发货地址表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_company_address
@@ -81,9 +81,9 @@ INSERT INTO `oms_company_address` VALUES (3, '南京发货点', 0, 0, '大梨', 
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order`;
 CREATE TABLE `oms_order`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单id',
-  `member_id` bigint(20) NOT NULL,
-  `coupon_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id',
+  `member_id` bigint NOT NULL,
+  `coupon_id` bigint NULL DEFAULT NULL,
   `order_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
   `create_time` datetime NULL DEFAULT NULL COMMENT '提交时间',
   `member_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户帐号',
@@ -94,17 +94,17 @@ CREATE TABLE `oms_order`  (
   `integration_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '积分抵扣金额',
   `coupon_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '优惠券抵扣金额',
   `discount_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '管理员后台调整订单使用的折扣金额',
-  `pay_type` int(1) NULL DEFAULT NULL COMMENT '支付方式：0->未支付；1->支付宝；2->微信',
-  `source_type` int(1) NULL DEFAULT NULL COMMENT '订单来源：0->PC订单；1->app订单',
-  `status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->退货订单',
-  `order_type` int(1) NULL DEFAULT NULL COMMENT '订单类型：0->正常订单；1->秒杀订单',
+  `pay_type` int NULL DEFAULT NULL COMMENT '支付方式：0->未支付；1->支付宝；2->微信',
+  `source_type` int NULL DEFAULT NULL COMMENT '订单来源：0->PC订单；1->app订单',
+  `status` int NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->退货订单',
+  `order_type` int NULL DEFAULT NULL COMMENT '订单类型：0->正常订单；1->秒杀订单',
   `delivery_company` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物流公司(配送方式)',
   `delivery_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物流单号',
-  `auto_confirm_day` int(11) NULL DEFAULT NULL COMMENT '自动确认时间（天）',
-  `integration` int(11) NULL DEFAULT NULL COMMENT '可以获得的积分',
-  `growth` int(11) NULL DEFAULT NULL COMMENT '可以活动的成长值',
+  `auto_confirm_day` int NULL DEFAULT NULL COMMENT '自动确认时间（天）',
+  `integration` int NULL DEFAULT NULL COMMENT '可以获得的积分',
+  `growth` int NULL DEFAULT NULL COMMENT '可以活动的成长值',
   `promotion_info` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动信息',
-  `bill_type` int(1) NULL DEFAULT NULL COMMENT '发票类型：0->不开发票；1->电子发票；2->纸质发票',
+  `bill_type` int NULL DEFAULT NULL COMMENT '发票类型：0->不开发票；1->电子发票；2->纸质发票',
   `bill_header` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票抬头',
   `bill_content` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票内容',
   `bill_receiver_phone` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收票人电话',
@@ -117,16 +117,16 @@ CREATE TABLE `oms_order`  (
   `receiver_region` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区',
   `receiver_detail_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单备注',
-  `confirm_status` int(1) NULL DEFAULT NULL COMMENT '确认收货状态：0->未确认；1->已确认',
-  `delete_status` int(1) NOT NULL DEFAULT 0 COMMENT '删除状态：0->未删除；1->已删除',
-  `use_integration` int(11) NULL DEFAULT NULL COMMENT '下单时使用的积分',
+  `confirm_status` int NULL DEFAULT NULL COMMENT '确认收货状态：0->未确认；1->已确认',
+  `delete_status` int NOT NULL DEFAULT 0 COMMENT '删除状态：0->未删除；1->已删除',
+  `use_integration` int NULL DEFAULT NULL COMMENT '下单时使用的积分',
   `payment_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
   `delivery_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
   `receive_time` datetime NULL DEFAULT NULL COMMENT '确认收货时间',
   `comment_time` datetime NULL DEFAULT NULL COMMENT '评价时间',
   `modify_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order
@@ -137,29 +137,29 @@ CREATE TABLE `oms_order`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order_item`;
 CREATE TABLE `oms_order_item`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NULL DEFAULT NULL COMMENT '订单id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `order_id` bigint NULL DEFAULT NULL COMMENT '订单id',
   `order_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
-  `product_id` bigint(20) NULL DEFAULT NULL,
+  `product_id` bigint NULL DEFAULT NULL,
   `product_pic` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_brand` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '销售价格',
-  `product_quantity` int(11) NULL DEFAULT NULL COMMENT '购买数量',
-  `product_sku_id` bigint(20) NULL DEFAULT NULL COMMENT '商品sku编号',
+  `product_quantity` int NULL DEFAULT NULL COMMENT '购买数量',
+  `product_sku_id` bigint NULL DEFAULT NULL COMMENT '商品sku编号',
   `product_sku_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品sku条码',
-  `product_category_id` bigint(20) NULL DEFAULT NULL COMMENT '商品分类id',
+  `product_category_id` bigint NULL DEFAULT NULL COMMENT '商品分类id',
   `promotion_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品促销名称',
   `promotion_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '商品促销分解金额',
   `coupon_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '优惠券优惠分解金额',
   `integration_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '积分优惠分解金额',
   `real_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '该商品经过优惠后的分解金额',
-  `gift_integration` int(11) NULL DEFAULT 0,
-  `gift_growth` int(11) NULL DEFAULT 0,
+  `gift_integration` int NULL DEFAULT 0,
+  `gift_growth` int NULL DEFAULT 0,
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单中所包含的商品' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_item
@@ -170,42 +170,42 @@ CREATE TABLE `oms_order_item`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order_operate_history`;
 CREATE TABLE `oms_order_operate_history`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NULL DEFAULT NULL COMMENT '订单id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `order_id` bigint NULL DEFAULT NULL COMMENT '订单id',
   `operate_man` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作人：用户；系统；后台管理员',
   `create_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
-  `order_status` int(1) NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
+  `order_status` int NULL DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单操作历史记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_operate_history
 -- ----------------------------
-INSERT INTO `oms_order_operate_history` VALUES (1, 14, '后台管理员', '2021-11-28 12:20:15', 2, '商家发货');
+INSERT INTO `oms_order_operate_history` VALUES (1, 14, '后台管理员', '2023-11-28 12:20:15', 2, '商家发货');
 
 -- ----------------------------
 -- Table structure for oms_order_return_apply
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order_return_apply`;
 CREATE TABLE `oms_order_return_apply`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NULL DEFAULT NULL COMMENT '订单id',
-  `company_address_id` bigint(20) NULL DEFAULT NULL COMMENT '收货地址表id',
-  `product_id` bigint(20) NULL DEFAULT NULL COMMENT '退货商品id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `order_id` bigint NULL DEFAULT NULL COMMENT '订单id',
+  `company_address_id` bigint NULL DEFAULT NULL COMMENT '收货地址表id',
+  `product_id` bigint NULL DEFAULT NULL COMMENT '退货商品id',
   `order_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
   `create_time` datetime NULL DEFAULT NULL COMMENT '申请时间',
   `member_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '会员用户名',
   `return_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '退款金额',
   `return_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '退货人姓名',
   `return_phone` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '退货人电话',
-  `status` int(1) NULL DEFAULT NULL COMMENT '申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝',
+  `status` int NULL DEFAULT NULL COMMENT '申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝',
   `handle_time` datetime NULL DEFAULT NULL COMMENT '处理时间',
   `product_pic` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片',
   `product_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品名称',
   `product_brand` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品品牌',
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性：颜色：红色；尺码：xl;',
-  `product_count` int(11) NULL DEFAULT NULL COMMENT '退货数量',
+  `product_count` int NULL DEFAULT NULL COMMENT '退货数量',
   `product_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '商品单价',
   `product_real_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '商品实际支付单价',
   `reason` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '原因',
@@ -217,7 +217,7 @@ CREATE TABLE `oms_order_return_apply`  (
   `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
   `receive_note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单退货申请' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_return_apply
@@ -228,13 +228,13 @@ CREATE TABLE `oms_order_return_apply`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order_return_reason`;
 CREATE TABLE `oms_order_return_reason`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '退货类型',
-  `sort` int(11) NULL DEFAULT NULL,
-  `status` int(1) NULL DEFAULT NULL COMMENT '状态：0->不启用；1->启用',
+  `sort` int NULL DEFAULT NULL,
+  `status` int NULL DEFAULT NULL COMMENT '状态：0->不启用；1->启用',
   `create_time` datetime NULL DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '退货原因表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '退货原因表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_return_reason
@@ -254,14 +254,14 @@ INSERT INTO `oms_order_return_reason` VALUES (15, '售后问题', 0, 1, '2018-10
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_order_setting`;
 CREATE TABLE `oms_order_setting`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `flash_order_overtime` int(11) NULL DEFAULT NULL COMMENT '秒杀订单超时关闭时间(分)',
-  `normal_order_overtime` int(11) NULL DEFAULT NULL COMMENT '正常订单超时时间(分)',
-  `confirm_overtime` int(11) NULL DEFAULT NULL COMMENT '发货后自动确认收货时间（天）',
-  `finish_overtime` int(11) NULL DEFAULT NULL COMMENT '自动完成交易时间，不能申请售后（天）',
-  `comment_overtime` int(11) NULL DEFAULT NULL COMMENT '订单完成后自动好评时间（天）',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `flash_order_overtime` int NULL DEFAULT NULL COMMENT '秒杀订单超时关闭时间(分)',
+  `normal_order_overtime` int NULL DEFAULT NULL COMMENT '正常订单超时时间(分)',
+  `confirm_overtime` int NULL DEFAULT NULL COMMENT '发货后自动确认收货时间（天）',
+  `finish_overtime` int NULL DEFAULT NULL COMMENT '自动完成交易时间，不能申请售后（天）',
+  `comment_overtime` int NULL DEFAULT NULL COMMENT '订单完成后自动好评时间（天）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单设置表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单设置表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_setting
@@ -273,19 +273,19 @@ INSERT INTO `oms_order_setting` VALUES (1, 60, 120, 15, 7, 7);
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_brand`;
 CREATE TABLE `pms_brand`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `first_letter` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '首字母',
-  `sort` int(11) NULL DEFAULT NULL,
-  `factory_status` int(1) NULL DEFAULT NULL COMMENT '是否为品牌制造商：0->不是；1->是',
-  `show_status` int(1) NULL DEFAULT NULL,
-  `product_count` int(11) NULL DEFAULT NULL COMMENT '产品数量',
-  `product_comment_count` int(11) NULL DEFAULT NULL COMMENT '产品评论数量',
+  `sort` int NULL DEFAULT NULL,
+  `factory_status` int NULL DEFAULT NULL COMMENT '是否为品牌制造商：0->不是；1->是',
+  `show_status` int NULL DEFAULT NULL,
+  `product_count` int NULL DEFAULT NULL COMMENT '产品数量',
+  `product_comment_count` int NULL DEFAULT NULL COMMENT '产品评论数量',
   `logo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '品牌logo',
   `big_pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '专区大图',
   `brand_story` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '品牌故事',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '品牌表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '品牌表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pms_brand
@@ -309,13 +309,13 @@ INSERT INTO `pms_brand` VALUES (13, '眼镜厂', 'F', 250, 1, 1, 30, 100, 'https
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_member_price`;
 CREATE TABLE `pms_member_price`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
-  `member_level_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `product_id` bigint NULL DEFAULT NULL,
+  `member_level_id` bigint NULL DEFAULT NULL,
   `member_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '会员价格',
   `member_level_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 252 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品会员价格表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 252 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品会员价格表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pms_member_price
@@ -379,34 +379,34 @@ INSERT INTO `pms_member_price` VALUES (251, 35, 3, NULL, '钻石会员');
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_product`;
 CREATE TABLE `pms_product`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `brand_id` bigint(20) NULL DEFAULT NULL,
-  `product_category_id` bigint(20) NULL DEFAULT NULL,
-  `feight_template_id` bigint(20) NULL DEFAULT NULL,
-  `product_attribute_category_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `brand_id` bigint NULL DEFAULT NULL,
+  `product_category_id` bigint NULL DEFAULT NULL,
+  `feight_template_id` bigint NULL DEFAULT NULL,
+  `product_attribute_category_id` bigint NULL DEFAULT NULL,
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '货号',
-  `delete_status` int(1) NULL DEFAULT NULL COMMENT '删除状态：0->未删除；1->已删除',
-  `publish_status` int(1) NULL DEFAULT NULL COMMENT '上架状态：0->下架；1->上架',
-  `new_status` int(1) NULL DEFAULT NULL COMMENT '新品状态:0->不是新品；1->新品',
-  `recommand_status` int(1) NULL DEFAULT NULL COMMENT '推荐状态；0->不推荐；1->推荐',
-  `verify_status` int(1) NULL DEFAULT NULL COMMENT '审核状态：0->未审核；1->审核通过',
-  `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
-  `sale` int(11) NULL DEFAULT NULL COMMENT '销量',
+  `delete_status` int NULL DEFAULT NULL COMMENT '删除状态：0->未删除；1->已删除',
+  `publish_status` int NULL DEFAULT NULL COMMENT '上架状态：0->下架；1->上架',
+  `new_status` int NULL DEFAULT NULL COMMENT '新品状态:0->不是新品；1->新品',
+  `recommand_status` int NULL DEFAULT NULL COMMENT '推荐状态；0->不推荐；1->推荐',
+  `verify_status` int NULL DEFAULT NULL COMMENT '审核状态：0->未审核；1->审核通过',
+  `sort` int NULL DEFAULT NULL COMMENT '排序',
+  `sale` int NULL DEFAULT NULL COMMENT '销量',
   `price` decimal(10, 2) NULL DEFAULT NULL,
   `promotion_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '促销价格',
-  `gift_growth` int(11) NULL DEFAULT 0 COMMENT '赠送的成长值',
-  `gift_point` int(11) NULL DEFAULT 0 COMMENT '赠送的积分',
-  `use_point_limit` int(11) NULL DEFAULT NULL COMMENT '限制使用的积分数',
+  `gift_growth` int NULL DEFAULT 0 COMMENT '赠送的成长值',
+  `gift_point` int NULL DEFAULT 0 COMMENT '赠送的积分',
+  `use_point_limit` int NULL DEFAULT NULL COMMENT '限制使用的积分数',
   `sub_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '副标题',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '商品描述',
   `original_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '市场价',
-  `stock` int(11) NULL DEFAULT NULL COMMENT '库存',
-  `low_stock` int(11) NULL DEFAULT NULL COMMENT '库存预警值',
+  `stock` int NULL DEFAULT NULL COMMENT '库存',
+  `low_stock` int NULL DEFAULT NULL COMMENT '库存预警值',
   `unit` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单位',
   `weight` decimal(10, 2) NULL DEFAULT NULL COMMENT '商品重量，默认为克',
-  `preview_status` int(1) NULL DEFAULT NULL COMMENT '是否为预告商品：0->不是；1->是',
+  `preview_status` int NULL DEFAULT NULL COMMENT '是否为预告商品：0->不是；1->是',
   `service_ids` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮',
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -417,8 +417,8 @@ CREATE TABLE `pms_product`  (
   `detail_mobile_html` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '移动端网页详情',
   `promotion_start_time` datetime NULL DEFAULT NULL COMMENT '促销开始时间',
   `promotion_end_time` datetime NULL DEFAULT NULL COMMENT '促销结束时间',
-  `promotion_per_limit` int(11) NULL DEFAULT NULL COMMENT '活动限购数量',
-  `promotion_type` int(1) NULL DEFAULT NULL COMMENT '促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购',
+  `promotion_per_limit` int NULL DEFAULT NULL COMMENT '活动限购数量',
+  `promotion_type` int NULL DEFAULT NULL COMMENT '促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购',
   `brand_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '品牌名称',
   `product_category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品分类名称',
   PRIMARY KEY (`id`) USING BTREE
@@ -443,7 +443,7 @@ INSERT INTO `pms_product` VALUES (13, 1, 54, 0, 5, '澳洲羊羔毛华夫格盖�
 INSERT INTO `pms_product` VALUES (14, 1, 54, 0, 5, '清欢日式可调节台灯 木铁结合，全体可调节', 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', '4512354', 0, 1, 1, 1, 1, 0, 2, 219.00, NULL, 0, 0, 0, '清欢日式可调节台灯 木铁结合，全体可调节', '清欢日式可调节台灯 木铁结合，全体可调节', 219.00, 100, 0, NULL, 0.00, 0, '', ' ', ' ', ' ', ' ', ' ', ' <p><img src=\"http://yanxuan.nosdn.127.net/15e1d839714a67bff57259d61d7ca2e5.jpg\" _src=\"http://yanxuan.nosdn.127.net/15e1d839714a67bff57259d61d7ca2e5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/43ba9bbc931f954e0aaeb90631a179ac.jpg\" _src=\"http://yanxuan.nosdn.127.net/43ba9bbc931f954e0aaeb90631a179ac.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ac5ca160c90c1a700160d5d024ad611b.jpg\" _src=\"http://yanxuan.nosdn.127.net/ac5ca160c90c1a700160d5d024ad611b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0f2d157d83955d5c616dc3d647da6f66.jpg\" _src=\"http://yanxuan.nosdn.127.net/0f2d157d83955d5c616dc3d647da6f66.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a2ee5af100a5432f0614e9717196787e.jpg\" _src=\"http://yanxuan.nosdn.127.net/a2ee5af100a5432f0614e9717196787e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/91fb28c19d495e47797ef250940ab618.jpg\" _src=\"http://yanxuan.nosdn.127.net/91fb28c19d495e47797ef250940ab618.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6f37742eed13ea12d8c341e1e3b988e9.jpg\" _src=\"http://yanxuan.nosdn.127.net/6f37742eed13ea12d8c341e1e3b988e9.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5ff15b419a0248b7b53bd60286067766.jpg\" _src=\"http://yanxuan.nosdn.127.net/5ff15b419a0248b7b53bd60286067766.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/21c4dacdc844da911e43eaac0975908a.jpg\" _src=\"http://yanxuan.nosdn.127.net/21c4dacdc844da911e43eaac0975908a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3f8741dd387c51378f78bdbf65856a41.jpg\" _src=\"http://yanxuan.nosdn.127.net/3f8741dd387c51378f78bdbf65856a41.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dbe9726936999c62ac8bce3b620cd045.jpg\" _src=\"http://yanxuan.nosdn.127.net/dbe9726936999c62ac8bce3b620cd045.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d12ad2de3cb646e76380c064ccfe038f.jpg\" _src=\"http://yanxuan.nosdn.127.net/d12ad2de3cb646e76380c064ccfe038f.jpg\" style=\"\"/></p><p><br/></p>', ' ', NULL, NULL, 0, 0, '万和', '家具');
 INSERT INTO `pms_product` VALUES (15, 3, 30, 0, 3, '华为Mate 40 Pro 4G麒麟曲面华为手机4g手机智能手机华为官方旗舰店mate40pro', 'https://img.alicdn.com/imgextra/i1/2838892713/O1CN01FQ69AI1VubCzlAzxB_!!0-item_pic.jpg_430x430q90.jpg', '3543543', 0, 1, 1, 1, 1, 0, 4, 6099.00, NULL, 0, 0, 0, '华为Mate 40 Pro 4G麒麟曲面华为手机4g手机智能手机华为官方旗舰店mate40pro', '华为Mate 40 Pro 4G麒麟曲面华为手机4g手机智能手机华为官方旗舰店mate40pro', 6099.00, 100, 0, NULL, 0.00, 0, '', NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01OpTSba1VubD4cpJiK_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/TB2vbKTgHArBKNjSZFLXXc_dVXa_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01sx3JEX1VubD1UVV2U_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01sdVgGG1VubD6nfEk2_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01E5ZlFd1VubD0EZtoL_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN017LAhra1VubD1kTfYK_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01KshuGt1VubCxenTQB_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN019lwo3i1VubCxensNV_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01t6VwkB1VubCwERR3M_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01fgufJg1VubD3lMoyR_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01cFbUtW1VubD0COovF_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01Nust0w1VubCyEFnBT_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01vdxhTK1VubCwEQxxC_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01pSl16B1VubD6nfZYg_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01fEsRon1VubD5yY1I5_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01GkA7tk1VubD5HOdxy_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01FuKFpI1VubD3lMkpz_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN019lxW3z1VubCyEHwFo_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01vJmvHM1VubD3lNUaN_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01KaZsux1VubD0EaR7O_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01YZKHTG1VubCyEI0PM_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01vwN4pf1VubD6nfZaA_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01bnWqPs1VubD4FKIm5_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01h7LRGx1VubD7S6AjB_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01Viu4Dv1VubD0EbAra_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN010G61NF1VubCxeqxic_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01QoAWzw1VubD4FMz8a_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01A0WT2r1VubD5HOAu4_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01okBoN01VubD7S7JR7_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01OSQJ7j1VubCxer1sm_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01G4SAhi1VubD0CNgHm_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN013kwXkx1VubD1UUE8L_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01mM9F5M1VubD3lMp38_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01w43zZC1VubD3lMxOu_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01KEAHr81VubD2thVNn_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01b6L78y1VubD3lOlo5_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01EMbdi71VubD0CSVuo_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01lqmpDD1VubCyELy1T_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01prLTNk1VubD2tkvbR_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN0148r2OR1VubD5yeWyk_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01hH3KsL1VubD4FRcPJ_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01PLwvsZ1VubD7S9roB_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01n8k5z81VubCwEY0yj_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN016X8IZj1Vub8wYRqqN_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, '华为', '手机数码');
 INSERT INTO `pms_product` VALUES (16, 3, 30, 0, 3, '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', '2343525', 0, 1, 1, 1, 1, 0, 8, 7488.00, NULL, 0, 0, 0, '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', '【旗舰新品】华为P50 Pro 4G全网通搭载HarmonyOS 2麒麟9000华为手机华为官方旗舰店正品p50pro', 7488.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01YWuuBq1VubDpYER3N_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01g58P1h1VubDn732oG_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01hF9lQa1VubDyuDzRD_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN013YCfRy1VubDrDmHeW_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01Ga8cYr1VubDiT2RLQ_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01pPGzmj1VubDxIOrTK_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN016eLylU1VubDiT3NVH_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01guAY1F1VubDiT32ke_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01x3kHec1VubDv21Ppv_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01vqUraq1VubDxINzQb_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN018hejDS1VubDsuoCMW_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01lyS8Ky1VubDseSSnj_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01bzmTWn1VubDv1zbYR_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01uKW7n11VubDrDpEdN_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN018o2TZY1VubDv22M5E_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN014Hut9u1VubDv23hDW_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01kZG6xc1VubDrmkC9w_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01827RQs1VubDiT32mG_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01wQiWn41VubDn76w4W_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01yUKC0p1VubDvWvpuc_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01BFQJ1t1VubDn74ipm_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01ZTGV5e1VubDyuG0B7_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01KaAHJU1VubDwZMXKb_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01ruCNZC1VubDxIOnMf_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01GTHHBC1VubDwZKBoL_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01WSgoeH1VubDoaSKPQ_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01ls9TFS1VubDsunSgN_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01dZFjOj1VubDxIPCJM_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN014OwcN31VubDv23lPk_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01JbKPjX1Vub8xCTg6O_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"> </p>', NULL, NULL, NULL, 0, 0, '华为', '手机数码');
-INSERT INTO `pms_product` VALUES (17, 3, 30, 0, 3, '华为平板HUAWEI MatePad Pro 10.8英寸2021款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', 'https://img.alicdn.com/imgextra/i2/2838892713/O1CN016tezkQ1VubD4AbBxX_!!2838892713.jpg_430x430q90.jpg', '2425343', 0, 1, 1, 1, 1, 0, 9, 4299.00, NULL, 0, 0, 0, '华为平板HUAWEI MatePad Pro 10.8英寸2021款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', '华为平板HUAWEI MatePad Pro 10.8英寸2021款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', 4299.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01cIJDXV1VubEEzKcok_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN012SbO6Z1VubDN6DYs0_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01fwQYhJ1VubD63d9KS_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01aGIm7X1VubD2yy2qn_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01ME0Yh91VubDlhNt03_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01pHh6r11Vub9uANS94_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01mOFtWp1VubDYe3G9Z_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01DmOiIr1VubDX3O23R_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\" data-spm-anchor-id=\"a220o.1000855.0.i0.494e35ae0Eipxj\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01H5yIwO1VubDYe1iUD_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01vnR8iy1VubDRCD8Ob_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01teVwo81VubDRCDo00_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN0110oYhX1VubDWM9gqO_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN013b7tAq1VubDYe5L35_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01cIRc5q1VubDWM8HWq_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01EFSvBZ1VubDRCGp97_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01Rq1tdY1VubDWM8Lhr_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01AyimLk1Vub8sk4O3e_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, '华为', '手机数码');
+INSERT INTO `pms_product` VALUES (17, 3, 30, 0, 3, '华为平板HUAWEI MatePad Pro 10.8英寸2023款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', 'https://img.alicdn.com/imgextra/i2/2838892713/O1CN016tezkQ1VubD4AbBxX_!!2838892713.jpg_430x430q90.jpg', '2425343', 0, 1, 1, 1, 1, 0, 9, 4299.00, NULL, 0, 0, 0, '华为平板HUAWEI MatePad Pro 10.8英寸2023款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', '华为平板HUAWEI MatePad Pro 10.8英寸2023款鸿蒙HarmonyOS官方新品教育数码学生电脑8GB内存', 4299.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01cIJDXV1VubEEzKcok_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN012SbO6Z1VubDN6DYs0_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01fwQYhJ1VubD63d9KS_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01aGIm7X1VubD2yy2qn_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01ME0Yh91VubDlhNt03_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01pHh6r11Vub9uANS94_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01mOFtWp1VubDYe3G9Z_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01DmOiIr1VubDX3O23R_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\" data-spm-anchor-id=\"a220o.1000855.0.i0.494e35ae0Eipxj\"><img src=\"https://img.alicdn.com/imgextra/i3/2838892713/O1CN01H5yIwO1VubDYe1iUD_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2838892713/O1CN01vnR8iy1VubDRCD8Ob_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01teVwo81VubDRCDo00_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN0110oYhX1VubDWM9gqO_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN013b7tAq1VubDYe5L35_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01cIRc5q1VubDWM8HWq_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01EFSvBZ1VubDRCGp97_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2838892713/O1CN01Rq1tdY1VubDWM8Lhr_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2838892713/O1CN01AyimLk1Vub8sk4O3e_!!2838892713.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, '华为', '手机数码');
 INSERT INTO `pms_product` VALUES (18, 10, 31, 0, 3, 'Apple/苹果 iPhone 12 国行手机', 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01xeHXfg22AEQKtkTiK_!!1917047079.png_430x430q90.jpg', '1243543', 0, 1, 1, 1, 1, 0, 10, 6799.00, NULL, 0, 0, 0, 'Apple/苹果 iPhone 12【直营国行】Apple/苹果 AirPods Pro耳机三代原装正品 全国联保', 'Apple/苹果 iPhone 12', 6799.00, 199, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<div class=\"content ke-post\" style=\"height: auto;\"><div style=\"width: 790.0px;\">	<div style=\"float: left;\">		 <img src=\"https://img.alicdn.com/imgextra/i4/1917047079/O1CN01m365lv22AERZKUNBg_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>	<div style=\"float: left;margin-top: 6.0px;\">		 <img src=\"https://img.alicdn.com/imgextra/i3/1917047079/O1CN01DUglFy22AESAm9BFq_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>	<div style=\"float: left;\">		 <img src=\"https://img.alicdn.com/imgextra/i1/1917047079/O1CN01H0KILj22AERzyp2VZ_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>	<div style=\"float: left;\">		 <img src=\"https://img.alicdn.com/imgextra/i4/1917047079/O1CN01nLojAj22AERtg5MjN_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>	<div style=\"float: left;\">		 <img src=\"https://img.alicdn.com/imgextra/i4/1917047079/O1CN01kesoUZ22AERtvONkH_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>	<div style=\"float: left;\">		 <img src=\"https://img.alicdn.com/imgextra/i4/1917047079/O1CN01DLhGVL22AEOYEuVHp_!!1917047079.jpg\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div></div></div>', NULL, NULL, NULL, 0, 0, '苹果', '手机数码');
 INSERT INTO `pms_product` VALUES (19, 10, 31, 0, 3, '【直营国行】Apple/苹果 AirPods Pro耳机三代原装正品 全国联保', 'https://img.alicdn.com/imgextra/i2/2200877014436/O1CN01anNk4S1idjZTDktag_!!2200877014436.jpg_430x430q90.jpg', '2354344', 0, 1, 1, 1, 1, 0, 7, 1778.00, NULL, 0, 0, 0, '【直营国行】Apple/苹果 AirPods Pro耳机三代原装正品 全国联保', '【直营国行】Apple/苹果 AirPods Pro耳机三代原装正品 全国联保', 1778.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01TBYQAD26TFHLj8qqx_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN018fGCQU26TFHOCaxVd_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN01TA2FYd26TFHMJK9wz_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN01KuXr9f26TFHMSY10j_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN015y7q0m26TFHQonltB_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01hXTx5T26TFHPzhhDg_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN01j6RF9826TFHR9H16P_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN010WFToD26TFHMJI55s_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01tc4qV326TFHLn9rTf_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2208774577662/O1CN01XFNWaG26TFHMSaEEz_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01RcIhuQ26TFHOCZcLq_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01P1v1s926TFHJiPRJA_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2208774577662/O1CN01bawyiF26TFHPLtIY9_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01skzS1c26TFJQ51Vup_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2208774577662/O1CN01jvSnhj26TFJRxjwE2_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2208774577662/O1CN01WjWtis26TFJTkm6ab_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN01VdZldp26TFJZt1W1w_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2208774577662/O1CN01zm24T226TFJRxjGe5_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2208774577662/O1CN01QhVaqH26TFJWz0HMX_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN014ldHx426TFJRLWMIQ_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2208774577662/O1CN01EXQMmE26TFJV8Dp6B_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2208774577662/O1CN011IYQUp26TFJRxlPjX_!!2208774577662-0-scmitem1000.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"></p>', NULL, NULL, NULL, 0, 0, '苹果', '手机数码');
 INSERT INTO `pms_product` VALUES (20, 10, 31, 0, 3, 'Apple/苹果 11 英寸 iPad Pro', 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01qC9RZb22AEQNIo08f_!!2-item_pic.png_430x430q90.jpg', '2343534', 0, 1, 1, 1, 1, 0, 15, 6999.00, NULL, 0, 0, 0, 'Apple/苹果 11 英寸 iPad Pro', 'Apple/苹果 11 英寸 iPad Pro', 6999.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<div style=\"float: left;margin-top: 6.0px;\">		 <img src=\"https://img.alicdn.com/imgextra/i1/1917047079/O1CN01JZhXa422AEQSb3ocg_!!1917047079.png\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\"></div><div style=\"float: left;margin-top: 6.0px;\">		 <img src=\"https://img.alicdn.com/imgextra/i4/1917047079/O1CN01nMg2h122AEQQPt9Po_!!1917047079.png\" width=\"790\" border=\"0\" class=\"img-ks-lazyload\">	</div>', NULL, NULL, NULL, 0, 0, '苹果', '手机数码');
@@ -468,7 +468,7 @@ INSERT INTO `pms_product` VALUES (38, 13, 62, 0, 5, '火影忍者手办 羁绊�
 INSERT INTO `pms_product` VALUES (39, 1, 53, 0, 13, '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '2354545', 0, 1, 1, 1, 1, 0, 42, 99.00, NULL, 0, 0, 0, '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', '北欧简约山形纹绣花抱枕 精细刺绣，舒适立体', 99.00, 199, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"http://yanxuan.nosdn.127.net/5737ca831d2cd44a2242eb0992583faf.jpg\" _src=\"http://yanxuan.nosdn.127.net/5737ca831d2cd44a2242eb0992583faf.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1160e68bcdeba98d2aada60af18c03c8.jpg\" _src=\"http://yanxuan.nosdn.127.net/1160e68bcdeba98d2aada60af18c03c8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c3772cb0d0f4767217726f9af7faa396.jpg\" _src=\"http://yanxuan.nosdn.127.net/c3772cb0d0f4767217726f9af7faa396.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/715a7f19500f5c28d9f73d37ebb1c557.jpg\" _src=\"http://yanxuan.nosdn.127.net/715a7f19500f5c28d9f73d37ebb1c557.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/84238cd8ab59b2fe193b825a3e89fd65.jpg\" _src=\"http://yanxuan.nosdn.127.net/84238cd8ab59b2fe193b825a3e89fd65.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f4efe768f21095587d8bb4db202b2e23.jpg\" _src=\"http://yanxuan.nosdn.127.net/f4efe768f21095587d8bb4db202b2e23.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dbb5a935340a7ff61de6bec5fa3fd985.jpg\" _src=\"http://yanxuan.nosdn.127.net/dbb5a935340a7ff61de6bec5fa3fd985.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b0750c142e857a922d77999a48760cb9.jpg\" _src=\"http://yanxuan.nosdn.127.net/b0750c142e857a922d77999a48760cb9.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d742c6ee8b65f2812784e13c2efd04fc.jpg\" _src=\"http://yanxuan.nosdn.127.net/d742c6ee8b65f2812784e13c2efd04fc.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3aada66e84ec86907ca941fbc5235f12.jpg\" _src=\"http://yanxuan.nosdn.127.net/3aada66e84ec86907ca941fbc5235f12.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bb0fd8620c6d6208773667096709ba2b.jpg\" _src=\"http://yanxuan.nosdn.127.net/bb0fd8620c6d6208773667096709ba2b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/82b0a7a951c15b41eb5a4bb688dd74dc.jpg\" _src=\"http://yanxuan.nosdn.127.net/82b0a7a951c15b41eb5a4bb688dd74dc.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/274fea6d222c1da9c687cb73f0f4f993.jpg\" _src=\"http://yanxuan.nosdn.127.net/274fea6d222c1da9c687cb73f0f4f993.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/fc87ced2f7b274139bb079a75f7adf91.jpg\" _src=\"http://yanxuan.nosdn.127.net/fc87ced2f7b274139bb079a75f7adf91.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3a7f98096222daadf9820e1075670173.jpg\" _src=\"http://yanxuan.nosdn.127.net/3a7f98096222daadf9820e1075670173.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/26501a456d9e85980e12efe92120de56.jpg\" _src=\"http://yanxuan.nosdn.127.net/26501a456d9e85980e12efe92120de56.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7a9fbd6be2b2a3c2c83d4edaad2086a6.jpg\" _src=\"http://yanxuan.nosdn.127.net/7a9fbd6be2b2a3c2c83d4edaad2086a6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a3bf915e824b8b917c893167a99a3773.jpg\" _src=\"http://yanxuan.nosdn.127.net/a3bf915e824b8b917c893167a99a3773.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/211b5a457edcb05d3f3d21ff69c48398.jpg\" _src=\"http://yanxuan.nosdn.127.net/211b5a457edcb05d3f3d21ff69c48398.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/cc0105d79ff4744f0680cbd2f87a8060.jpg\" _src=\"http://yanxuan.nosdn.127.net/cc0105d79ff4744f0680cbd2f87a8060.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f1da6da8c6b7b52f958fdec1dd7769c6.jpg\" _src=\"http://yanxuan.nosdn.127.net/f1da6da8c6b7b52f958fdec1dd7769c6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/88ed21fc61da4f79545941fffce1f68c.jpg\" _src=\"http://yanxuan.nosdn.127.net/88ed21fc61da4f79545941fffce1f68c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6eb4abc57dbd46d6dcc38cac3bd32c68.jpg\" _src=\"http://yanxuan.nosdn.127.net/6eb4abc57dbd46d6dcc38cac3bd32c68.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3c54b9b585c2e03559865e086f9b45bd.jpg\" _src=\"http://yanxuan.nosdn.127.net/3c54b9b585c2e03559865e086f9b45bd.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f88e9af10088b3a0b4669b27ef2fcadb.jpg\" _src=\"http://yanxuan.nosdn.127.net/f88e9af10088b3a0b4669b27ef2fcadb.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6b249bac9bf3aa94bf4fffb5ac4d1e70.jpg\" _src=\"http://yanxuan.nosdn.127.net/6b249bac9bf3aa94bf4fffb5ac4d1e70.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b7ded1405eaa6f687eeb9e31b469d5de.jpg\" _src=\"http://yanxuan.nosdn.127.net/b7ded1405eaa6f687eeb9e31b469d5de.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3d072d1f04f7d94495227cf25b591744.jpg\" _src=\"http://yanxuan.nosdn.127.net/3d072d1f04f7d94495227cf25b591744.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/89f67b83d74f2a18b680bb5e6ef0d721.jpg\" _src=\"http://yanxuan.nosdn.127.net/89f67b83d74f2a18b680bb5e6ef0d721.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/236e948413b249b5ea4c1f6f8e835641.jpg\" _src=\"http://yanxuan.nosdn.127.net/236e948413b249b5ea4c1f6f8e835641.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b799d3613b5e3b87d89a608533473df8.jpg\" _src=\"http://yanxuan.nosdn.127.net/b799d3613b5e3b87d89a608533473df8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e6d4af8873253a0b5ae097c15c3628c0.jpg\" _src=\"http://yanxuan.nosdn.127.net/e6d4af8873253a0b5ae097c15c3628c0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/fc017dc5a790385f6a96b43cf1a5b867.jpg\" _src=\"http://yanxuan.nosdn.127.net/fc017dc5a790385f6a96b43cf1a5b867.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0f10cc90e368fad0bd49fafc3b9047b5.jpg\" _src=\"http://yanxuan.nosdn.127.net/0f10cc90e368fad0bd49fafc3b9047b5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/864bf5646ba2ad778f507c224973bca7.jpg\" _src=\"http://yanxuan.nosdn.127.net/864bf5646ba2ad778f507c224973bca7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0443f772258e35af98be389a08fd85b8.jpg\" _src=\"http://yanxuan.nosdn.127.net/0443f772258e35af98be389a08fd85b8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/821926b210f311717fdaa0eccb142e37.jpg\" _src=\"http://yanxuan.nosdn.127.net/821926b210f311717fdaa0eccb142e37.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/24d0ab5a259a662501e813cf21d752d8.jpg\" _src=\"http://yanxuan.nosdn.127.net/24d0ab5a259a662501e813cf21d752d8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b58c263c7e090c68d77e056c9d9afe27.jpg\" _src=\"http://yanxuan.nosdn.127.net/b58c263c7e090c68d77e056c9d9afe27.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d50d8b9f53f54ff0c066de7b39b2601c.jpg\" _src=\"http://yanxuan.nosdn.127.net/d50d8b9f53f54ff0c066de7b39b2601c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b382bfe1d8797e845bbcfd9dce361f76.jpg\" _src=\"http://yanxuan.nosdn.127.net/b382bfe1d8797e845bbcfd9dce361f76.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3aecb3e8d261312596727f56b54a0fa2.jpg\" _src=\"http://yanxuan.nosdn.127.net/3aecb3e8d261312596727f56b54a0fa2.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c733463829f1fe8fa61998ae7c2ae37b.jpg\" _src=\"http://yanxuan.nosdn.127.net/c733463829f1fe8fa61998ae7c2ae37b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/da2850f298b6cf4108e00a06bbc59821.jpg\" _src=\"http://yanxuan.nosdn.127.net/da2850f298b6cf4108e00a06bbc59821.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bd0924729a92af064c2108569e9d9463.jpg\" _src=\"http://yanxuan.nosdn.127.net/bd0924729a92af064c2108569e9d9463.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b819438a87396b0e3cc22202fc19caf0.jpg\" _src=\"http://yanxuan.nosdn.127.net/b819438a87396b0e3cc22202fc19caf0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3ea853201f8ad389ae3068f3d765aa44.jpg\" _src=\"http://yanxuan.nosdn.127.net/3ea853201f8ad389ae3068f3d765aa44.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5ef9093e1959a79178c32d5fc0fbe996.jpg\" _src=\"http://yanxuan.nosdn.127.net/5ef9093e1959a79178c32d5fc0fbe996.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/da1d1a9a1e2afe85b640d573085a3d24.jpg\" _src=\"http://yanxuan.nosdn.127.net/da1d1a9a1e2afe85b640d573085a3d24.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ce702a9ac92d3666be5d4de2af5e03ab.jpg\" _src=\"http://yanxuan.nosdn.127.net/ce702a9ac92d3666be5d4de2af5e03ab.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b43f6da048bbc7206990d9ff972a23ba.jpg\" _src=\"http://yanxuan.nosdn.127.net/b43f6da048bbc7206990d9ff972a23ba.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/22eb869c0f07b55826e1e183dd498f3f.jpg\" _src=\"http://yanxuan.nosdn.127.net/22eb869c0f07b55826e1e183dd498f3f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d2c6bf7e29f0e8380ebef90b3bab2294.jpg\" _src=\"http://yanxuan.nosdn.127.net/d2c6bf7e29f0e8380ebef90b3bab2294.jpg\" style=\"\"/></p><p><br/></p>', NULL, NULL, NULL, 0, 0, '万和', NULL);
 INSERT INTO `pms_product` VALUES (40, 1, 10, 0, 11, '炸街牛仔外套男春秋潮牌ins港风嘻哈夹克秋季潮流痞帅高级感上衣', 'https://img.alicdn.com/imgextra/i1/2146928739/O1CN01NXcLin2EQVuctfvKH_!!0-item_pic.jpg_430x430q90.jpg', '4534543', 0, 1, 1, 1, 1, 0, 12, 88.00, NULL, 0, 0, 0, '炸街牛仔外套男春秋潮牌ins港风嘻哈夹克秋季潮流痞帅高级感上衣', '炸街牛仔外套男春秋潮牌ins港风嘻哈夹克秋季潮流痞帅高级感上衣', 88.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN01cw8vRd2EQVuUAClHh_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN01KQWxUm2EQVuitohW0_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2146928739/O1CN01bNv4dy2EQVujnJk7D_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2146928739/O1CN01iq1trZ2EQVuaHgHAQ_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN01zvloKq2EQVudTtyrW_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN01yBW8R92EQVuh9DWHl_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2146928739/O1CN01qPKyg52EQVuiDDdFZ_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN011CXzxt2EQVufj196H_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN011dGHar2EQVuYoGBdC_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i1/2146928739/O1CN01r9o7sy2EQVuUAEN6G_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN01ZPjhDg2EQVueIiKT7_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2146928739/O1CN01T4Ntde2EQVukVtTBv_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN01M1GAd42EQVujnIT7O_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN01Vy3sc92EQVuasXGjK_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/2146928739/O1CN01LRr3pW2EQVuh9FvzH_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN01B9K6Bd2EQVufj2Lz2_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/2146928739/O1CN01urz3VH2EQVueZTEox_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN017sFmvn2EQVuasZstZ_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/2146928739/O1CN01TCvJKf2EQVuasXsAf_!!2146928739.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"> </p>', NULL, NULL, NULL, 0, 0, '万和', NULL);
 INSERT INTO `pms_product` VALUES (41, 1, 10, 0, 11, '【经典款】TheNorthFace北面防风夹克男防风防泼水秋冬上新|7QPF', 'https://img.alicdn.com/imgextra/i1/928417138/O1CN01jSa1My22bFodIAtG9_!!0-item_pic.jpg_430x430q90.jpg', '4354356', 0, 1, 1, 1, 1, 0, 21, 1098.00, NULL, 0, 0, 0, '【经典款】TheNorthFace北面防风夹克男防风防泼水秋冬上新|7QPF', '【经典款】TheNorthFace北面防风夹克男防风防泼水秋冬上新|7QPF', 1098.00, 199, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img src=\"https://img.alicdn.com/imgextra/i4/928417138/O1CN01XjyHoz22bFobmRKYW_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/928417138/O1CN01rWx6iB22bFdFfccWF_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/928417138/O1CN01zbtcPO22bFfNg8W81_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><br> <img src=\"https://img.alicdn.com/imgextra/i3/928417138/O1CN014RYUG822bFohoPtVP_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/928417138/O1CN01WCNCkP22bFdFghAKT_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i4/928417138/O1CN01fQUKkC22bFoii7xhZ_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/928417138/O1CN01uSZgH622bFog3ThM7_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/928417138/O1CN01V5yu4q22bFojRfIn4_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/928417138/O1CN01IZ0ETV22bFojRfEdx_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/928417138/O1CN01nvb7VK22bFobjCBkP_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/928417138/O1CN01KfE69I22bFdF1hBAe_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i2/928417138/O1CN01UAEUdr22bFojRfltZ_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"><img src=\"https://img.alicdn.com/imgextra/i3/928417138/O1CN01izz2Vz22bFoea2GKA_!!928417138.jpg\" align=\"absmiddle\" class=\"img-ks-lazyload\"> </p>', NULL, NULL, NULL, 0, 0, 'The North Face', NULL);
-INSERT INTO `pms_product` VALUES (42, 1, 10, 0, 11, '2021秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', 'https://gd3.alicdn.com/imgextra/i4/1645999081/O1CN017z5hUT2Gx9NEBAmVV_!!1645999081.jpg_400x400.jpg', '655r434', 0, 1, 1, 1, 1, 0, 18, 748.00, NULL, 0, 0, 0, '2021秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', '2021秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', 748.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/1645999081/O1CN01esQ4u62Gx9NGvn0M4_!!1645999081.jpg\" style=\"max-width: 750.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/1645999081/O1CN01O1hUt12Gx9NLM0jxb_!!1645999081.jpg\" style=\"max-width: 750.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/1645999081/O1CN013BwxoZ2Gx9NFI1Muw_!!1645999081.jpg\" style=\"max-width: 750.0px;\"></p>', NULL, NULL, NULL, 0, 0, 'The North Face', NULL);
+INSERT INTO `pms_product` VALUES (42, 1, 10, 0, 11, '2023秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', 'https://gd3.alicdn.com/imgextra/i4/1645999081/O1CN017z5hUT2Gx9NEBAmVV_!!1645999081.jpg_400x400.jpg', '655r434', 0, 1, 1, 1, 1, 0, 18, 748.00, NULL, 0, 0, 0, '2023秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', '2023秋冬新款TheNorthFace北面潮牌户外男拼色连帽夹克外套', 748.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/1645999081/O1CN01esQ4u62Gx9NGvn0M4_!!1645999081.jpg\" style=\"max-width: 750.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/1645999081/O1CN01O1hUt12Gx9NLM0jxb_!!1645999081.jpg\" style=\"max-width: 750.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/1645999081/O1CN013BwxoZ2Gx9NFI1Muw_!!1645999081.jpg\" style=\"max-width: 750.0px;\"></p>', NULL, NULL, NULL, 0, 0, 'The North Face', NULL);
 INSERT INTO `pms_product` VALUES (43, 1, 11, 0, 11, 'Couple Hunnid 谢帝 CH基础logo白色打底休闲宽松纯棉长袖T恤男士', 'https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01tbObGO2LTuAFOdSNx_!!2211009479694.jpg_400x400.jpg', '5434352', 0, 1, 1, 1, 1, 0, 30, 199.00, NULL, 0, 0, 0, 'Couple Hunnid 谢帝 CH基础logo白色打底休闲宽松纯棉长袖T恤男士', 'Couple Hunnid 谢帝 CH基础logo白色打底休闲宽松纯棉长袖T恤男士', 199.00, 100, 0, NULL, 0.00, 0, NULL, NULL, NULL, NULL, NULL, NULL, '<p style=\"text-align: center;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01r9ydR82LTuAAiYaQL_!!2211009479694.jpg\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01FrVaEI2LTuALEhFkK_!!2211009479694.jpg\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2211009479694/O1CN01iXC7ZF2LTuAErkMQq_!!2211009479694.jpg\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01HztQQW2LTuAHItOK4_!!2211009479694.jpg\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2211009479694/O1CN01qACfFV2LTuADzRllk_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01r8mlq42LTuADzPguW_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2211009479694/O1CN01xBGSVf2LTuALEif4k_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2211009479694/O1CN01blmFIq2LTuADTC2Fc_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2211009479694/O1CN01i06tFH2LTuABH9jSw_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2211009479694/O1CN013jgkA62LTuAErk1ek_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2211009479694/O1CN01ZFWTr82LTuADzQUno_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2211009479694/O1CN01oOX4Ku2LTuAAiYBUL_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN014tICVs2LTuAIraEUT_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2211009479694/O1CN01dt9Bry2LTuABH7aO9_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01tFQW1y2LTuABH9836_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2211009479694/O1CN01GkCMYm2LTuAAiaCDw_!!2211009479694.jpg\" class=\"\" style=\"max-width: 350.0px;\"></p>', NULL, NULL, NULL, 0, 0, '优衣库', NULL);
 
 -- ----------------------------
@@ -476,12 +476,12 @@ INSERT INTO `pms_product` VALUES (43, 1, 11, 0, 11, 'Couple Hunnid 谢帝 CH基�
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_product_attribute_category`;
 CREATE TABLE `pms_product_attribute_category`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attribute_count` int(11) NULL DEFAULT 0 COMMENT '属性数量',
-  `param_count` int(11) NULL DEFAULT 0 COMMENT '参数数量',
+  `attribute_count` int NULL DEFAULT 0 COMMENT '属性数量',
+  `param_count` int NULL DEFAULT 0 COMMENT '参数数量',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品属性分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品属性分类表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pms_product_attribute_category
@@ -498,15 +498,15 @@ INSERT INTO `pms_product_attribute_category` VALUES (6, '洗护', 0, 0);
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_product_category`;
 CREATE TABLE `pms_product_category`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '上机分类的编号：0表示一级分类',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint NULL DEFAULT NULL COMMENT '上机分类的编号：0表示一级分类',
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `level` int(1) NULL DEFAULT NULL COMMENT '分类级别：0->1级；1->2级',
-  `product_count` int(11) NULL DEFAULT NULL,
+  `level` int NULL DEFAULT NULL COMMENT '分类级别：0->1级；1->2级',
+  `product_count` int NULL DEFAULT NULL,
   `product_unit` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `nav_status` int(1) NULL DEFAULT NULL COMMENT '是否显示在导航栏：0->不显示；1->显示',
-  `show_status` int(1) NULL DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
-  `sort` int(11) NULL DEFAULT NULL,
+  `nav_status` int NULL DEFAULT NULL COMMENT '是否显示在导航栏：0->不显示；1->显示',
+  `show_status` int NULL DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
+  `sort` int NULL DEFAULT NULL,
   `icon` varchar(350) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
@@ -574,79 +574,79 @@ INSERT INTO `pms_product_category` VALUES (73, 7, '果仁类制品', 1, 0, NULL,
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_sku_stock`;
 CREATE TABLE `pms_sku_stock`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `product_id` bigint NULL DEFAULT NULL,
   `sku_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'sku编码',
   `price` decimal(10, 2) NULL DEFAULT NULL,
-  `stock` int(11) NULL DEFAULT 0 COMMENT '库存',
-  `low_stock` int(11) NULL DEFAULT NULL COMMENT '预警库存',
+  `stock` int NULL DEFAULT 0 COMMENT '库存',
+  `low_stock` int NULL DEFAULT NULL COMMENT '预警库存',
   `pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展示图片',
-  `sale` int(11) NULL DEFAULT NULL COMMENT '销量',
+  `sale` int NULL DEFAULT NULL COMMENT '销量',
   `promotion_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '单品促销价格',
-  `lock_stock` int(11) NULL DEFAULT 0 COMMENT '锁定库存',
+  `lock_stock` int NULL DEFAULT 0 COMMENT '锁定库存',
   `sp_data` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性，json格式',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku的库存' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku的库存' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pms_sku_stock
 -- ----------------------------
-INSERT INTO `pms_sku_stock` VALUES (1, 1, '202109150027001', 3788.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/5ac1bf58Ndefaac16.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (2, 2, '202109150027002', 5499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5acc5248N6a5f81cd.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (3, 3, '202109150027003', 2499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b02804dN66004d73.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (4, 4, '202109150027004', 3999.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b028530N51eee7d4.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (5, 5, '202109150027005', 79.00, 100, 10, 'http://yanxuan.nosdn.127.net/ad5a317216f9da495b144070ecf1f957.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (6, 6, '202109150027006', 319.00, 100, 10, 'http://yanxuan.nosdn.127.net/5350e35e6f22165f38928f3c2c52ac57.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (7, 7, '202109150027007', 619.00, 100, 10, 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (8, 8, '202109150027008', 319.00, 100, 10, 'http://yanxuan.nosdn.127.net/07376e78bf4fb8a5aa8e6a0b1437c3ad.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (9, 9, '202109150027009', 398.00, 100, 10, 'http://yanxuan.nosdn.127.net/c39d54c06a71b4b61b6092a0d31f2335.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (10, 10, '202109150027010', 119.00, 99, 10, 'http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (11, 11, '202109150027011', 139.00, 100, 10, 'http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (12, 12, '202109150027012', 99.00, 100, 10, 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (13, 13, '202109150027013', 369.00, 100, 10, 'http://yanxuan.nosdn.127.net/a803c68ea88e3116023b45ac9ea99510.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (14, 14, '202109150027014', 219.00, 99, 10, 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (15, 15, '202109150027015', 6099.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2838892713/O1CN01FQ69AI1VubCzlAzxB_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (16, 16, '202109150027016', 7488.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (17, 17, '202109150027017', 4299.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2838892713/O1CN016tezkQ1VubD4AbBxX_!!2838892713.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (18, 18, '202109150027018', 6799.00, 99, 10, 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01xeHXfg22AEQKtkTiK_!!1917047079.png_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (19, 19, '202109150027019', 1778.00, 99, 10, 'https://img.alicdn.com/imgextra/i2/2200877014436/O1CN01anNk4S1idjZTDktag_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (20, 20, '202109150027020', 6999.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01qC9RZb22AEQNIo08f_!!2-item_pic.png_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (21, 21, '202109150027021', 5598.00, 100, 10, 'https://img.alicdn.com/imgextra/O1CN016FuwY324luG6F3Vck_!!6000000007432-0-remus.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (22, 22, '202109150027022', 7599.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2279837698/O1CN016r3Dsh26jjcIUgSsU_!!2279837698.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (23, 23, '202109150027023', 728.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/407700539/O1CN01hPH4eF1FquAsynxJN_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (24, 24, '202109150027024', 1290.00, 100, 10, 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i2/2576722561/O1CN01iPI1O21UmyzT2KOC9_!!2576722561.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (25, 25, '202109150027025', 1199.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/1125378539/TB2mCXLX6TpK1RjSZKPXXa3UpXa_!!1125378539.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (26, 26, '202109150027026', 1399.00, 99, 10, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', NULL, NULL, -1, NULL);
-INSERT INTO `pms_sku_stock` VALUES (27, 27, '202109150027027', 5978.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN016ekYBX1idjahukrhA_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (28, 28, '202109150027028', 2599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01BqPY9s1vlbMPxJiEh_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (29, 29, '202109150027029', 479.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01X5D1o01vlbRMW5gCH_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (30, 30, '202109150027030', 139.00, 99, 10, 'https://img.alicdn.com/imgextra/i3/833261111/O1CN014MMkx01K4sfv0hKnn_!!833261111.png_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (31, 31, '202109150027031', 179.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/833261111/O1CN01yB5M6b1K4saHiFU5A_!!833261111.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (32, 32, '202109150027032', 285.00, 100, 10, 'https://gd1.alicdn.com/imgextra/i1/612966252/O1CN01airkQ51w3Stv4zncN_!!612966252.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (33, 33, '202109150027033', 228.00, 95, 10, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', NULL, NULL, -2, NULL);
-INSERT INTO `pms_sku_stock` VALUES (34, 34, '202109150027034', 999.00, 99, 10, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
-INSERT INTO `pms_sku_stock` VALUES (35, 35, '202109150027035', 685.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN01C00EWE1idjdHq0XHC_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (36, 36, '202109150027036', 169.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2200877014436/O1CN01JSPiOI1idjdZCtMHb_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (37, 37, '202109150027037', 2249.00, 99, 10, 'https://img.alicdn.com/imgextra/i2/594767740/O1CN01KBVDeF272yAoep8KZ_!!594767740.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (38, 38, '202109150027038', 599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2865745622/O1CN01HfoCnq1rOvJbQlMA8_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
-INSERT INTO `pms_sku_stock` VALUES (39, 39, '202109270027039', 99.00, 99, 10, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', NULL, NULL, -1, NULL);
-INSERT INTO `pms_sku_stock` VALUES (40, 40, '202109270027040', 88.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2146928739/O1CN01NXcLin2EQVuctfvKH_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (41, 41, '202109270027041', 1098.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/928417138/O1CN01jSa1My22bFodIAtG9_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (42, 42, '202109270027042', 748.00, 100, 10, 'https://gd3.alicdn.com/imgextra/i4/1645999081/O1CN017z5hUT2Gx9NEBAmVV_!!1645999081.jpg_400x400.jpg', NULL, NULL, 0, NULL);
-INSERT INTO `pms_sku_stock` VALUES (43, 43, '202109270027043', 199.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01tbObGO2LTuAFOdSNx_!!2211009479694.jpg_400x400.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (1, 1, '202309150027001', 3788.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/5ac1bf58Ndefaac16.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (2, 2, '202309150027002', 5499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5acc5248N6a5f81cd.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (3, 3, '202309150027003', 2499.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b02804dN66004d73.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (4, 4, '202309150027004', 3999.00, 100, 10, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b028530N51eee7d4.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (5, 5, '202309150027005', 79.00, 100, 10, 'http://yanxuan.nosdn.127.net/ad5a317216f9da495b144070ecf1f957.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (6, 6, '202309150027006', 319.00, 100, 10, 'http://yanxuan.nosdn.127.net/5350e35e6f22165f38928f3c2c52ac57.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (7, 7, '202309150027007', 619.00, 100, 10, 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (8, 8, '202309150027008', 319.00, 100, 10, 'http://yanxuan.nosdn.127.net/07376e78bf4fb8a5aa8e6a0b1437c3ad.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (9, 9, '202309150027009', 398.00, 100, 10, 'http://yanxuan.nosdn.127.net/c39d54c06a71b4b61b6092a0d31f2335.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (10, 10, '202309150027010', 119.00, 99, 10, 'http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (11, 11, '202309150027011', 139.00, 100, 10, 'http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (12, 12, '202309150027012', 99.00, 100, 10, 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (13, 13, '202309150027013', 369.00, 100, 10, 'http://yanxuan.nosdn.127.net/a803c68ea88e3116023b45ac9ea99510.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (14, 14, '202309150027014', 219.00, 99, 10, 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (15, 15, '202309150027015', 6099.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2838892713/O1CN01FQ69AI1VubCzlAzxB_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (16, 16, '202309150027016', 7488.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2024314280/O1CN01mT2FdK1hUHrFa4LK6_!!2024314280.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (17, 17, '202309150027017', 4299.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2838892713/O1CN016tezkQ1VubD4AbBxX_!!2838892713.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (18, 18, '202309150027018', 6799.00, 99, 10, 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01xeHXfg22AEQKtkTiK_!!1917047079.png_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (19, 19, '202309150027019', 1778.00, 99, 10, 'https://img.alicdn.com/imgextra/i2/2200877014436/O1CN01anNk4S1idjZTDktag_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (20, 20, '202309150027020', 6999.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/1917047079/O1CN01qC9RZb22AEQNIo08f_!!2-item_pic.png_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (21, 21, '202309150027021', 5598.00, 100, 10, 'https://img.alicdn.com/imgextra/O1CN016FuwY324luG6F3Vck_!!6000000007432-0-remus.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (22, 22, '202309150027022', 7599.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2279837698/O1CN016r3Dsh26jjcIUgSsU_!!2279837698.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (23, 23, '202309150027023', 728.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/407700539/O1CN01hPH4eF1FquAsynxJN_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (24, 24, '202309150027024', 1290.00, 100, 10, 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i2/2576722561/O1CN01iPI1O21UmyzT2KOC9_!!2576722561.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (25, 25, '202309150027025', 1199.00, 100, 10, 'https://img.alicdn.com/imgextra/i3/1125378539/TB2mCXLX6TpK1RjSZKPXXa3UpXa_!!1125378539.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (26, 26, '202309150027026', 1399.00, 99, 10, 'https://img.alicdn.com/imgextra/i4/647482297/O1CN01WcLlx41Sq4SglOLBs_!!647482297.jpg_430x430q90.jpg', NULL, NULL, -1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (27, 27, '202309150027027', 5978.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN016ekYBX1idjahukrhA_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (28, 28, '202309150027028', 2599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01BqPY9s1vlbMPxJiEh_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (29, 29, '202309150027029', 479.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2201168176213/O1CN01X5D1o01vlbRMW5gCH_!!2201168176213.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (30, 30, '202309150027030', 139.00, 99, 10, 'https://img.alicdn.com/imgextra/i3/833261111/O1CN014MMkx01K4sfv0hKnn_!!833261111.png_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (31, 31, '202309150027031', 179.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/833261111/O1CN01yB5M6b1K4saHiFU5A_!!833261111.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (32, 32, '202309150027032', 285.00, 100, 10, 'https://gd1.alicdn.com/imgextra/i1/612966252/O1CN01airkQ51w3Stv4zncN_!!612966252.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (33, 33, '202309150027033', 228.00, 95, 10, 'https://gd3.alicdn.com/imgextra/i3/3381629725/O1CN01QaB5cG2Li6E4KJn0M_!!3381629725.jpg_400x400.jpg', NULL, NULL, -2, NULL);
+INSERT INTO `pms_sku_stock` VALUES (34, 34, '202309150027034', 999.00, 99, 10, 'https://img.alicdn.com/imgextra/i1/1916629511/O1CN01mmZBhe2K85g7wOxfd_!!1916629511.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (35, 35, '202309150027035', 685.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2200877014436/O1CN01C00EWE1idjdHq0XHC_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (36, 36, '202309150027036', 169.00, 100, 10, 'https://img.alicdn.com/imgextra/i4/2200877014436/O1CN01JSPiOI1idjdZCtMHb_!!2200877014436.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (37, 37, '202309150027037', 2249.00, 99, 10, 'https://img.alicdn.com/imgextra/i2/594767740/O1CN01KBVDeF272yAoep8KZ_!!594767740.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (38, 38, '202309150027038', 599.00, 100, 10, 'https://img.alicdn.com/imgextra/i2/2865745622/O1CN01HfoCnq1rOvJbQlMA8_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (39, 39, '202309270027039', 99.00, 99, 10, 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', NULL, NULL, -1, NULL);
+INSERT INTO `pms_sku_stock` VALUES (40, 40, '202309270027040', 88.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2146928739/O1CN01NXcLin2EQVuctfvKH_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (41, 41, '202309270027041', 1098.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/928417138/O1CN01jSa1My22bFodIAtG9_!!0-item_pic.jpg_430x430q90.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (42, 42, '202309270027042', 748.00, 100, 10, 'https://gd3.alicdn.com/imgextra/i4/1645999081/O1CN017z5hUT2Gx9NEBAmVV_!!1645999081.jpg_400x400.jpg', NULL, NULL, 0, NULL);
+INSERT INTO `pms_sku_stock` VALUES (43, 43, '202309270027043', 199.00, 100, 10, 'https://img.alicdn.com/imgextra/i1/2211009479694/O1CN01tbObGO2LTuAFOdSNx_!!2211009479694.jpg_400x400.jpg', NULL, NULL, 0, NULL);
 
 -- ----------------------------
 -- Table structure for sms_home_brand
 -- ----------------------------
 DROP TABLE IF EXISTS `sms_home_brand`;
 CREATE TABLE `sms_home_brand`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `brand_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `brand_id` bigint NULL DEFAULT NULL,
   `brand_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `recommend_status` int(1) NULL DEFAULT NULL,
-  `sort` int(11) NULL DEFAULT NULL,
+  `recommend_status` int NULL DEFAULT NULL,
+  `sort` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '首页推荐品牌表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '首页推荐品牌表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sms_home_brand
@@ -670,13 +670,13 @@ INSERT INTO `sms_home_brand` VALUES (42, 6, '小米', 1, 300);
 -- ----------------------------
 DROP TABLE IF EXISTS `sms_home_new_product`;
 CREATE TABLE `sms_home_new_product`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `product_id` bigint NULL DEFAULT NULL,
   `product_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `recommend_status` int(1) NULL DEFAULT NULL,
-  `sort` int(1) NULL DEFAULT NULL,
+  `recommend_status` int NULL DEFAULT NULL,
+  `sort` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '新鲜好物表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '新鲜好物表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sms_home_new_product
@@ -693,13 +693,13 @@ INSERT INTO `sms_home_new_product` VALUES (6, 33, '海洋堂新世纪福音战�
 -- ----------------------------
 DROP TABLE IF EXISTS `sms_home_recommend_product`;
 CREATE TABLE `sms_home_recommend_product`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `product_id` bigint NULL DEFAULT NULL,
   `product_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `recommend_status` int(1) NULL DEFAULT NULL,
-  `sort` int(1) NULL DEFAULT NULL,
+  `recommend_status` int NULL DEFAULT NULL,
+  `sort` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人气推荐商品表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人气推荐商品表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sms_home_recommend_product
@@ -713,11 +713,35 @@ INSERT INTO `sms_home_recommend_product` VALUES (6, 10, '方形封闭式宠物�
 INSERT INTO `sms_home_recommend_product` VALUES (7, 14, '清欢日式可调节台灯 木铁结合，全体可调节', 1, 0);
 
 -- ----------------------------
+-- Table structure for tree
+-- ----------------------------
+DROP TABLE IF EXISTS `tree`;
+CREATE TABLE `tree`  (
+  `id` bigint NOT NULL,
+  `pid` bigint NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of tree
+-- ----------------------------
+INSERT INTO `tree` VALUES (1, 0, '中国');
+INSERT INTO `tree` VALUES (2, 1, '四川省');
+INSERT INTO `tree` VALUES (3, 2, '成都市');
+INSERT INTO `tree` VALUES (4, 3, '武侯区');
+INSERT INTO `tree` VALUES (5, 4, '红牌楼');
+INSERT INTO `tree` VALUES (6, 1, '广东省');
+INSERT INTO `tree` VALUES (7, 1, '浙江省');
+INSERT INTO `tree` VALUES (8, 6, '广州市');
+INSERT INTO `tree` VALUES (9, 6, '中山市');
+
+-- ----------------------------
 -- Table structure for ums_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin`;
 CREATE TABLE `ums_admin`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
@@ -726,64 +750,64 @@ CREATE TABLE `ums_admin`  (
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `login_time` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
-  `status` int(1) NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
+  `status` int NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 'test', 'd941cf1382c4ddb8c1b11620cd5d6279', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2021-09-08 09:52:44', 1);
-INSERT INTO `ums_admin` VALUES (3, 'admin', 'd941cf1382c4ddb8c1b11620cd5d6279', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2021-09-08 09:53:52', 1);
+INSERT INTO `ums_admin` VALUES (1, 'test', 'd941cf1382c4ddb8c1b11620cd5d6279', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2023-09-08 09:52:44', 1);
+INSERT INTO `ums_admin` VALUES (3, 'admin', 'd941cf1382c4ddb8c1b11620cd5d6279', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2023-09-08 09:53:52', 1);
 INSERT INTO `ums_admin` VALUES (4, 'macro', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', 'macro', 'macro专用', '2019-10-06 15:53:51', '2020-02-03 14:55:55', 1);
-INSERT INTO `ums_admin` VALUES (6, 'productAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'product@qq.com', '商品管理员', '只有商品权限', '2020-02-07 16:15:08', '2021-09-08 09:53:14', 1);
-INSERT INTO `ums_admin` VALUES (7, 'orderAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'order@qq.com', '订单管理员', '只有订单管理权限', '2020-02-07 16:15:50', '2021-09-08 11:13:22', 1);
-INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2021-08-25 18:10:21', '2021-11-28 12:20:03', 1);
+INSERT INTO `ums_admin` VALUES (6, 'productAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'product@qq.com', '商品管理员', '只有商品权限', '2020-02-07 16:15:08', '2023-09-08 09:53:14', 1);
+INSERT INTO `ums_admin` VALUES (7, 'orderAdmin', 'd941cf1382c4ddb8c1b11620cd5d6279', NULL, 'order@qq.com', '订单管理员', '只有订单管理权限', '2020-02-07 16:15:50', '2023-09-08 11:13:22', 1);
+INSERT INTO `ums_admin` VALUES (8, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', '', '799774821@qq.com', 'lucien_xxx', 'cxy专用', '2023-08-25 18:10:21', '2023-11-28 12:20:03', 1);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin_login_log`;
 CREATE TABLE `ums_admin_login_log`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `admin_id` bigint NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
 -- ----------------------------
-INSERT INTO `ums_admin_login_log` VALUES (1, 8, '2021-09-06 19:47:31', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (2, 8, '2021-09-06 19:49:00', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (3, 8, '2021-09-06 19:50:03', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (4, 8, '2021-09-06 19:51:41', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (5, 8, '2021-09-08 09:24:54', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (6, 8, '2021-09-08 09:33:22', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (7, 8, '2021-09-08 09:34:37', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (8, 8, '2021-09-08 09:36:54', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (9, 8, '2021-09-17 21:33:43', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (10, 8, '2021-09-18 22:13:16', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (11, 8, '2021-09-26 20:15:35', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (12, 8, '2021-09-27 08:54:32', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (13, 8, '2021-10-29 10:49:58', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (14, 8, '2021-11-28 10:41:35', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (15, 8, '2021-11-28 10:49:17', '127.0.0.1', NULL, 'Chrome 9');
-INSERT INTO `ums_admin_login_log` VALUES (16, 8, '2021-11-28 12:20:03', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (1, 8, '2023-09-06 19:47:31', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (2, 8, '2023-09-06 19:49:00', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (3, 8, '2023-09-06 19:50:03', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (4, 8, '2023-09-06 19:51:41', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (5, 8, '2023-09-08 09:24:54', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (6, 8, '2023-09-08 09:33:22', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (7, 8, '2023-09-08 09:34:37', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (8, 8, '2023-09-08 09:36:54', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (9, 8, '2023-09-17 21:33:43', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (10, 8, '2023-09-18 22:13:16', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (11, 8, '2023-09-26 20:15:35', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (12, 8, '2023-09-27 08:54:32', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (13, 8, '2023-10-29 10:49:58', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (14, 8, '2023-11-28 10:41:35', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (15, 8, '2023-11-28 10:49:17', '127.0.0.1', NULL, 'Chrome 9');
+INSERT INTO `ums_admin_login_log` VALUES (16, 8, '2023-11-28 12:20:03', '127.0.0.1', NULL, 'Chrome 9');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin_role_relation`;
 CREATE TABLE `ums_admin_role_relation`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) NULL DEFAULT NULL,
-  `role_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `admin_id` bigint NULL DEFAULT NULL,
+  `role_id` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_admin_role_relation
@@ -801,29 +825,29 @@ INSERT INTO `ums_admin_role_relation` VALUES (33, 9, 1);
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_member`;
 CREATE TABLE `ums_member`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `member_level_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `member_level_id` bigint NULL DEFAULT NULL,
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
   `nickname` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `phone` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
-  `status` int(1) NULL DEFAULT NULL COMMENT '帐号启用状态:0->禁用；1->启用',
+  `status` int NULL DEFAULT NULL COMMENT '帐号启用状态:0->禁用；1->启用',
   `create_time` datetime NULL DEFAULT NULL COMMENT '注册时间',
   `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
-  `gender` int(1) NULL DEFAULT NULL COMMENT '性别：0->未知；1->男；2->女',
+  `gender` int NULL DEFAULT NULL COMMENT '性别：0->未知；1->男；2->女',
   `birthday` date NULL DEFAULT NULL COMMENT '生日',
   `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所做城市',
   `job` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职业',
   `personalized_signature` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个性签名',
-  `source_type` int(1) NULL DEFAULT NULL COMMENT '用户来源',
-  `integration` int(11) NULL DEFAULT NULL COMMENT '积分',
-  `growth` int(11) NULL DEFAULT NULL COMMENT '成长值',
-  `luckey_count` int(11) NULL DEFAULT NULL COMMENT '剩余抽奖次数',
-  `history_integration` int(11) NULL DEFAULT NULL COMMENT '历史积分数量',
+  `source_type` int NULL DEFAULT NULL COMMENT '用户来源',
+  `integration` int NULL DEFAULT NULL COMMENT '积分',
+  `growth` int NULL DEFAULT NULL COMMENT '成长值',
+  `luckey_count` int NULL DEFAULT NULL COMMENT '剩余抽奖次数',
+  `history_integration` int NULL DEFAULT NULL COMMENT '历史积分数量',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_username`(`username`) USING BTREE,
   UNIQUE INDEX `idx_phone`(`phone`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_member
@@ -836,22 +860,22 @@ INSERT INTO `ums_member` VALUES (6, 4, 'wangwu', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ
 INSERT INTO `ums_member` VALUES (7, 4, 'lion', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'lion', '18061581845', 1, '2018-11-12 14:21:39', NULL, NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `ums_member` VALUES (8, 4, 'shari', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `ums_member` VALUES (9, 4, 'aewen', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (10, 4, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', 'lucien_ssa', '13556787083', 1, '2021-08-31 15:02:01', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.yRIXnUfY40-4ViK0NygIkgAAAA?pid=ImgDet&rs=1', NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_member` VALUES (10, 4, 'lucien', 'd941cf1382c4ddb8c1b11620cd5d6279', 'lucien_ssa', '13556787083', 1, '2023-08-31 15:02:01', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.yRIXnUfY40-4ViK0NygIkgAAAA?pid=ImgDet&rs=1', NULL, NULL, NULL, NULL, 'test', NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_member_login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_member_login_log`;
 CREATE TABLE `ums_member_login_log`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `member_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `member_id` bigint NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `login_type` int(1) NULL DEFAULT NULL COMMENT '登录类型：0->PC；1->android;2->ios;3->小程序',
+  `login_type` int NULL DEFAULT NULL COMMENT '登录类型：0->PC；1->android;2->ios;3->小程序',
   `province` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员登录记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员登录记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_member_login_log
@@ -862,18 +886,18 @@ CREATE TABLE `ums_member_login_log`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_member_receive_address`;
 CREATE TABLE `ums_member_receive_address`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `member_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `member_id` bigint NULL DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货人名称',
   `phone_number` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `default_status` int(1) NULL DEFAULT NULL COMMENT '是否为默认',
+  `default_status` int NULL DEFAULT NULL COMMENT '是否为默认',
   `post_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮政编码',
   `province` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省份/直辖市',
   `city` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '城市',
   `region` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区',
   `detail_address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址(街道)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员收货地址表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员收货地址表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_member_receive_address
@@ -890,17 +914,17 @@ INSERT INTO `ums_member_receive_address` VALUES (8, 10, '测试', '13556787083',
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_menu`;
 CREATE TABLE `ums_menu`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '父级ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint NULL DEFAULT NULL COMMENT '父级ID',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单名称',
-  `level` int(4) NULL DEFAULT NULL COMMENT '菜单级数',
-  `sort` int(4) NULL DEFAULT NULL COMMENT '菜单排序',
+  `level` int NULL DEFAULT NULL COMMENT '菜单级数',
+  `sort` int NULL DEFAULT NULL COMMENT '菜单排序',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端名称',
   `icon` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端图标',
-  `hidden` int(1) NULL DEFAULT NULL COMMENT '前端隐藏',
+  `hidden` int NULL DEFAULT NULL COMMENT '前端隐藏',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台菜单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_menu
@@ -929,25 +953,25 @@ INSERT INTO `ums_menu` VALUES (22, 21, '2020-02-07 16:29:51', '用户列表', 1,
 INSERT INTO `ums_menu` VALUES (23, 21, '2020-02-07 16:30:13', '角色列表', 1, 0, 'role', 'ums-role', 0);
 INSERT INTO `ums_menu` VALUES (24, 21, '2020-02-07 16:30:53', '菜单列表', 1, 0, 'menu', 'ums-menu', 0);
 INSERT INTO `ums_menu` VALUES (25, 21, '2020-02-07 16:31:13', '资源列表', 1, 0, 'resource', 'ums-resource', 0);
-INSERT INTO `ums_menu` VALUES (26, 21, '2021-09-10 14:00:00', '登录日志', 1, 0, 'loginlo', 'ums-loginlo', 0);
+INSERT INTO `ums_menu` VALUES (26, 21, '2023-09-10 14:00:00', '登录日志', 1, 0, 'loginlo', 'ums-loginlo', 0);
 
 -- ----------------------------
 -- Table structure for ums_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_permission`;
 CREATE TABLE `ums_permission`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pid` bigint(20) NULL DEFAULT NULL COMMENT '父级权限id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `pid` bigint NULL DEFAULT NULL COMMENT '父级权限id',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `value` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限值',
   `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
-  `type` int(1) NULL DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
+  `type` int NULL DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
   `uri` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端资源路径',
-  `status` int(1) NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
+  `status` int NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
+  `sort` int NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_permission
@@ -976,14 +1000,14 @@ INSERT INTO `ums_permission` VALUES (18, 0, '首页', NULL, NULL, 0, NULL, 1, '2
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_resource`;
 CREATE TABLE `ums_resource`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源名称',
   `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源URL',
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `category_id` bigint(20) NULL DEFAULT NULL COMMENT '资源分类ID',
+  `category_id` bigint NULL DEFAULT NULL COMMENT '资源分类ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台资源表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台资源表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_resource
@@ -1022,12 +1046,12 @@ INSERT INTO `ums_resource` VALUES (29, '2020-02-07 16:49:45', '后台资源管�
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_resource_category`;
 CREATE TABLE `ums_resource_category`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类名称',
-  `sort` int(4) NULL DEFAULT NULL COMMENT '排序',
+  `sort` int NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '资源分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '资源分类表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_resource_category
@@ -1044,15 +1068,15 @@ INSERT INTO `ums_resource_category` VALUES (6, '2020-02-07 16:35:49', '其他模
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_role`;
 CREATE TABLE `ums_role`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `admin_count` int(11) NULL DEFAULT NULL COMMENT '后台用户数量',
+  `admin_count` int NULL DEFAULT NULL COMMENT '后台用户数量',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `status` int(1) NULL DEFAULT 1 COMMENT '启用状态：0->禁用；1->启用',
-  `sort` int(11) NULL DEFAULT 0,
+  `status` int NULL DEFAULT 1 COMMENT '启用状态：0->禁用；1->启用',
+  `sort` int NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_role
@@ -1066,11 +1090,11 @@ INSERT INTO `ums_role` VALUES (5, '超级管理员', '拥有所有查看和操�
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_role_menu_relation`;
 CREATE TABLE `ums_role_menu_relation`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
-  `menu_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint NULL DEFAULT NULL COMMENT '角色ID',
+  `menu_id` bigint NULL DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 120 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台角色菜单关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 120 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台角色菜单关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_role_menu_relation
@@ -1116,11 +1140,11 @@ INSERT INTO `ums_role_menu_relation` VALUES (119, 5, 25);
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_role_permission_relation`;
 CREATE TABLE `ums_role_permission_relation`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) NULL DEFAULT NULL,
-  `permission_id` bigint(20) NULL DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint NULL DEFAULT NULL,
+  `permission_id` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色和权限关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色和权限关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_role_permission_relation
@@ -1148,11 +1172,11 @@ INSERT INTO `ums_role_permission_relation` VALUES (17, 4, 17);
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_role_resource_relation`;
 CREATE TABLE `ums_role_resource_relation`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
-  `resource_id` bigint(20) NULL DEFAULT NULL COMMENT '资源ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint NULL DEFAULT NULL COMMENT '角色ID',
+  `resource_id` bigint NULL DEFAULT NULL COMMENT '资源ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 206 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台角色资源关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 206 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台角色资源关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ums_role_resource_relation
@@ -1198,5 +1222,26 @@ INSERT INTO `ums_role_resource_relation` VALUES (202, 5, 26);
 INSERT INTO `ums_role_resource_relation` VALUES (203, 5, 27);
 INSERT INTO `ums_role_resource_relation` VALUES (204, 5, 28);
 INSERT INTO `ums_role_resource_relation` VALUES (205, 5, 29);
+
+-- ----------------------------
+-- Function structure for GET_CHILD_NODE
+-- ----------------------------
+DROP FUNCTION IF EXISTS `GET_CHILD_NODE`;
+delimiter ;;
+CREATE FUNCTION `GET_CHILD_NODE`(rootId varchar(100))
+ RETURNS varchar(2000) CHARSET utf8
+BEGIN   
+DECLARE str varchar(2000);  
+DECLARE cid varchar(100);   
+SET str = '$';   
+SET cid = rootId;   
+WHILE cid is not null DO   
+    SET str = concat(str, ',', cid);   
+    SELECT group_concat(id) INTO cid FROM tree where FIND_IN_SET(pid, cid);   
+END WHILE;   
+RETURN str;   
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

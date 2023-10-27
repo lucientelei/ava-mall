@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 创建和修改商品时使用的参数
  */
 public class PmsProductParam extends PmsProduct{

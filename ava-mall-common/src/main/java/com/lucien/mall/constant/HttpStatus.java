@@ -2,7 +2,7 @@ package com.lucien.mall.constant;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  */
 public class HttpStatus {
 

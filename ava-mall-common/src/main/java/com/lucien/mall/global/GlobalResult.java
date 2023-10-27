@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  */
 public class GlobalResult<T> extends HashMap<String, Object> {
 

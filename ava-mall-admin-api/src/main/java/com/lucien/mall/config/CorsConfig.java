@@ -8,7 +8,7 @@ import org.springframework.web.filter.CorsFilter;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  */
 @Configuration
 public class CorsConfig {

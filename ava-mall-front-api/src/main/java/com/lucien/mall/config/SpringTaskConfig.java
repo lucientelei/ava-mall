@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @Author Lucien
- * @Date 2021/9/8
+ * @Date 2023/9/8
  * 定时任务配置
  */
 @Configuration

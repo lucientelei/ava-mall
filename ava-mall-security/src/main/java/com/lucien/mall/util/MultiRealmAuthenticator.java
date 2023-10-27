@@ -14,7 +14,7 @@ import java.util.Collection;
 
 /**
  * @Author Lucien
- * @Date 2021/8/22
+ * @Date 2023/8/22
  * 解决Shiro中出现的具体的认证异常无法正常返回 仅返回父类 AuthenticationException 的问题
  */
 @Component

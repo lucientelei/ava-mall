@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 添加更新产品分类的参数
  */
 public class PmsProductCategoryParam {

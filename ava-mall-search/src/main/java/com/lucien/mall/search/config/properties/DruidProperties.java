@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author Lucien
- * @Date 2021/8/23
+ * @Date 2023/8/23
  */
 @Configuration
 public class DruidProperties {

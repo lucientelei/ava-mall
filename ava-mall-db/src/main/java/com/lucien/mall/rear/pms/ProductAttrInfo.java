@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 商品分类对应属性信息
  */
 public class ProductAttrInfo {

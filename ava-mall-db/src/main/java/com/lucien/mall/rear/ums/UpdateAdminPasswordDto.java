@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  * 修改用户密码参数
  */
 public class UpdateAdminPasswordDto {

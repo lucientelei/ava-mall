@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 商品分类，包含子分类
  */
 public class PmsProductCategoryNode extends PmsProductCategory {

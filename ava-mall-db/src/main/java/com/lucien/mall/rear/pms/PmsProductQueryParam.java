@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 产品查询参数
  */
 public class PmsProductQueryParam {

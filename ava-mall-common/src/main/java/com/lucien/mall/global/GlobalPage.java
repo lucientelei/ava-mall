@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/26
+ * @Date 2023/8/26
  * 分页数据封装类
  */
 public class GlobalPage<T> {

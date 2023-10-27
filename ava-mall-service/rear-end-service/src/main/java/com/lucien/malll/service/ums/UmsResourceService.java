@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/30
+ * @Date 2023/8/30
  * 后台资源管理Service
  */
 public interface UmsResourceService {

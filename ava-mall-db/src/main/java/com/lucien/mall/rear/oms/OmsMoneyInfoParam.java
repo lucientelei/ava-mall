@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * @Author Lucien
- * @Date 2021/9/2
+ * @Date 2023/9/2
  * 修改订单费用信息参数
  */
 public class OmsMoneyInfoParam {

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 搜索商品管理自定义Mapper
  */
 public interface EsProductMapper {

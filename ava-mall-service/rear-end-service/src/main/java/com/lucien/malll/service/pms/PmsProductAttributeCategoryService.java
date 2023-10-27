@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 商品属性分类管理Service
  */
 public interface PmsProductAttributeCategoryService {

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/23
+ * @Date 2023/8/23
  * 后台用户登录日志
  */
 public interface UmsAdminLoginLogService {

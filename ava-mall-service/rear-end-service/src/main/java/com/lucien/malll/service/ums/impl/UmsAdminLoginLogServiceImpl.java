@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/23
+ * @Date 2023/8/23
  */
 @Service
 public class UmsAdminLoginLogServiceImpl implements UmsAdminLoginLogService {

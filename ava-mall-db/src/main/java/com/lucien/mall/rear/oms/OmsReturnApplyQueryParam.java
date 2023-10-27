@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @Author Lucien
- * @Date 2021/9/2
+ * @Date 2023/9/2
  */
 public class OmsReturnApplyQueryParam {
 

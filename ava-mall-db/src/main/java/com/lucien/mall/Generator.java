@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  * 用于生产MBG的代码
  */
 public class Generator {

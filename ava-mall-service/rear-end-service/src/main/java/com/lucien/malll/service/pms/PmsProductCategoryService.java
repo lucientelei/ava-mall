@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 后台商品分类管理service
  */
 public interface PmsProductCategoryService {

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 携带子级分类的商品分类目录
  */
 public class PmsProductCategoryWithChildrenItem extends PmsProductCategory {

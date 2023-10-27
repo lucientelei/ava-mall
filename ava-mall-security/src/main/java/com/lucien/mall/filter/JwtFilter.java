@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 
 /**
  * @Author Lucien
- * @Date 2021/8/22
+ * @Date 2023/8/22
  * 自定义的认证过滤器，用来拦截Header中携带token的请求
  */
 @Component
@@ -82,6 +82,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         } catch (IllegalStateException e) { //未找到token
             e.printStackTrace();
             System.out.println("未找到token");
+            return false;
         } catch (TokenExpiredException e) {
             e.printStackTrace();
         } catch (Exception e) {

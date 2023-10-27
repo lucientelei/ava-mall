@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 /**
  * @Author Lucien
- * @Date 2021/9/1
+ * @Date 2023/9/1
  * 商品管理Impl
  */
 @Service
@@ -204,7 +204,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         if (productQueryParam.getBrandId() != null){
             criteria.andBrandIdEqualTo(productQueryParam.getBrandId());
         }
-        System.out.println("执行搜索成功");
+//        System.out.println("执行搜索成功");
         return productMapper.selectByExample(example);
     }
 

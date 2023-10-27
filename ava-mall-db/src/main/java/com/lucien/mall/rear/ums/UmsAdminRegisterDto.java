@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  * 后台用户注册dto
  */
 public class UmsAdminRegisterDto {

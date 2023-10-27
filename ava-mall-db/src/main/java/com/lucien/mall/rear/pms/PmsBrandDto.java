@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @Author Lucien
- * @Date 2021/8/31
+ * @Date 2023/8/31
  * 品牌参数
  */
 public class PmsBrandDto {

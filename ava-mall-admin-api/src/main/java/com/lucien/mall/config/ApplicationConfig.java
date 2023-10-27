@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author Lucien
- * @Date 2021/8/22
+ * @Date 2023/8/22
  */
 @Configuration
 @MapperScan(basePackages = "com.lucien.mall.**")

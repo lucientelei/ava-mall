@@ -4,7 +4,7 @@ import com.lucien.mall.pojo.OmsOrderSetting;
 
 /**
  * @Author Lucien
- * @Date 2021/9/2
+ * @Date 2023/9/2
  * 订单设置管理Service
  */
 public interface OmsOrderSettingService {

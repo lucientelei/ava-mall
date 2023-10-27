@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 搜索商品的信息
  * @Document定义在Elasticsearch中索引信息
  * @Id定义了Elasticsearch的_id

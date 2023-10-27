@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 购物车中促销信息
  */
 public class CartPromotionItem extends OmsCartItem {

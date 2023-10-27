@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author Lucien
- * @Date 2021/9/8
+ * @Date 2023/9/8
  * rabbitmq配置
  */
 @Configuration

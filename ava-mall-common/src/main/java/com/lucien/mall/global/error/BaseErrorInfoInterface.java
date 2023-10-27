@@ -2,7 +2,7 @@ package com.lucien.mall.global.error;
 
 /**
  * @Author Lucien
- * @Date 2021/8/26
+ * @Date 2023/8/26
  * 全局异常基础接口类
  */
 public interface BaseErrorInfoInterface {

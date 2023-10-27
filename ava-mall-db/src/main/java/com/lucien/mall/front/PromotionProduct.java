@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 商品的促销信息，包括sku、打折优惠、满减优惠
  */
 public class PromotionProduct extends PmsProduct {

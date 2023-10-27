@@ -2,7 +2,7 @@ package com.lucien.mall.global.error;
 
 /**
  * @Author Lucien
- * @Date 2021/8/26
+ * @Date 2023/8/26
  * 自定义异常类
  */
 public class MyException extends RuntimeException{

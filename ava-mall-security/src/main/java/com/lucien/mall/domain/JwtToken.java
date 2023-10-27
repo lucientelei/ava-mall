@@ -5,7 +5,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 
 /**
  * @Author Lucien
- * @Date 2021/8/22
+ * @Date 2023/8/22
  * 封装成UsernamePasswordToken让shiro进行登录、登出等操作
  */
 public class JwtToken implements AuthenticationToken {

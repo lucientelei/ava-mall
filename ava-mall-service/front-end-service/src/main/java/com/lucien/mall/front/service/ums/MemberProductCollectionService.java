@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 会员商品收藏Service
  */
 public interface MemberProductCollectionService {

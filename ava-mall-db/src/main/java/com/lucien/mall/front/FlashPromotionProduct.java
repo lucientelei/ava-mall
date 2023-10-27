@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 秒杀信息和商品对象
  */
 public class FlashPromotionProduct extends PmsProduct {

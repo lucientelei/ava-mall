@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 首页内容返回信息
  */
 public class HomeContentResult {

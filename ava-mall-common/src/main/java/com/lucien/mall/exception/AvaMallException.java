@@ -2,7 +2,7 @@ package com.lucien.mall.exception;
 
 /**
  * @Author Lucien
- * @Date 2021/9/9
+ * @Date 2023/9/9
  * 自定义异常信息抛出类
  */
 public class AvaMallException extends RuntimeException{

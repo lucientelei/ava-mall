@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/8/27
+ * @Date 2023/8/27
  * 后台菜单节点封装
  */
 public class UmsMenuNode extends UmsMenu {

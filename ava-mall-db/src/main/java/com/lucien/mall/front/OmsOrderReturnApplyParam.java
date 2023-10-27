@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 申请退货参数
  */
 public class OmsOrderReturnApplyParam {

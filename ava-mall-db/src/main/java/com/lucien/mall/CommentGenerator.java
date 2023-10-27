@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  * @Author Lucien
- * @Date 2021/8/21
+ * @Date 2023/8/21
  * 自定义注释生成器
  */
 public class CommentGenerator extends DefaultCommentGenerator {

@@ -2,7 +2,7 @@ package com.lucien.mall.myEnum;
 
 /**
  * @Author Lucien
- * @Date 2021/9/8
+ * @Date 2023/9/8
  * 消息队列枚举配置
  */
 public enum  QueueEnum {

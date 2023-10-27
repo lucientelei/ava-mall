@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * @Author Lucien
- * @Date 2021/8/31
+ * @Date 2023/8/31
  * 状态约束校验器
  */
 public class FlagValidatorClass implements ConstraintValidator<FlagValidator,Integer> {

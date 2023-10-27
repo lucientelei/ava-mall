@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 首页秒杀场次信息
  */
 public class HomeFlashPromotion {

@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 搜索商品ES操作类
  */
 public interface EsProductRepository extends ElasticsearchRepository<EsProduct, Long> {

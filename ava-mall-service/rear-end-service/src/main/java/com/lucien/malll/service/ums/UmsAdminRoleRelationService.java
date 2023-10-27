@@ -2,7 +2,7 @@ package com.lucien.malll.service.ums;
 
 /**
  * @Author Lucien
- * @Date 2021/8/23
+ * @Date 2023/8/23
  * 后台用户角色关系
  */
 public interface UmsAdminRoleRelationService {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  */
 @RestController
 @RequestMapping("/member/product/collection")

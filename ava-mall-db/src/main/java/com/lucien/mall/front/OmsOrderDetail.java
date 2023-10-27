@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/6
+ * @Date 2023/9/6
  * 包含商品信息的订单详情
  */
 public class OmsOrderDetail extends OmsOrder {

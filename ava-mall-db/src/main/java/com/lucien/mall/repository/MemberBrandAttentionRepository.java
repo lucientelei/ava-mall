@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 会员关注
  */
 public interface MemberBrandAttentionRepository extends MongoRepository<MemberBrandAttention,String> {

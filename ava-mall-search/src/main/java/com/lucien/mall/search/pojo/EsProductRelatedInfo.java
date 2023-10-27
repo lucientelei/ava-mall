@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @Author Lucien
- * @Date 2021/9/7
+ * @Date 2023/9/7
  * 搜索商品的品牌名称，分类名称及属性
  */
 public class EsProductRelatedInfo {
