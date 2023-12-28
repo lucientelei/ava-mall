@@ -2,7 +2,7 @@ spring:
   application:
     name: ava-mall-search
   profiles:
-    active: prod
+    active: dev
   devtools:
     restart:
       enabled: true

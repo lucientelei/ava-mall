@@ -80,14 +80,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
         Subject subject = SecurityUtils.getSubject();
 
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(dto.getUsername(), DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()));
+        UsernamePasswordToken usernamePasswordToken =
+                new UsernamePasswordToken(dto.getUsername(),
+                        DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()));
 
         boolean loginSuccess = false;
-
         try {
             subject.login(usernamePasswordToken);
             loginSuccess = true;
-
         } catch (UnknownAccountException | IncorrectCredentialsException uae) { // 账号不存在 // 账号与密码不匹配
             return "-2";
         } catch (LockedAccountException lae) { // 账号已被锁定
@@ -98,7 +98,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         } catch (Exception e) {
             return "-5";
         }
-
         if (loginSuccess) {
             String token = JWTUtils.sign(dto.getUsername(), JWTUtils.SECRET);
             try {

@@ -62,6 +62,7 @@ public class EsProductServiceImpl implements EsProductService {
 
     /**
      * 初始化索引库
+     *
      * @return
      */
     @PostConstruct
@@ -70,7 +71,7 @@ public class EsProductServiceImpl implements EsProductService {
         List<EsProduct> allEsProductList = productMapper.getAllEsProductList(null);
         Iterable<EsProduct> esProductIterable = productRepository.saveAll(allEsProductList);
         Iterator<EsProduct> iterator = esProductIterable.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             result++;
             iterator.next();
         }
@@ -79,6 +80,7 @@ public class EsProductServiceImpl implements EsProductService {
 
     /**
      * 添加商品到ES库
+     *
      * @return
      */
     @Override
@@ -87,7 +89,7 @@ public class EsProductServiceImpl implements EsProductService {
         List<EsProduct> allEsProductList = productMapper.getAllEsProductList(null);
         Iterable<EsProduct> esProductIterable = productRepository.saveAll(allEsProductList);
         Iterator<EsProduct> iterator = esProductIterable.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             result++;
             iterator.next();
         }
@@ -159,7 +161,8 @@ public class EsProductServiceImpl implements EsProductService {
     @Override
     public Page<EsProduct> search(String keyword, Integer pageNum, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return productRepository.findByNameOrSubTitleOrKeywords(keyword, keyword, keyword, pageable);}
+        return productRepository.findByNameOrSubTitleOrKeywords(keyword, keyword, keyword, pageable);
+    }
 
     /**
      * 根据关键字搜索名称或者副标题复合查询
@@ -206,7 +209,8 @@ public class EsProductServiceImpl implements EsProductService {
         List<EsProduct> result = new ArrayList<>();
         try {
             PageHelper.startPage(pageNum, pageSize);
-            QueryBuilder builder =  QueryBuilders.multiMatchQuery(keyWord, "brandName","name","keywords","subTitle");
+            QueryBuilder builder = QueryBuilders.multiMatchQuery
+                    (keyWord, "brandName", "name", "keywords", "subTitle");
             //设置高亮字段
             HighlightBuilder highlightBuilder = new HighlightBuilder();
             highlightBuilder.field("brandName");
@@ -236,47 +240,47 @@ public class EsProductServiceImpl implements EsProductService {
                 Map sourceAsMap = hit.getSourceAsMap();
                 EsProduct esProduct = createEsProduct(sourceAsMap);
                 //商品名称
-                if (hit.getHighlightFields().get("name") != null){
+                if (hit.getHighlightFields().get("name") != null) {
                     Text[] texts = hit.getHighlightFields().get("name").getFragments();
                     String name = "";
                     for (Text text : texts) {
                         name += text;
                     }
                     esProduct.setName(name);
-                }else {
+                } else {
                     esProduct.setName(String.valueOf(sourceAsMap.get("name")));
                 }
                 //品牌名称
-                if (hit.getHighlightFields().get("brandName") != null){
+                if (hit.getHighlightFields().get("brandName") != null) {
                     Text[] texts = hit.getHighlightFields().get("brandName").getFragments();
                     String name = "";
                     for (Text text : texts) {
                         name += text;
                     }
                     esProduct.setBrandName(name);
-                }else {
+                } else {
                     esProduct.setBrandName(String.valueOf(sourceAsMap.get("brandName")));
                 }
                 //关键词
-                if (hit.getHighlightFields().get("keywords") != null){
+                if (hit.getHighlightFields().get("keywords") != null) {
                     Text[] texts = hit.getHighlightFields().get("keywords").getFragments();
                     String name = "";
                     for (Text text : texts) {
                         name += text;
                     }
                     esProduct.setKeywords(name);
-                }else {
+                } else {
                     esProduct.setKeywords(String.valueOf(sourceAsMap.get("keywords")));
                 }
                 //副标题
-                if (hit.getHighlightFields().get("subTitle") != null){
+                if (hit.getHighlightFields().get("subTitle") != null) {
                     Text[] texts = hit.getHighlightFields().get("subTitle").getFragments();
                     String name = "";
                     for (Text text : texts) {
                         name += text;
                     }
                     esProduct.setSubTitle(name);
-                }else {
+                } else {
                     esProduct.setSubTitle(String.valueOf(sourceAsMap.get("subTitle")));
                 }
                 result.add(esProduct);
@@ -288,7 +292,7 @@ public class EsProductServiceImpl implements EsProductService {
         return result;
     }
 
-    private EsProduct createEsProduct(Map sourceAsMap){
+    private EsProduct createEsProduct(Map sourceAsMap) {
         EsProduct esProduct = new EsProduct();
         esProduct.setId(Long.valueOf(String.valueOf(sourceAsMap.get("id"))));
         esProduct.setProductSn(String.valueOf(sourceAsMap.get("productSn")));

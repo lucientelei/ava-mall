@@ -10,7 +10,7 @@ spring:
         usePingMethod: false
       # 主数据源
       master:
-        url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://localhost:3306/ava_mall?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
         username: root
         password: root
       # 从库数据源
